@@ -1,8 +1,8 @@
-Nursing Basic Course – Learning Management System
+🩺 Nursing Basic Course – Edu Nursing LMS
 
-A web-based Learning Management System (LMS) designed to support nursing education through structured courses, interactive learning tools, student management, and administrative operations.
+A modern, full-featured Nursing Learning Management System (LMS) designed to provide an organized digital learning experience for nursing students, instructors, and administrators.
 
-The platform provides dedicated experiences for students, instructors, and administrators, combining educational content delivery with centralized platform management.
+The platform combines educational content, course management, student tracking, assessments, and administrative tools in one integrated system.
 
 🌐 Live Demo
 
@@ -37,173 +37,149 @@ Explore the platform's interface and main features.
 
 "Student Courses" (docs/screenshots/06-student-courses.png)
 
-7. Assessments
+7. Instructor Dashboard
 
-"Assessments" (docs/screenshots/07-assessments.png)
+"Instructor Dashboard" (docs/screenshots/07-instructor-dashboard.png)
 
-8. Certificates
+8. Assessment System
 
-"Certificates" (docs/screenshots/08-certificates.png)
+"Assessment System" (docs/screenshots/08-assessments.png)
 
-9. Mobile Responsive Interface
+9. Student Portal
 
-"Mobile Responsive" (docs/screenshots/09-mobile-responsive.png)
+"Student Portal" (docs/screenshots/09-student-portal.png)
 
 ✨ Key Features
 
-Student Portal
+🎓 Learning Management
 
-- Student registration and authentication.
-- Personalized student dashboard.
-- Course browsing and enrollment.
-- Video-based educational content.
-- Learning progress tracking.
-- Online assessments and quizzes.
-- Digital certificates and verification.
-- PDF educational resources.
-- Student profile management.
-- Notifications and support.
-
-Admin Portal
-
-- Dedicated administrative authentication.
-- Centralized dashboard.
 - Course and lesson management.
-- Student account management.
-- Instructor management.
-- Assessment and quiz management.
-- Certificate management.
-- Announcements and notifications.
-- Platform settings and content management.
+- Structured educational content.
+- Video-based learning.
+- Course enrollment and student access.
+- Learning progress tracking.
 
-Instructor Features
+👨‍🎓 Student Portal
 
-- Instructor authentication.
+- Personalized student dashboard.
+- Registered courses.
+- Learning progress.
+- Clinical assessments and quizzes.
+- Digital certificates.
+- Student profile management.
+
+👨‍🏫 Instructor Portal
+
+- Instructor dashboard.
+- Course and lesson management.
+- Student assessment tools.
 - Educational content management.
-- Assessment creation and management.
-- AI-assisted assessment tools.
-- Course-related administrative operations.
+- AI-powered educational assistance.
 
-Additional Capabilities
+🛡️ Administration
 
-- Role-based access control.
-- Separate authentication sessions for different user roles.
-- Database-driven content management.
-- Responsive user interface.
-- AI integration using Google Gemini.
-- Course media and file management.
+- Dedicated administration dashboard.
+- Student and instructor management.
+- Course management.
+- Enrollment and payment management.
+- Announcements and notifications.
+- Platform settings and reports.
+
+🤖 AI Integration
+
+- AI-powered educational assistance.
+- AI assessment generation.
+- AI-assisted grading.
+- Interactive academic assistant.
+
+📱 User Experience
+
+- Responsive interface.
+- Arabic and English language support.
+- Modern UI design.
+- Mobile-friendly layouts.
+- Organized navigation.
 
 🛠️ Technologies Used
 
 Technology| Purpose
-PHP| Backend development
-MySQL| Database management
-JavaScript| Interactive functionality
-HTML5| Web structure
-CSS3| Responsive interface
-PDO| Secure database access
-Git & GitHub| Version control
+PHP| Backend Development
+MySQL| Database Management
+JavaScript| Interactive Functionality
+HTML5| Structure
+CSS3| Styling and Responsive Design
+PDO| Secure Database Operations
+REST APIs| Backend Communication
+Gemini API| AI Integration
+Git & GitHub| Version Control
 
-🏗️ Project Structure
+🏗️ System Architecture
 
-Nursing-Basic-Course/
-│
-├── api/
-│   ├── admin/
-│   ├── auth/
-│   ├── config/
-│   ├── instructor/
-│   ├── student/
-│   └── public/
-│
-├── asset/
-├── auth/
-├── database/
-│   └── migrations/
-│
-├── docs/
-│   └── screenshots/
-│
-├── edu-nursing/
-├── admin.html
-├── instructor.html
-├── student.html
-├── index.html
-├── login.html
-├── .htaccess
-├── .gitignore
-└── README.md
+The platform follows a modular PHP backend structure with separated application areas:
 
-⚙️ Local Installation
+- "api/" – Backend endpoints and API logic.
+- "api/admin/" – Administrative operations.
+- "api/student/" – Student services.
+- "api/instructor/" – Instructor services.
+- "api/auth/" – Authentication.
+- "api/config/" – Database, session, and configuration.
+- "database/" – Database migrations and SQL scripts.
+- "asset/" – Frontend assets.
+- "auth/" – Authentication interfaces.
+- "edu-nursing/" – Educational platform components.
+
+🔐 Security & Access Control
+
+- Role-based access control.
+- Separate authentication flows for different user roles.
+- Session management and isolation.
+- PDO prepared statements.
+- API access protection.
+- Upload restrictions and validation.
+- Rate limiting for supported endpoints.
+
+🚀 Installation
 
 Requirements
 
-- PHP 8.0 or later.
+- PHP 8.1 or newer.
 - MySQL.
 - Apache Server.
 - PHP PDO MySQL extension.
-- PHP cURL extension (for AI integration).
+- cURL extension.
 
-Setup
+Local Setup
 
 1. Clone the repository:
+   
+   git clone https://github.com/ay6038776-collab/Nursing-Basic-Course.git
 
-git clone https://github.com/ay6038776-collab/Nursing-Basic-Course.git
-
-2. Move the project into your local server directory:
-
-C:\xampp\htdocs\NursingBasicCourse
+2. Move the project into your local server directory.
 
 3. Create a MySQL database named:
+   
+   nursing_basic_course
 
-nursing_basic_course
+4. Import the database schema and migration files.
 
-4. Import the required SQL migration files from:
+5. Configure your database connection in:
+   
+   api/config/database.php
 
-database/migrations/
-
-5. Configure your local database connection in:
-
-api/config/database.php
-
-6. Configure the Gemini API environment variables if AI features are required:
-
-NBC_GEMINI_API_KEY=your_api_key
-NBC_GEMINI_MODEL=your_model
+6. Configure the required environment variables for external services.
 
 7. Start Apache and MySQL through XAMPP.
 
-8. Open the project in your browser:
-
-http://localhost/NursingBasicCourse/
-
-🔐 Security
-
-Security considerations implemented in the project include:
-
-- Separate authentication flows for different user roles.
-- Server-side authentication and authorization checks.
-- PDO prepared statements for database operations.
-- Rate-limiting support.
-- Protected configuration and upload directories.
-- Sensitive local files excluded from version control.
-
-Important: Never publish database credentials, API keys, private uploads, or real student information.
-
-🎯 Project Goals
-
-The project focuses on building a practical educational platform that combines backend development, database architecture, authentication, access control, and modern web interfaces.
-
-It demonstrates the implementation of a multi-role educational system with real-world platform management requirements.
+8. Open the project in your browser.
 
 👨‍💻 Developer
 
 Ahmad Yasser
 
-Backend Development | PHP & MySQL | Web Application Development
+Backend Developer | Software Development & AI Enthusiast
 
 GitHub: https://github.com/ay6038776-collab
 
 ---
 
-Developed as a practical web application project for nursing education and digital learning management.
+Developed as an integrated educational platform focused on improving digital nursing education and learning management.
