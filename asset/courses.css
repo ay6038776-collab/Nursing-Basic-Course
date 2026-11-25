@@ -1,0 +1,60 @@
+/* إدارة الكورسات — يعتمد على متغيرات admin.css */
+.cf-group{border:1px solid var(--line);border-radius:14px;padding:6px 16px 16px;margin:14px 0 0;min-width:0}
+.cf-group legend{padding:0 8px;font-weight:800;color:var(--navy);font-size:13px}
+
+.cover-box{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.cover-preview{width:240px;aspect-ratio:16/9;border-radius:12px;border:1px dashed #cfdbe4;background:#f7fafc;display:grid;place-items:center;overflow:hidden;color:var(--muted);font-size:12px}
+.cover-preview img{width:100%;height:100%;object-fit:cover;display:block}
+.cover-side{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.cover-side small{color:var(--muted);font-size:11px}
+.cover-upload{display:inline-block}
+
+.check-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;margin-top:6px}
+.check-grid label{display:flex;align-items:center;gap:8px;margin:0;font-weight:600;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.check-grid input{width:auto}
+.check-grid label.is-disabled{opacity:.45}
+
+.crs-cell{display:flex;gap:10px;align-items:center}
+.crs-thumb{width:56px;height:36px;border-radius:8px;object-fit:cover;flex:0 0 56px;background:#edf3f7}
+.crs-thumb-empty{display:grid;place-items:center;color:var(--muted);font-size:14px}
+.crs-old{color:var(--muted);text-decoration:line-through;font-size:11px;margin-inline-end:6px}
+.badge.full{background:#fff0ee;color:#b42318}
+
+/* المنهج */
+.cur-unit{border:1px solid var(--line);border-radius:14px;margin-bottom:12px;background:#fbfcfd}
+.cur-unit-head{display:flex;gap:10px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--line)}
+.cur-unit-head input{font-weight:700}
+.cur-num{flex:0 0 28px;height:28px;border-radius:9px;background:var(--teal-light);color:var(--teal);display:grid;place-items:center;font-weight:800;font-size:12px}
+.cur-tools{display:flex;gap:4px;flex:0 0 auto}
+.cur-tools .small-btn{margin:0;padding:5px 8px}
+.cur-lessons{padding:8px 12px 12px}
+.cur-lesson{display:grid;grid-template-columns:28px minmax(160px,1.4fr) 90px minmax(190px,1fr) minmax(190px,1fr) auto auto;gap:8px;align-items:center;margin-bottom:8px}
+.cur-lesson .ln{color:var(--muted);font-size:11px;text-align:center}
+.cur-lesson input[type=text],.cur-lesson input[type=url],.cur-lesson input[type=number]{padding:8px 10px}
+.cur-lesson .cur-upload{display:flex;flex-direction:column;gap:5px;min-width:0;font-size:11px;font-weight:700}
+.cur-lesson .cur-upload input[type=file]{width:100%;min-width:0;font-size:11px}
+.cur-lesson .cur-upload small{font-size:10px;font-weight:500;overflow-wrap:anywhere}
+.lesson-file-chip{display:inline-flex;align-items:center;gap:4px;margin:2px;padding:3px 6px;border:1px solid var(--line);border-radius:8px}
+.lesson-file-chip .small-btn{padding:1px 5px}
+.lesson-pending{grid-column:2/-1;color:var(--teal-600)}
+.cur-free{display:flex;align-items:center;gap:6px;font-size:12px;white-space:nowrap;margin:0;font-weight:600}
+.cur-free input{width:auto}
+.cur-empty{padding:18px;text-align:center;color:var(--muted)}
+
+/* الكوبونات */
+.coupon-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;align-items:end;margin-bottom:14px}
+.coupon-form label{margin:0;font-weight:700;color:#415569;font-size:12px}
+.coupon-form input,.coupon-form select{margin-top:6px}
+
+#courseMeta{margin:4px 0 0;font-size:12px}
+#courseExtras .surface{margin-top:16px}
+
+@media(max-width:900px){
+  .cur-lesson{grid-template-columns:1fr 1fr}
+  .cur-lesson .ln{display:none}
+  .cur-lesson .cur-tools,.cur-lesson .cur-free{grid-column:span 1}
+}
+@media(max-width:560px){
+  .cover-preview{width:100%}
+  .cur-lesson{grid-template-columns:1fr}
+}

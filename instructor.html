@@ -1,0 +1,1506 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex,nofollow">
+    <title>لوحة المحاضر الأكاديمية | Edu Nursing</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=Almarai:wght@300;400;700;800&family=Cairo:wght@300;400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700;800;900&family=Readex+Pro:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="asset/student-details.css">
+    <link rel="stylesheet" href="asset/courses.css">
+    <link rel="stylesheet" href="asset/admin.css">
+    <link rel="stylesheet" href="asset/admin-extras.css">
+    <link rel="stylesheet" href="asset/instructor-proportions.css">
+    <link rel="stylesheet" href="asset/medical-themes.css?v=20261120-4">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="asset/responsive.css?v=20261117-mobile-dark">
+<link rel="stylesheet" href="asset/dashboard-polish.css?v=20261118-2">
+<link rel="stylesheet" href="asset/mobile-ux.css?v=20261122-2">
+    <link rel="stylesheet" href="asset/assessment.css?v=20261119-2">
+    <link rel="stylesheet" href="asset/appearance-system.css?v=20261120-6">
+    <link rel="stylesheet" href="asset/platform-responsive-polish.css?v=20261120-3">
+
+    <script>
+      (function() {
+        try {
+          const t = localStorage.getItem('nbc_theme') || localStorage.getItem('nbc_instructor_theme') || localStorage.getItem('nbc_admin_theme');
+          const isDark = t === 'dark' || (!t && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          const theme = isDark ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', theme);
+          document.documentElement.style.backgroundColor = isDark ? '#070d18' : '#f4f7fb';
+        } catch (_) {}
+      })();
+    </script>
+    <style>
+      .course-card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+      .ins-course-card {
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      [data-theme="dark"] .ins-course-card {
+        background: #0e1829;
+        border-color: #1c2b42;
+      }
+      .ins-course-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-lg);
+      }
+      .ins-course-thumb {
+        width: 100%;
+        height: 160px;
+        background: linear-gradient(135deg, var(--navy-900), var(--teal-700));
+        object-fit: cover;
+        display: block;
+      }
+      .ins-course-body {
+        padding: 18px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .ins-course-title {
+        font-size: 16px;
+        font-weight: 800;
+        margin: 0 0 8px;
+        color: var(--navy-900);
+      }
+      [data-theme="dark"] .ins-course-title {
+        color: #f8fafc;
+      }
+      .ins-course-desc {
+        font-size: 13px;
+        color: var(--slate-500);
+        margin-bottom: 14px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        line-height: 1.6;
+        flex: 1;
+      }
+      .ins-course-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 12px;
+        border-top: 1px solid var(--line);
+        font-size: 13px;
+      }
+      [data-theme="dark"] .ins-course-meta {
+        border-top-color: #1c2b42;
+      }
+      .ins-modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(5px);
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .ins-modal-overlay[hidden] {
+        display: none !important;
+      }
+      .ins-modal-card {
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        max-width: 680px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+      }
+      [data-theme="dark"] .ins-modal-card {
+        background: #0e1829;
+        border-color: #1c2b42;
+        color: #f8fafc;
+      }
+      .progress-bar-wrap {
+        width: 100%;
+        height: 7px;
+        background: var(--slate-200);
+        border-radius: 99px;
+        overflow: hidden;
+        margin-top: 6px;
+      }
+      [data-theme="dark"] .progress-bar-wrap {
+        background: #1e293b;
+      }
+      .progress-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--teal-500), var(--teal-400));
+        border-radius: 99px;
+        transition: width 0.3s ease;
+      }
+      .star-rating {
+        color: #f59e0b;
+        font-size: 15px;
+        letter-spacing: 2px;
+      }
+      .badge-source {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 3px 8px;
+        border-radius: 6px;
+        font-size: 11px;
+        font-weight: 700;
+        background: var(--slate-100);
+        color: var(--slate-700);
+      }
+      [data-theme="dark"] .badge-source {
+        background: #1c2b42;
+        color: #94a3b8;
+      }
+      .btn-whatsapp {
+        background: #25D366;
+        color: #fff;
+        font-weight: 700;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 12.5px;
+        transition: background 0.2s, transform 0.15s;
+      }
+      .btn-whatsapp:hover {
+        background: #1eb956;
+        color: #fff;
+        transform: translateY(-1px);
+      }
+    </style>
+<script src="asset/js/language-runtime.js?v=20261120-5" defer></script>
+</head>
+
+<body>
+
+<!-- ===========================================================================
+     2) التطبيق ولوحة القيادة للمحاضر (Instructor Application View)
+     =========================================================================== -->
+<main id="appView">
+  <div class="app-shell">
+
+    <!-- Mobile Drawer Backdrop -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- الشريط الجانبي الذكي للمحاضر (Instructor Sidebar) -->
+    <aside class="admin-sidebar" id="instructorSidebar">
+        <div class="sidebar-header">
+            <div class="brand-mark">🩺</div>
+            <div class="sidebar-brand-text">
+                <strong>Edu Nursing</strong>
+                <small data-i18n="ins_portal_subtitle">لوحة المحاضر الأكاديمية</small>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="أقسام لوحة المحاضر">
+            <div class="nav-group-label" data-i18n="nav_main_ctrl">الرئيسية والتحكم</div>
+            <button type="button" class="side-link tab active" data-tab="overview">
+                <span class="side-link-icon">
+                    <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+                </span>
+                <span data-i18n="nav_overview_analytics">نظرة عامة والتحليلات</span>
+            </button>
+
+            <div class="nav-group-label" data-i18n="nav_edu_curriculum">التعليم والمنهج</div>
+            <button type="button" class="side-link tab" data-tab="courses">
+                <span class="side-link-icon">
+                    <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                </span>
+                <span data-i18n="nav_my_courses">كورساتي التدريبية</span>
+            </button>
+
+            <button type="button" class="side-link tab" data-tab="lessons">
+                <span class="side-link-icon">
+                    <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                </span>
+                <span data-i18n="nav_lessons_curriculum">إدارة الدروس والمنهج</span>
+            </button>
+
+            <button type="button" class="side-link tab" data-tab="question-bank">
+                <span class="side-link-icon"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 1 4 17.5z"/><path d="M4 17.5A2.5 2.5 0 0 1 6.5 15H20M8 7h8M8 10h6"/></svg></span>
+                <span data-i18n="nav_question_bank">بنك الأسئلة</span>
+            </button>
+
+            <button type="button" class="side-link tab" data-tab="quizzes">
+                <span class="side-link-icon">
+                    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                </span>
+                <span data-i18n="nav_quizzes_eval">الاختبارات والتقييم</span>
+            </button>
+
+            <div class="nav-group-label" data-i18n="nav_students_follow">الطلاب والمتابعة</div>
+            <button type="button" class="side-link tab" data-tab="students">
+                <span class="side-link-icon">
+                    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </span>
+                <span data-i18n="nav_students_comm">سجل الطلاب والتواصل</span>
+            </button>
+
+            <button type="button" class="side-link tab" data-tab="reviews">
+                <span class="side-link-icon">
+                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </span>
+                <span data-i18n="nav_reviews">تقييمات وآراء الطلاب</span>
+            </button>
+
+            <div class="nav-group-label" data-i18n="nav_interaction_live">التفاعل والبث المباشر</div>
+            <button type="button" class="side-link tab" data-tab="meetings">
+                <span class="side-link-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </span>
+                <span data-i18n="nav_meetings_zoom">جدول المحاضرات والزوم</span>
+            </button>
+
+            <button type="button" class="side-link tab" data-tab="announcements">
+                <span class="side-link-icon">
+                    <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                </span>
+                <span data-i18n="nav_announcements">الإعلانات والتنبيهات</span>
+            </button>
+
+            <div class="nav-group-label" data-i18n="nav_account_settings">إعدادات الحساب</div>
+            <button type="button" class="side-link tab" data-tab="profile">
+                <span class="side-link-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg>
+                </span>
+                <span data-i18n="nav_profile_bio">الملف المهني والبيو</span>
+            </button>
+
+            <div class="nav-group-label" data-i18n="nav_quick_links">روابط سريعة</div>
+            <a href="index.html" target="_blank" class="sidebar-preview-btn">
+                <span data-i18n="nav_student_portal">زيارة منصة الطلاب</span>
+                <span>↗</span>
+            </a>
+            <a href="admin.html" target="_blank" class="sidebar-preview-btn">
+                <span data-i18n="nav_central_admin">بوابة الإدارة المركزية</span>
+                <span>↗</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-status">
+                <span class="status-dot"></span>
+                <span data-i18n="nav_ins_active_status">حساب المحاضر: نشط ومعتمد</span>
+            </div>
+            <div style="font-size:11px;color:var(--slate-400)" data-i18n="ins_version_text">Edu Nursing LMS  —  لوحة المحاضر v2.5</div>
+        </div>
+    </aside>
+
+    <!-- مساحة العمل والمحتوى الرئيسي (Instructor Main) -->
+    <div class="admin-main">
+
+        <!-- الشريط العلوي (Instructor Topbar) -->
+        <header class="admin-topbar">
+            <div class="topbar-right">
+                <button type="button" class="sidebar-toggle-btn" id="sidebarToggle" aria-label="تبديل القائمة الجانبية">☰</button>
+                <div class="topbar-breadcrumb">
+                    <span data-i18n="topbar_instructor_panel">لوحة المحاضر</span>
+                    <span>/</span>
+                    <span class="current" id="breadcrumbCurrent">نظرة عامة والتحليلات</span>
+                </div>
+            </div>
+
+            <!-- شريط البحث الشامل مع اختصار Ctrl+K -->
+            <div class="topbar-search" id="topbarSearch">
+                <div class="search-input-wrap">
+                    <span class="search-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </span>
+                    <input type="search" id="globalSearchInput" placeholder="بحث شامل في الكورسات، الطلاب، الدروس... (Ctrl+K)" data-i18n-placeholder="global_search_placeholder" autocomplete="off">
+                    <kbd class="search-kbd">Ctrl K</kbd>
+                </div>
+
+                <!-- قائمة الاقتراحات السريعة للبحث -->
+                <div class="search-dropdown" id="searchDropdown" hidden>
+                    <div class="search-quick-links">
+                        <div class="search-group-title" data-i18n="quick_sections">الأقسام السريعة</div>
+                        <button type="button" class="search-item" data-search-tab="overview">
+                            <span data-i18n="search_overview">📊 نظرة عامة والتحليلات</span>
+                            <small>Enter</small>
+                        </button>
+                        <button type="button" class="search-item" data-search-tab="courses">
+                            <span data-i18n="search_courses">📚 كورساتي التدريبية</span>
+                            <small>→</small>
+                        </button>
+                        <button type="button" class="search-item" data-search-tab="lessons">
+                            <span data-i18n="search_lessons">🎬 إدارة الدروس والمحتوى</span>
+                            <small>→</small>
+                        </button>
+                        <button type="button" class="search-item" data-search-tab="question-bank"><span data-i18n="search_question_bank">🧠 بنك الأسئلة</span><small>→</small></button>
+                        <button type="button" class="search-item" data-search-tab="students">
+                            <span data-i18n="search_students">👨‍🎓 سجل الطلاب والتواصل</span>
+                            <small>→</small>
+                        </button>
+                        <button type="button" class="search-item" data-search-tab="reviews">
+                            <span data-i18n="search_reviews">⭐ تقييمات وآراء الطلاب</span>
+                            <small>→</small>
+                        </button>
+                        <button type="button" class="search-item" data-search-tab="meetings">
+                            <span data-i18n="search_meetings">📡 محاضرات Zoom المباشرة</span>
+                            <small>→</small>
+                        </button>
+                        <button type="button" class="search-item" data-search-tab="profile">
+                            <span data-i18n="search_profile">👨‍⚕️ الملف الشخصي والبيو</span>
+                            <small>→</small>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topbar-left">
+                <!-- زر التبديل إلى الوضع الليلي (Dark Mode Toggle) -->
+                <button id="themeToggle" class="topbar-icon-btn" type="button" title="تبديل المظهر (ليلي / نهاري)" aria-label="تبديل الوضع الليلي">
+                    <svg class="theme-icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    <svg class="theme-icon-sun" viewBox="0 0 24 24" hidden><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                </button>
+
+                <button id="refreshBtn" class="topbar-refresh-btn" type="button" title="تحديث مباشر من قاعدة البيانات">
+                    <span data-i18n="topbar_refresh">تحديث البيانات</span>
+                    <span>↻</span>
+                </button>
+
+                <div class="topbar-user" id="userBadge">
+                    <div class="topbar-user-avatar" id="topAvatar">🩺</div>
+                    <span id="who" class="who" data-i18n="instructor_title">د. المحاضر</span>
+                </div>
+
+                <button id="logoutBtn" class="topbar-logout-btn" type="button" data-i18n="logout_btn">تسجيل الخروج</button>
+
+                <!-- زر تبديل اللغة -->
+                <button id="instructorLangToggle" class="topbar-lang-btn" type="button" title="Toggle Language">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+                    <span id="instructorLangLabel">EN</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- المحتوى الداخلي (Instructor Content) -->
+        <div class="admin-content">
+
+            <div id="globalNotice" class="notice" hidden></div>
+
+            <!-- تبويبات التوافق والموبايل -->
+            <nav class="tabs" aria-label="أقسام لوحة المحاضر">
+                <button class="tab active" data-tab="overview" data-i18n="tab_overview">نظرة عامة</button>
+                <button class="tab" data-tab="courses" data-i18n="tab_courses">الكورسات</button>
+                <button class="tab" data-tab="lessons" data-i18n="tab_lessons">الدروس والمنهج</button>
+                <button class="tab" data-tab="question-bank" data-i18n="tab_question_bank">بنك الأسئلة</button>
+                <button class="tab" data-tab="quizzes" data-i18n="tab_quizzes">الاختبارات</button>
+                <button class="tab" data-tab="students" data-i18n="tab_students">الطلاب</button>
+                <button class="tab" data-tab="reviews" data-i18n="tab_reviews">التقييمات</button>
+                <button class="tab" data-tab="meetings" data-i18n="tab_meetings">جدول المحاضرات</button>
+                <button class="tab" data-tab="announcements" data-i18n="tab_announcements">الإعلانات</button>
+                <button class="tab" data-tab="profile" data-i18n="tab_profile">الملف الشخصي</button>
+            </nav>
+
+            <!-- ===============================================================
+                 1) نظرة عامة والتحليلات (Overview Panel)
+                 =============================================================== -->
+            <section id="overviewPanel" class="panel">
+                <!-- بطاقة الترحيب العصرية -->
+                <div class="welcome-hero">
+                    <div class="welcome-info">
+                        <span class="welcome-badge" data-i18n="welcome_badge">EDU NURSING  —  مركز تدريب وإشراف المحاضر</span>
+                        <h1 id="welcomeTitle" data-i18n="welcome_title">أهلاً بك يا دكتور 🩺</h1>
+                        <p id="welcomeMeta" data-i18n="welcome_subtitle">مؤشرات الأداء الأكاديمي لكورساتك، تفاعل الطلاب، والنشاط اللحظي من قاعدة البيانات.</p>
+                    </div>
+
+                    <div class="quick-actions" aria-label="اختصارات سريعة">
+                        <button type="button" class="btn btn-primary" id="btnQuickCourse" data-i18n="quick_new_course">+ كورس جديد</button>
+                        <button type="button" class="btn btn-outline" id="btnQuickLesson" data-i18n="quick_new_lesson">+ إضافة درس</button>
+                        <button type="button" class="btn btn-outline" id="btnQuickMeeting" data-i18n="quick_new_meeting">+ جدولة زوم</button>
+                        <button type="button" class="btn btn-outline" id="btnQuickAnnouncement" data-i18n="quick_new_announcement">+ إرسال إعلان</button>
+                    </div>
+                </div>
+
+                <!-- بطاقة الفلاتر المتقدمة -->
+                <section class="surface filters-card">
+                    <div class="toolbar filters">
+                        <label>من تاريخ
+                            <input id="fFrom" type="date">
+                        </label>
+
+                        <label>إلى تاريخ
+                            <input id="fTo" type="date">
+                        </label>
+
+                        <label>الكورس
+                            <select id="fCourse">
+                                <option value="">كل كورساتي</option>
+                            </select>
+                        </label>
+
+                        <label class="grow">بحث شامل
+                            <input id="fSearch" placeholder="ابحث باسم طالب، درس، أو عنوان كورس...">
+                        </label>
+
+                        <button id="applyFilters" class="btn btn-primary" type="button" data-i18n="apply_filters">تطبيق الفلتر</button>
+                        <button id="resetFilters" class="btn btn-ghost" type="button" data-i18n="reset_filters">إعادة ضبط</button>
+                    </div>
+                </section>
+
+                <!-- شبكة بطاقات الإحصاءات الذكية -->
+                <div class="stats-grid">
+                    <div class="stat">
+                        <div style="display:flex;justify-content:space-between;align-items:center">
+                            <div class="label">الكورسات المعتمدة</div>
+                            <div class="icon" style="background:rgba(13,148,136,0.1);color:#0d9488">
+                                <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                            </div>
+                        </div>
+                        <div class="value" id="statCourses">0</div>
+                        <div class="sub">منشورة ومتاحة في المنصة</div>
+                    </div>
+
+                    <div class="stat">
+                        <div style="display:flex;justify-content:space-between;align-items:center">
+                            <div class="label">الدروس والمحاضرات</div>
+                            <div class="icon" style="background:rgba(10,31,61,0.1);color:#0a1f3d">
+                                <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                            </div>
+                        </div>
+                        <div class="value" id="statLessons">0</div>
+                        <div class="sub">شرح وفيديو سريري مرفوع</div>
+                    </div>
+
+                    <div class="stat">
+                        <div style="display:flex;justify-content:space-between;align-items:center">
+                            <div class="label">الطلاب المشتركون الفعليون</div>
+                            <div class="icon" style="background:rgba(5,150,105,0.1);color:#059669">
+                                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                            </div>
+                        </div>
+                        <div class="value" id="statSubscribers">0</div>
+                        <div class="sub">اشتراكات مفعلة ونشطة</div>
+                    </div>
+
+                    <div class="stat">
+                        <div style="display:flex;justify-content:space-between;align-items:center">
+                            <div class="label">الزوار والمهتمون (Leads)</div>
+                            <div class="icon" style="background:rgba(217,119,6,0.1);color:#d97706">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                            </div>
+                        </div>
+                        <div class="value" id="statVisitors">0</div>
+                        <div class="sub">تصفحوا وتفاعلوا مع المحتوى</div>
+                    </div>
+                </div>
+
+                <!-- الرسوم والمؤشرات البيانية -->
+                <div class="two-col">
+                    <section class="surface">
+                        <div class="surface-head">
+                            <div>
+                                <h2>نشاط المشاهدات والزيارات اليومية 📈</h2>
+                                <p>إحصائيات تفاعل وتصفح الطلاب لكورساتك خلال آخر أسبوعين.</p>
+                            </div>
+                            <span id="visitsTotalPill" class="pill">مباشر</span>
+                        </div>
+                        <div id="dailyVisitsWrap" class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>التاريخ</th>
+                                        <th>عدد المشاهدات والزيارات</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dailyVisitsTbody">
+                                    <tr><td colspan="2" style="text-align:center;color:var(--slate-400)">جارٍ تحميل البيانات...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="surface">
+                        <div class="surface-head">
+                            <div>
+                                <h2>نسب إكمال الطلاب للمسارات 🎯</h2>
+                                <p>متوسط تقدم وإنجاز الطلاب لكل كورس تدريبي مسند إليك.</p>
+                            </div>
+                            <span id="completionPill" class="pill">حسب الكورس</span>
+                        </div>
+                        <div id="completionList" style="padding:16px 20px;">
+                            <div style="text-align:center;color:var(--slate-400);padding:20px;">جارٍ احتساب نسب الإكمال...</div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- جداول الطلاب والتقييمات -->
+                <div class="two-col">
+                    <section class="surface">
+                        <div class="surface-head">
+                            <div>
+                                <h2>أحدث الطلاب المنضمين لكورساتك 👨‍🎓</h2>
+                                <p>الطلاب المسجلون حديثاً لمتابعة تدريبهم والتواصل معهم.</p>
+                            </div>
+                            <span id="subscribersPill" class="pill">آخر المسجلين</span>
+                        </div>
+                        <div id="recentSubscribersWrap" class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>الطالب</th>
+                                        <th>الكورس</th>
+                                        <th>نسبة التقدم</th>
+                                        <th>تواصل</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recentSubscribersTbody">
+                                    <tr><td colspan="4" style="text-align:center;color:var(--slate-400)">جارٍ تحميل البيانات...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="surface">
+                        <div class="surface-head">
+                            <div>
+                                <h2>أحدث تقييمات وآراء الطلاب 🌟</h2>
+                                <p>مراجعات الطلاب وتقييماتهم للشروحات والمحتوى التدريبي.</p>
+                            </div>
+                            <span id="reviewsPill" class="pill">آخر التقييمات</span>
+                        </div>
+                        <div id="recentReviewsWrap" class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>الطالب</th>
+                                        <th>الكورس</th>
+                                        <th>التقييم</th>
+                                        <th>التعليق</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recentReviewsTbody">
+                                    <tr><td colspan="4" style="text-align:center;color:var(--slate-400)">لا توجد مراجعات حديثة.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- محاضرات الزوم القادمة -->
+                <section class="surface">
+                    <div class="surface-head">
+                        <div>
+                            <h2>محاضرات البث المباشر وزوم القادمة 📡</h2>
+                            <p>الجلسات السريرية التفاعلية المجدولة قريباً لطلابك.</p>
+                        </div>
+                        <span id="meetingsPill" class="pill">مجدولة</span>
+                    </div>
+                    <div id="upcomingMeetingsWrap" class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>عنوان المحاضرة</th>
+                                    <th>الكورس المرتبط</th>
+                                    <th>الموعد والمدة</th>
+                                    <th>رابط الانضمام</th>
+                                </tr>
+                            </thead>
+                            <tbody id="upcomingMeetingsTbody">
+                                <tr><td colspan="4" style="text-align:center;color:var(--slate-400)">لا توجد محاضرات مجدولة حالياً.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </section>
+
+            <!-- ===============================================================
+                 2) إدارة الكورسات والمنهج (Courses Panel)
+                 =============================================================== -->
+            <section id="coursesPanel" class="panel" hidden>
+                <div class="surface">
+                    <div class="surface-head">
+                        <div>
+                            <h2>قائمة كورساتك التدريبية 📚</h2>
+                            <p>إدارة وتعديل الكورسات وتفاصيلها والأسعار وحالة النشر والأهداف السريرية.</p>
+                        </div>
+                        <button type="button" class="btn btn-primary" id="btnOpenNewCourseModal" onclick="openNewCourseModal()">+ كورس تدريبي جديد</button>
+                    </div>
+
+                    <div class="toolbar">
+                        <input id="courseSearch" placeholder="ابحث في كورساتك باسم الكورس أو التخصص...">
+                        <select id="courseStatusFilter">
+                            <option value="">كل الحالات</option>
+                            <option value="published">منشور متاح للطلاب</option>
+                            <option value="draft">مسودة قيد الإعداد</option>
+                            <option value="archived">مؤرشف</option>
+                        </select>
+                        <select id="courseLevelFilter">
+                            <option value="">كل المستويات</option>
+                            <option value="beginner">مبتدئ</option>
+                            <option value="intermediate">متوسط</option>
+                            <option value="advanced">متقدم</option>
+                        </select>
+                        <button id="searchCoursesBtn" class="btn btn-outline" type="button">تصفية</button>
+                    </div>
+
+                    <div class="course-card-grid" id="instructorCoursesGrid">
+                        <!-- Filled dynamically by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===============================================================
+                 3) إدارة المناهج والدروس السريرية (Lessons & Curriculum Panel)
+                 =============================================================== -->
+            <section id="lessonsPanel" class="panel" hidden>
+                <div class="surface">
+                    <div class="surface-head">
+                        <div>
+                            <h2>إدارة المناهج والدروس السريرية 🎬</h2>
+                            <p>تنظيم الوحدات والمناهج التعليمية، رفع الشروحات السريرية، وإدارة المحتوى والمدة.</p>
+                        </div>
+                        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+                            <select id="lessonCourseSelect" style="min-width:240px;padding:9px 14px;border-radius:10px;border:1px solid var(--line);background:var(--white);color:inherit;font-family:inherit;font-weight:700;">
+                                <option value="">-- اختر الكورس لعرض مناهجه ودروسه --</option>
+                            </select>
+                            <button type="button" class="btn btn-outline" id="btnOpenAddSectionModal" onclick="openNewSectionModal(selectedLessonCourseId)" style="border-color:var(--teal-600);color:var(--teal-600);font-weight:700;">+ إضافة وحدة / منهج</button>
+                            <button type="button" class="btn btn-primary" id="btnOpenAddLessonModal" onclick="openNewLessonModal(selectedLessonCourseId)">+ إضافة درس جديد</button>
+                            <div class="view-toggle-group">
+                                <button type="button" class="view-toggle-btn active" id="insViewCurriculumBtn" title="عرض الوحدات والمنهج">
+                                    <svg viewBox="0 0 24 24" width="16" height="16"><rect x="2" y="3" width="9" height="9" rx="1"/><rect x="13" y="3" width="9" height="9" rx="1"/><rect x="2" y="14" width="9" height="9" rx="1"/><rect x="13" y="14" width="9" height="9" rx="1"/></svg>
+                                    المنهج والوحدات
+                                </button>
+                                <button type="button" class="view-toggle-btn" id="insViewLessonsTableBtn" title="عرض جدول الدروس">
+                                    <svg viewBox="0 0 24 24" width="16" height="16"><path d="M3 3h18v3H3zM3 9h18v3H3zM3 15h18v3H3zM3 21h18v3H3z"/></svg>
+                                    جدول الدروس
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="toolbar">
+                        <input id="lessonSearch" placeholder="ابحث باسم الدرس أو الوحدة داخل هذا الكورس...">
+                        <span id="lessonsSectionsBadge" class="pill">0 وحدات منهجية</span>
+                        <span id="lessonsTotalBadge" class="pill">0 دروس</span>
+                        <span id="lessonsDurationBadge" class="pill">0 دقيقة إجمالي</span>
+                    </div>
+
+                    <!-- Curriculum Units View (المنهج والوحدات) -->
+                    <div id="curriculumViewWrap" class="curriculum-wrap">
+                        <div id="curriculumSectionsGrid">
+                            <!-- Filled dynamically by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Flat Table View -->
+                    <div id="lessonsTableViewWrap" class="table-wrap" hidden>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width:50px">الترتيب</th>
+                                    <th>عنوان الدرس</th>
+                                    <th>الوحدة / المنهج</th>
+                                    <th>مدة الدرس</th>
+                                    <th>نوع المعاينة</th>
+                                    <th>رابط الشرح</th>
+                                    <th style="text-align:center">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lessonsTableBody">
+                                <tr><td colspan="7" style="text-align:center;color:var(--slate-400)">اختر كورساً من القائمة أعلاه لعرض دروسه.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===============================================================
+                 4) سجل الطلاب والتواصل (Students Panel)
+                 =============================================================== -->
+            <section id="studentsPanel" class="panel" hidden>
+                <div class="surface">
+                    <div class="surface-head">
+                        <div>
+                            <h2>سجل الطلاب ومتابعة الأداء والتواصل 👥</h2>
+                            <p>قائمة المشتركين الفعليين والمهتمين الذين استعرضوا كورساتك لمتابعة إنجازهم والتواصل المباشر.</p>
+                        </div>
+                        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+                            <button type="button" class="btn btn-sm btn-primary" id="tabSubscribersBtn">المشتركون الفعليون</button>
+                            <button type="button" class="btn btn-sm btn-outline" id="tabLeadsBtn">المهتمون والزوار (Leads)</button>
+                            <button type="button" class="btn btn-sm btn-outline" id="exportStudentsCsvBtn">تصدير CSV</button>
+                        </div>
+                    </div>
+
+                    <div class="toolbar">
+                        <input type="text" id="studentsFilterInput" placeholder="تصفية فورية بالاسم، رقم الهاتف، أو اسم الكورس...">
+                        <select id="studentCourseFilter">
+                            <option value="">جميع الكورسات</option>
+                        </select>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>الطالب</th>
+                                    <th>البريد الإلكتروني</th>
+                                    <th>الكورس المستهدف</th>
+                                    <th>نسبة الإنجاز الأكاديمي</th>
+                                    <th>تاريخ التفاعل</th>
+                                    <th>رقم الهاتف</th>
+                                    <th style="text-align:center">تواصل مباشر</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentsTableBody">
+                                <tr><td colspan="7" style="text-align:center;color:var(--slate-400)">جارٍ تحميل بيانات الطلاب...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===============================================================
+                 5) تقييمات وآراء الطلاب (Reviews Panel)
+                 =============================================================== -->
+            <section id="reviewsPanel" class="panel" hidden>
+                <div class="surface">
+                    <div class="surface-head">
+                        <div>
+                            <h2>تقييمات وآراء الطلاب 🌟</h2>
+                            <p>مراجعات الطلاب وتقييماتهم للشروحات والمحتوى التدريبي وملاحظاتهم السريرية.</p>
+                        </div>
+                        <div style="display:flex;gap:12px;align-items:center;">
+                            <span id="reviewsAverageBadge" class="pill" style="font-size:14px;font-weight:800;background:rgba(245,158,11,0.15);color:#d97706;border-color:rgba(245,158,11,0.3)">⭐ متوسط التقييم: 5.0</span>
+                            <select id="reviewsCourseSelect" style="padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--white);color:inherit;font-family:inherit;">
+                                <option value="">كل الكورسات</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>الطالب</th>
+                                    <th>الكورس</th>
+                                    <th>التقييم</th>
+                                    <th>التعليق والملاحظات</th>
+                                    <th>تاريخ التقييم</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reviewsTableBody">
+                                <tr><td colspan="5" style="text-align:center;color:var(--slate-400)">لا توجد مراجعات مسجلة حتى الآن.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===============================================================
+                 6) جدول المحاضرات والتدريب السريري (Clinical Schedule & Timetable)
+                 =============================================================== -->
+            <section id="meetingsPanel" class="panel" hidden>
+                <div class="surface">
+                    <div class="surface-head">
+                        <div>
+                            <h2>جدول المحاضرات والتدريب السريري المباشر 📅</h2>
+                            <p>إدارة المواعيد الأسبوعية، جلسات Zoom والتدريب العملي، وإشعار الطلاب بالمواعيد فوراً.</p>
+                        </div>
+                        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+                            <button type="button" class="btn btn-primary" id="btnOpenNewMeetingModal" onclick="openNewMeetingModal()">+ إضافة موعد في الجدول</button>
+                            <div class="view-toggle-group">
+                                <button type="button" class="view-toggle-btn active" id="insViewTimetableCardsBtn" title="عرض الأجندة">
+                                    <svg viewBox="0 0 24 24" width="16" height="16"><rect x="2" y="3" width="9" height="9" rx="1"/><rect x="13" y="3" width="9" height="9" rx="1"/><rect x="2" y="14" width="9" height="9" rx="1"/><rect x="13" y="14" width="9" height="9" rx="1"/></svg>
+                                    أجندة المواعيد
+                                </button>
+                                <button type="button" class="view-toggle-btn" id="insViewTimetableTableBtn" title="عرض جدول المواعيد">
+                                    <svg viewBox="0 0 24 24" width="16" height="16"><path d="M3 3h18v3H3zM3 9h18v3H3zM3 15h18v3H3zM3 21h18v3H3z"/></svg>
+                                    الجدول
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Agenda Cards View -->
+                    <div id="meetingsCardsGrid" class="timetable-grid">
+                        <!-- Filled dynamically by JavaScript -->
+                    </div>
+
+                    <!-- Table View -->
+                    <div id="meetingsTableWrap" class="table-wrap" hidden>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>عنوان المحاضرة</th>
+                                    <th>الكورس المرتبط</th>
+                                    <th>موعد البدء</th>
+                                    <th>المدة</th>
+                                    <th>الحالة</th>
+                                    <th>رابط الانضمام</th>
+                                    <th style="text-align:center">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="meetingsTableBody">
+                                <tr><td colspan="7" style="text-align:center;color:var(--slate-400)">لا توجد محاضرات مجدولة حالياً.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===============================================================
+                 7) الإعلانات والتنبيهات للطلاب (Announcements Panel)
+                 =============================================================== -->
+            <section id="announcementsPanel" class="panel" hidden>
+                <div class="surface">
+                    <div class="surface-head">
+                        <div>
+                            <h2>لوحة الإعلانات والتنبيهات 📢</h2>
+                            <p>نشر التحديثات والتوجيهات والواجبات وإرسال إشعارات فورية لطلابك في المنصة.</p>
+                        </div>
+                        <button type="button" class="btn btn-primary" id="btnOpenNewAnnouncementModal" onclick="openNewAnnouncementModal()">+ إرسال تنبيه جديد للطلاب</button>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>عنوان التنبيه</th>
+                                    <th>الكورس المستهدف</th>
+                                    <th>نص التنبيه</th>
+                                    <th>تاريخ النشر</th>
+                                    <th style="text-align:center">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="announcementsTableBody">
+                                <tr><td colspan="5" style="text-align:center;color:var(--slate-400)">لا توجد إعلانات منشورة بعد.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===============================================================
+                 7) الاختبارات والتقييم الأكاديمي (Quizzes Panel)
+                 =============================================================== -->
+            <section id="questionBankPanel" class="panel" hidden>
+                <div class="welcome-hero assessment-welcome">
+                    <div class="welcome-info"><span class="welcome-badge" data-i18n="question_bank_badge">QUESTION BANK</span><h1 data-i18n="question_bank_title">بنك الأسئلة الطبية</h1><p data-i18n="question_bank_subtitle">أنشئ أسئلتك، صنّفها، وراجعها ثم أضفها إلى اختباراتك.</p></div>
+                    <div class="assessment-bank-hero-actions"><button type="button" class="btn btn-ghost" id="btnOpenAssessmentAiChat">💬 تحدث مع مساعد AI</button><button type="button" class="btn btn-primary" id="btnNewBankQuestion" data-i18n="question_new">+ سؤال جديد</button></div>
+                </div>
+                <div class="assessment-toolbar surface">
+                    <input id="bankSearch" type="search" placeholder="ابحث في نص السؤال أو التخصص أو الوسوم..." data-i18n-placeholder="question_search">
+                    <select id="bankTypeFilter"><option value="" data-i18n="all_question_types">كل الأنواع</option><option value="multiple_choice">اختيار واحد</option><option value="multiple_select">اختيارات متعددة</option><option value="true_false">صح أو خطأ</option><option value="short_answer">إجابة قصيرة</option><option value="essay">مقالي</option><option value="matching">توصيل</option><option value="fill_blank">أكمل الفراغ</option><option value="ordering">ترتيب وتسلسل</option><option value="clinical_case">حالة سريرية</option><option value="image_based">سؤال بصري</option></select>
+                    <select id="bankDifficultyFilter"><option value="" data-i18n="all_difficulties">كل المستويات</option><option value="easy" data-i18n="difficulty_easy">سهل</option><option value="medium" data-i18n="difficulty_medium">متوسط</option><option value="hard" data-i18n="difficulty_hard">صعب</option></select>
+                    <select id="bankCourseFilter"><option value="" data-i18n="all_question_courses">كل الكورسات</option></select>
+                    <select id="bankStatusFilter"><option value="" data-i18n="all_question_statuses">كل الحالات</option><option value="draft" data-i18n="question_draft">مسودة</option><option value="approved" data-i18n="question_approved">معتمد</option></select>
+                    <button type="button" class="btn btn-outline" id="btnRefreshQuestionBank" data-i18n="refresh_btn">تحديث</button>
+                    <button type="button" class="btn btn-ghost" id="btnExportQuestionBank" data-i18n="question_export">تصدير JSON</button>
+                    <label class="btn btn-ghost assessment-import-label"><span data-i18n="question_import">استيراد JSON</span><input id="questionImportFile" type="file" accept="application/json,.json" hidden></label>
+                </div>
+                <details class="assessment-ai-panel surface">
+                    <summary>✨ <span data-i18n="assessment_ai_title">مساعد توليد الأسئلة بالذكاء الاصطناعي</span> <small data-i18n="assessment_ai_formats">PDF · DOCX · TXT · نص المحاضرة</small></summary>
+                    <div class="assessment-ai-controls">
+                        <label><span data-i18n="assessment_ai_source">محتوى المحاضرة (اختياري)</span><textarea id="assessmentAiSourceText" rows="4" maxlength="90000" placeholder="الصق جزءًا من محتوى المحاضرة…" data-i18n-placeholder="assessment_ai_source_placeholder"></textarea></label>
+                        <label><span data-i18n="assessment_ai_file">ملف المحاضرة</span><input type="file" id="assessmentAiSourceFile" accept=".pdf,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain"></label>
+                        <label><span data-i18n="assessment_ai_course">الكورس</span><select id="assessmentAiCourse"><option value="" data-i18n="assessment_ai_general">عام</option></select></label>
+                        <label><span data-i18n="assessment_ai_count">عدد الأسئلة</span><input type="number" id="assessmentAiCount" min="1" max="30" value="10"></label>
+                        <label><span data-i18n="assessment_ai_level">المستوى</span><select id="assessmentAiDifficulty"><option value="mixed" data-i18n="assessment_ai_mixed">متنوع</option><option value="easy" data-i18n="difficulty_easy">سهل</option><option value="medium" data-i18n="difficulty_medium">متوسط</option><option value="hard" data-i18n="difficulty_hard">صعب</option></select></label>
+                        <button type="button" class="btn btn-primary" id="btnGenerateAssessmentQuestions" data-i18n="assessment_ai_generate">توليد أسئلة للمراجعة</button>
+                    </div>
+                    <p class="assessment-ai-note" data-i18n="assessment_ai_note">تُرسل المادة إلى مزود الذكاء الاصطناعي بعد إعداد المفتاح على الخادم. راجع كل سؤال قبل اعتماده.</p>
+                    <div id="assessmentAiResults" class="assessment-ai-results" hidden></div>
+                </details>
+                <div class="assessment-bank-count" id="questionBankCount" aria-live="polite"></div>
+                <div class="assessment-question-grid" id="questionBankList" aria-live="polite"><div class="surface assessment-empty">جارٍ تحميل بنك الأسئلة...</div></div>
+            </section>
+
+            <section id="quizzesPanel" class="panel" hidden>
+                <div class="surface">
+                    <div class="surface-head">
+                        <div>
+                            <h2>إدارة الاختبارات والتقييم الأكاديمي 📝</h2>
+                            <p>إنشاء اختبارات الكورسات، تحديد درجات النجاح، ومتابعة إجابات ونتائج الطلاب.</p>
+                        </div>
+                        <button type="button" class="btn btn-primary" id="btnOpenAddQuizModal">+ إنشاء اختبار جديد</button>
+                    </div>
+
+                    <div class="toolbar" style="margin-bottom:20px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+                        <select id="quizzesCourseFilter" style="max-width:320px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;">
+                            <option value="">جميع الكورسات التدريبية</option>
+                        </select>
+                        <button type="button" class="btn btn-outline" id="btnRefreshQuizzes">🔄 تحديث</button>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>عنوان الاختبار</th>
+                                    <th>الكورس التدريبي</th>
+                                    <th>مدة الاختبار</th>
+                                    <th>نسبة النجاح</th>
+                                    <th>عدد الأسئلة</th>
+                                    <th>محاولات الطلاب</th>
+                                    <th>متوسط الدرجات</th>
+                                    <th>الحالة</th>
+                                    <th>إجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="quizzesTableBody">
+                                <tr><td colspan="9" style="text-align:center;color:var(--slate-400)">جاري تحميل الاختبارات...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===============================================================
+                 8) الملف المهني والبيو السريري (Profile Panel)
+                 =============================================================== -->
+            <section id="profilePanel" class="panel" hidden>
+                <div class="two-col">
+                    <!-- بيانات المحاضر والبيو المهني -->
+                    <div class="surface">
+                        <div class="surface-head">
+                            <div>
+                                <h2>البيانات المهنية والسيرة الذاتية 👨‍⚕️</h2>
+                                <p>الاسم، بيانات التواصل، التخصص الطبي، والخبرات السريرية.</p>
+                            </div>
+                        </div>
+                        <form id="profileForm" style="padding:20px;">
+                            <div class="form-grid">
+                                <label>الاسم الكامل للمحاضر
+                                    <input type="text" id="profFullName" required placeholder="د. أحمد مصطفى">
+                                </label>
+
+                                <label>البريد الإلكتروني (محمي)
+                                    <input type="email" id="profEmail" disabled>
+                                </label>
+
+                                <label>رقم الهاتف / الواتساب
+                                    <input type="text" id="profPhone" placeholder="01xxxxxxxxx">
+                                </label>
+
+                                <label>التخصص الطبي السريري
+                                    <input type="text" id="profSpecialization" placeholder="مثال: تمريض العناية المركزة والطوارئ">
+                                </label>
+
+                                <label>سنوات الخبرة الأكاديمية
+                                    <input type="number" id="profExperienceYears" min="0" max="60" placeholder="10">
+                                </label>
+
+                                <label>جهة العمل / المستشفى
+                                    <input type="text" id="profWorkplace" placeholder="مثال: مستشفيات جامعة القاهرة">
+                                </label>
+                            </div>
+
+                            <label class="wide-label">الخبرات والمهارات السريرية
+                                <textarea id="profExperience" rows="3" placeholder="أبرز الشهادات والخبرات العملية في المستشفيات..."></textarea>
+                            </label>
+
+                            <label class="wide-label">السيرة الذاتية والنبذة المهنية (Bio)
+                                <textarea id="profBio" rows="4" placeholder="اكتب نبذة عن مؤهلاتك وتخصصك لطلابك في المنصة..."></textarea>
+                            </label>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary" id="btnSaveProfile">حفظ التعديلات في الملف الشخصي</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- الصورة الشخصية وتأمين كلمة المرور -->
+                    <div>
+                        <!-- كارت الصورة الشخصية -->
+                        <div class="surface" style="margin-bottom:20px;">
+                            <div class="surface-head">
+                                <div>
+                                    <h2>الصورة الشخصية 📷</h2>
+                                    <p>تظهر لطلابك في صفحات الكورسات والشهادات والمحاضرات.</p>
+                                </div>
+                            </div>
+                            <div style="padding:20px;display:flex;align-items:center;gap:20px;">
+                                <div id="avatarBigPreview" style="width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,var(--navy-900),var(--teal-700));color:#fff;display:grid;place-items:center;font-size:36px;font-weight:800;overflow:hidden;flex-shrink:0;box-shadow:var(--shadow-sm);">
+                                    🩺
+                                </div>
+                                <div style="flex:1;">
+                                    <input type="file" id="avatarFileInput" accept="image/jpeg,image/png,image/webp" style="margin-bottom:10px;font-size:13px;">
+                                    <p style="font-size:12px;color:var(--slate-400);margin:0 0 10px;">الحد الأقصى: 2 ميجابايت (JPG, PNG, WEBP)</p>
+                                    <button type="button" class="btn btn-sm btn-outline" id="btnUploadAvatar">رفع وحفظ الصورة</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- كارت كلمة المرور -->
+                        <div class="surface">
+                            <div class="surface-head">
+                                <div>
+                                    <h2>تغيير كلمة المرور 🔒</h2>
+                                    <p>تأمين الحساب وحمايته بكلمة مرور قوية لا تقل عن 8 خانات.</p>
+                                </div>
+                            </div>
+                            <form id="passwordForm" style="padding:20px;">
+                                <div style="margin-bottom:12px;">
+                                    <label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px;">كلمة المرور الحالية</label>
+                                    <input type="password" id="oldPassword" required style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--white);color:inherit;font-family:inherit;">
+                                </div>
+                                <div style="margin-bottom:12px;">
+                                    <label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px;">كلمة المرور الجديدة</label>
+                                    <input type="password" id="newPassword" required minlength="8" style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--white);color:inherit;font-family:inherit;">
+                                </div>
+                                <div style="margin-bottom:16px;">
+                                    <label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px;">تأكيد كلمة المرور الجديدة</label>
+                                    <input type="password" id="confirmPassword" required minlength="8" style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--white);color:inherit;font-family:inherit;">
+                                </div>
+                                <button type="submit" class="btn btn-primary" style="width:100%">تحديث كلمة المرور</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+  </div>
+</main>
+
+
+<!-- ===========================================================================
+     المودالات التفاعلية (Modals)
+     =========================================================================== -->
+
+<!-- 1. مودال إضافة / تعديل كورس -->
+<div class="ins-modal-overlay" id="courseModal" hidden>
+    <div class="ins-modal-card">
+        <div class="surface-head" style="border-bottom:1px solid var(--line);padding:18px 24px;">
+            <h2 id="courseModalTitle" style="margin:0;">إضافة كورس تدريبي جديد</h2>
+            <button type="button" class="btn btn-sm btn-outline" onclick="closeModal('courseModal')">✕ إغلاق</button>
+        </div>
+        <form id="courseForm" style="padding:24px;">
+            <input type="hidden" id="courseModalId" value="0">
+            <div class="form-grid">
+                <label>عنوان الكورس (بالعربية)
+                    <input type="text" id="courseTitleAr" required placeholder="مثال: أساسيات التمريض السريري">
+                </label>
+                <label>العنوان (بالإنجليزية - اختياري)
+                    <input type="text" id="courseTitleEn" placeholder="e.g. Clinical Nursing Fundamentals">
+                </label>
+            </div>
+
+            <label class="wide-label">وصف الكورس والأهداف التعليمية السريرية
+                <textarea id="courseDesc" rows="3" required placeholder="شرح ما سيتعلمه الطالب، المهارات السريرية، والتطبيقات العملية..."></textarea>
+            </label>
+
+            <div class="form-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <label>السعر الأساسي (ج.م EGP)
+                    <input type="number" id="coursePrice" required min="0" step="10" placeholder="450">
+                </label>
+                <label>سعر الخصم (اختياري)
+                    <input type="number" id="courseDiscountPrice" min="0" step="10" placeholder="350">
+                </label>
+                <label>المدة المقدرة (بالدقائق)
+                    <input type="number" id="courseDuration" min="0" step="30" placeholder="480">
+                </label>
+            </div>
+
+            <div class="form-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <label>التصنيف الأكاديمي
+                    <input type="text" id="courseCategory" placeholder="مثال: العناية المركزة / طوارئ">
+                </label>
+                <label>المستوى التدريبي
+                    <select id="courseLevel">
+                        <option value="beginner">مبتدئ (Beginner)</option>
+                        <option value="intermediate">متوسط (Intermediate)</option>
+                        <option value="advanced">متقدم (Advanced)</option>
+                    </select>
+                </label>
+                <label>حالة الكورس
+                    <select id="courseStatus">
+                        <option value="published">منشور متاح للطلاب (Published)</option>
+                        <option value="draft">مسودة قيد الإعداد (Draft)</option>
+                        <option value="archived">مؤرشف (Archived)</option>
+                    </select>
+                </label>
+            </div>
+
+            <label class="wide-label">صورة غلاف الكورس (اختياري)
+                <input type="file" id="courseThumbnail" accept="image/jpeg,image/png,image/webp">
+            </label>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="btnSaveCourseSubmit">حفظ الكورس</button>
+                <button type="button" class="btn btn-ghost" onclick="closeModal('courseModal')">إلغاء</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 2. مودال إضافة / تعديل درس -->
+<div class="ins-modal-overlay" id="lessonModal" hidden>
+    <div class="ins-modal-card">
+        <div class="surface-head" style="border-bottom:1px solid var(--line);padding:18px 24px;">
+            <h2 id="lessonModalTitle" style="margin:0;">إضافة درس جديد</h2>
+            <button type="button" class="btn btn-sm btn-outline" onclick="closeModal('lessonModal')">✕ إغلاق</button>
+        </div>
+        <form id="lessonForm" style="padding:24px;">
+            <input type="hidden" id="lessonModalId" value="0">
+            <label class="wide-label">الكورس المرتبط بالدرس
+                <select id="lessonModalCourseSelect" required>
+                    <!-- Populated dynamically -->
+                </select>
+            </label>
+
+            <label class="wide-label">الوحدة / المنهج الدراسي
+                <select id="lessonModalSectionSelect">
+                    <option value="">-- بدون وحدة (درس عام في الكورس) --</option>
+                    <!-- Populated dynamically -->
+                </select>
+            </label>
+
+            <label class="wide-label">عنوان الدرس الشامل
+                <input type="text" id="lessonTitle" required placeholder="مثال: قياس العلامات الحيوية بدقة بروتوكولية">
+            </label>
+
+            <label class="wide-label">فيديو الدرس من جهازك (MP4 — حتى 10 جيجابايت)
+                <input type="file" id="lessonVideoFile" accept="video/mp4,.mp4">
+                <small>ارفع المحاضرة كاملة؛ الحد الأقصى 10 جيجابايت للدرس الواحد.</small>
+            </label>
+
+            <div class="form-grid">
+                <label>مدة الدرس (بالدقائق)
+                    <input type="number" id="lessonDuration" min="1" placeholder="25">
+                </label>
+                <label>الترتيب داخل المنهج
+                    <input type="number" id="lessonSortOrder" min="1" placeholder="1">
+                </label>
+            </div>
+
+            <label class="wide-label">وصف وتفاصيل الدرس والملاحظات التوضيحية
+                <textarea id="lessonDesc" rows="3" placeholder="ملاحظات سريرية، نقاط التركيز في الشرح..."></textarea>
+            </label>
+
+            <div style="margin: 16px 0;">
+                <label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-weight:700;">
+                    <input type="checkbox" id="lessonIsPreview" style="width:18px;height:18px;accent-color:var(--teal-500)">
+                    <span>معاينة مجانية (يُسمح للزوار والطلاب بمشاهدته مجاناً قبل الشراء كنموذج تدريبي 🎁)</span>
+                </label>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="btnSaveLessonSubmit">حفظ الدرس</button>
+                <button type="button" class="btn btn-ghost" onclick="closeModal('lessonModal')">إلغاء</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 3. مودال جدولة زوم -->
+<div class="ins-modal-overlay" id="meetingModal" hidden>
+    <div class="ins-modal-card">
+        <div class="surface-head" style="border-bottom:1px solid var(--line);padding:18px 24px;">
+            <h2 style="margin:0;">جدولة محاضرة زوم مباشرة 📡</h2>
+            <button type="button" class="btn btn-sm btn-outline" onclick="closeModal('meetingModal')">✕ إغلاق</button>
+        </div>
+        <form id="meetingForm" style="padding:24px;">
+            <label class="wide-label">الكورس المرتبط
+                <select id="meetingCourseSelect" required>
+                    <!-- filled dynamically -->
+                </select>
+            </label>
+            <label class="wide-label">عنوان المحاضرة المباشرة
+                <input type="text" id="meetingTitle" required placeholder="مثال: مناقشة حالات سريرية حية وأسئلة الطلاب">
+            </label>
+            <div class="form-grid">
+                <label>موعد وتاريخ البدء
+                    <input type="datetime-local" id="meetingStartsAt" required>
+                </label>
+                <label>المدة بالدقائق
+                    <input type="number" id="meetingDuration" min="15" step="15" value="60">
+                </label>
+            </div>
+            <label class="wide-label">رابط الانضمام (Zoom / Teams / Google Meet)
+                <input type="url" id="meetingUrl" required placeholder="https://zoom.us/j/...">
+            </label>
+            <label class="wide-label">تعليمات أو محاور اللقاء
+                <textarea id="meetingDesc" rows="2" placeholder="المطلوب من الطالب تحضيره قبل المحاضرة..."></textarea>
+            </label>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">جدولة وإشعار الطلاب فوراً</button>
+                <button type="button" class="btn btn-ghost" onclick="closeModal('meetingModal')">إلغاء</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 4. مودال إرسال إعلان للطلاب -->
+<div class="ins-modal-overlay" id="announcementModal" hidden>
+    <div class="ins-modal-card">
+        <div class="surface-head" style="border-bottom:1px solid var(--line);padding:18px 24px;">
+            <h2 style="margin:0;">إرسال تنبيه أو إعلان للطلاب 📢</h2>
+            <button type="button" class="btn btn-sm btn-outline" onclick="closeModal('announcementModal')">✕ إغلاق</button>
+        </div>
+        <form id="announcementForm" style="padding:24px;">
+            <label class="wide-label">الكورس المستهدف
+                <select id="announcementCourseSelect">
+                    <option value="">جميع كورساتي (إشعار عام لكافة طلابي)</option>
+                </select>
+            </label>
+            <label class="wide-label">عنوان التنبيه
+                <input type="text" id="announcementTitle" required placeholder="مثال: تنبيه بخصوص موعد الاختبار التجريبي الأول">
+            </label>
+            <label class="wide-label">نص الإعلان والرسالة للطلاب
+                <textarea id="announcementBody" rows="4" required placeholder="اكتب تفاصيل التنبيه هنا..."></textarea>
+            </label>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">نشر التنبيه وإرسال الإشعار</button>
+                <button type="button" class="btn btn-ghost" onclick="closeModal('announcementModal')">إلغاء</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 5. مودال تشغيل ومعاينة الفيديو السريعة -->
+<!-- مودال إضافة / تعديل وحدة دراسية أو منهج -->
+<div class="ins-modal-overlay" id="sectionModal" hidden>
+    <div class="ins-modal-card">
+        <div class="surface-head" style="border-bottom:1px solid var(--line);padding:18px 24px;">
+            <h2 id="sectionModalTitle" style="margin:0;">إضافة وحدة منهجية جديدة 📚</h2>
+            <button type="button" class="btn btn-sm btn-outline" onclick="closeModal('sectionModal')">✕ إغلاق</button>
+        </div>
+        <form id="sectionForm" style="padding:24px;">
+            <input type="hidden" id="sectionModalId" value="0">
+            <label class="wide-label">الكورس التابع له المنهج
+                <select id="sectionCourseSelect" required>
+                    <!-- Populated dynamically -->
+                </select>
+            </label>
+            <label class="wide-label">عنوان الوحدة / الفصل الدراسي
+                <input type="text" id="sectionTitle" required placeholder="مثال: الوحدة الأولى: مكافحة العدوى والتعقيم الجراحي">
+            </label>
+            <div class="form-grid">
+                <label>ترتيب الوحدة في المنهج
+                    <input type="number" id="sectionSortOrder" min="1" value="1">
+                </label>
+            </div>
+            <label class="wide-label">وصف وأهداف الوحدة
+                <textarea id="sectionDesc" rows="3" placeholder="أهداف هذه الوحدة والمحاور الرئيسية المغطاة سريرياً..."></textarea>
+            </label>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="btnSaveSectionSubmit">حفظ الوحدة الدراسية</button>
+                <button type="button" class="btn btn-ghost" onclick="closeModal('sectionModal')">إلغاء</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="ins-modal-overlay" id="videoPlayerModal" hidden>
+    <div class="ins-modal-card" style="max-width:800px;">
+        <div class="surface-head" style="border-bottom:1px solid var(--line);padding:14px 20px;">
+            <h2 id="videoPlayerTitle" style="margin:0;font-size:16px;">معاينة فيديو الدرس</h2>
+            <button type="button" class="btn btn-sm btn-outline" onclick="closeVideoPlayer()">✕ إغلاق</button>
+        </div>
+        <div id="videoPlayerContainer" style="padding:16px;background:#000;display:grid;place-items:center;min-height:360px;">
+            <!-- video or iframe injected dynamically -->
+        </div>
+    </div>
+</div>
+
+<!-- Modal: إنشاء / تعديل اختبار جديد -->
+<div class="ins-modal-overlay" id="quizModal" hidden>
+    <div class="ins-modal-card" style="max-width:650px;">
+        <div class="surface-head" style="border-bottom:1px solid var(--line);padding:16px 22px;">
+            <div>
+                <h2 id="quizModalTitle" style="margin:0;font-size:18px;">إنشاء اختبار جديد 📝</h2>
+                <p style="margin:4px 0 0;font-size:12.5px;color:var(--slate-500)">حدد تفاصيل الاختبار والدرجة المطلوبة للنجاح.</p>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline" id="btnCloseQuizModal">✕</button>
+        </div>
+
+        <form id="quizForm" style="padding:22px;">
+            <input type="hidden" id="quizModalId" value="">
+
+            <div class="form-grid">
+                <label>الكورس التدريبي
+                    <select id="quizModalCourse" required>
+                        <option value="">اختر الكورس...</option>
+                    </select>
+                </label>
+
+                <label>عنوان الاختبار
+                    <input type="text" id="quizModalName" required placeholder="مثال: الاختبار النصفي لمهارات العناية المركزة">
+                </label>
+
+                <label>مدة الاختبار (بالدقائق)
+                    <input type="number" id="quizModalDuration" min="5" max="300" value="30" required>
+                </label>
+
+                <label>نسبة النجاح المطلوبة (%)
+                    <input type="number" id="quizModalPassPercent" min="10" max="100" value="60" required>
+                </label>
+
+                <label>أقصى عدد للمحاولات
+                    <input type="number" id="quizModalMaxAttempts" min="1" max="10" value="3" required>
+                </label>
+
+                <label>حالة الاختبار
+                    <select id="quizModalStatus">
+                        <option value="draft">مسودة غير منشورة</option>
+                        <option value="published">منشور متاح للطلاب</option>
+                    </select>
+                </label>
+                <label>بداية الإتاحة<input type="datetime-local" id="quizModalStartsAt"></label>
+                <label>نهاية الإتاحة<input type="datetime-local" id="quizModalEndsAt"></label>
+                <label>عدد الأسئلة العشوائية (0 = الكل)<input type="number" id="quizModalRandomCount" min="0" value="0"></label>
+                <label>خصم الإجابة الخاطئة (درجة)<input type="number" id="quizModalNegativeMarking" min="0" step="0.25" value="0"></label>
+                <label>نشر النتائج
+                    <select id="quizModalResultRelease"><option value="immediate">فور التسليم</option><option value="manual">بعد اعتماد المحاضر</option><option value="scheduled">في موعد محدد</option></select>
+                </label>
+                <label>موعد نشر النتائج<input type="datetime-local" id="quizModalResultsAt"></label>
+            </div>
+
+            <label class="wide-label" style="margin-top:12px;">تعليمات ووصف الاختبار
+                <textarea id="quizModalDescription" rows="3" placeholder="اكتب إرشادات أو شروط اجتياز الاختبار للطلاب..."></textarea>
+            </label>
+            <div class="assessment-exam-toggles">
+                <label><input type="checkbox" id="quizModalShuffleQuestions"> ترتيب الأسئلة عشوائيًا</label>
+                <label><input type="checkbox" id="quizModalShuffleOptions"> ترتيب الخيارات عشوائيًا</label>
+                <label><input type="checkbox" id="quizModalAutoSubmit" checked> تسليم تلقائي عند انتهاء الوقت</label>
+                <label><input type="checkbox" id="quizModalSequential"> تنقل سؤالًا بسؤال</label>
+                <label><input type="checkbox" id="quizModalShowAnswers"> إتاحة الإجابات الصحيحة بعد التسليم</label>
+            </div>
+            <div class="assessment-selection-head"><strong>أسئلة الاختبار</strong><button class="btn btn-sm btn-ghost" type="button" onclick="switchTab('question-bank');closeModal('quizModal')">إدارة بنك الأسئلة ↗</button></div>
+            <div id="quizQuestionBankSelection" class="assessment-question-selection"><span>حمّل الأسئلة المعتمدة أولًا.</span></div>
+            <div class="assessment-selection-head"><strong>إتاحة الاختبار لمجموعات طلاب محددة</strong><button class="btn btn-sm btn-outline" id="btnCreateAssessmentGroup" type="button">+ مجموعة جديدة</button></div>
+            <div id="quizGroupSelection" class="assessment-question-selection"><span>اختر كورسًا لعرض مجموعاته.</span></div>
+            <div id="assessmentGroupMembers" class="assessment-group-members" hidden></div>
+
+            <div class="form-actions" style="margin-top:20px;display:flex;justify-content:flex-end;gap:10px;">
+                <button type="button" class="btn btn-outline" id="btnCancelQuizModal">إلغاء</button>
+                <button type="submit" class="btn btn-primary" id="btnSaveQuiz">حفظ الاختبار</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal: بنك الأسئلة -->
+<div class="ins-modal-overlay" id="bankQuestionModal" hidden>
+    <div class="ins-modal-card assessment-question-modal">
+        <div class="surface-head"><div><h2 id="bankQuestionModalTitle">سؤال جديد</h2><p>احفظه كمسودة أو اعتمده لإضافته للاختبارات.</p></div><button type="button" class="btn btn-sm btn-outline" onclick="window.AssessmentInstructor.closeQuestionModal()">✕</button></div>
+        <form id="bankQuestionForm" class="assessment-question-form">
+            <input type="hidden" id="bankQuestionId">
+            <div class="form-grid">
+                <label>نوع السؤال<select id="bankQuestionType"><option value="multiple_choice">اختيار واحد</option><option value="multiple_select">اختيارات متعددة</option><option value="true_false">صح أو خطأ</option><option value="short_answer">إجابة قصيرة</option><option value="essay">مقالي</option><option value="matching">توصيل</option><option value="fill_blank">أكمل الفراغ</option><option value="ordering">ترتيب وتسلسل</option><option value="clinical_case">حالة سريرية</option><option value="image_based">سؤال بصري</option></select></label>
+                <label>الكورس<select id="bankQuestionCourse"><option value="">عام / غير مرتبط بكورس</option></select></label>
+                <label>التخصص الطبي<input id="bankQuestionSpecialty" maxlength="160" placeholder="مثل: العناية المركزة"></label>
+                <label>الصعوبة<select id="bankQuestionDifficulty"><option value="easy">سهل</option><option value="medium" selected>متوسط</option><option value="hard">صعب</option></select></label>
+                <label>الدرجة<input type="number" id="bankQuestionPoints" min="0.01" max="10000" step="0.25" value="1" required></label>
+                <label>حالة السؤال<select id="bankQuestionStatus"><option value="draft">مسودة</option><option value="approved">معتمد</option></select></label>
+            </div>
+            <label>نص السؤال<textarea id="bankQuestionText" rows="4" required maxlength="12000"></textarea></label>
+            <div class="assessment-option-toolbar"><strong>الاختيارات / عناصر السؤال</strong><button type="button" class="btn btn-sm btn-outline" id="btnAddQuestionOption">+ إضافة اختيار</button></div>
+            <div id="bankQuestionOptions" class="assessment-option-list"></div>
+            <label>الإجابات المقبولة / مفتاح التصحيح
+                <textarea id="bankQuestionAnswerKey" rows="3" placeholder="للمطابقة والتسلسل استخدم JSON؛ وللإجابات القصيرة اكتب إجابة في كل سطر."></textarea>
+            </label>
+            <label>شرح الإجابة<textarea id="bankQuestionExplanation" rows="3"></textarea></label>
+            <label>Rubric / معايير تصحيح السؤال المقالي<textarea id="bankQuestionRubric" rows="3"></textarea></label>
+            <label>وسوم البحث<input id="bankQuestionTags" placeholder="افصل الوسوم بفاصلة"></label>
+            <div class="assessment-image-row"><label>صورة السؤال <input type="file" id="bankQuestionImageFile" accept="image/jpeg,image/png,image/webp"></label><button type="button" class="btn btn-outline" id="btnUploadQuestionImage">رفع الصورة</button><span id="bankQuestionImageState"></span></div>
+            <input type="hidden" id="bankQuestionImagePath">
+            <div id="bankQuestionFormMessage" class="notice" hidden></div>
+            <div class="form-actions"><button class="btn btn-outline" type="button" onclick="window.AssessmentInstructor.closeQuestionModal()">إلغاء</button><button class="btn btn-primary" type="submit">حفظ السؤال</button></div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal: نتائج ومحاولات الطلاب في الاختبار -->
+<div class="ins-modal-overlay" id="quizAttemptsModal" hidden>
+    <div class="ins-modal-card" style="max-width:850px;">
+        <div class="surface-head" style="border-bottom:1px solid var(--line);padding:16px 22px;">
+            <div>
+                <h2 id="quizAttemptsModalTitle" style="margin:0;font-size:18px;">نتائج ومحاولات الطلاب 🎓</h2>
+                <p style="margin:4px 0 0;font-size:12.5px;color:var(--slate-500)">عرض درجات وحالة اجتياز الطلاب لهذا الاختبار.</p>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline" id="btnCloseQuizAttemptsModal">✕</button>
+        </div>
+
+        <div style="padding:20px;">
+            <div class="assessment-row-actions" style="margin:0 0 12px;">
+              <button type="button" class="btn btn-sm btn-outline" id="btnAssessmentReport">تحليل الاختبار</button>
+              <button type="button" class="btn btn-sm btn-ghost" id="btnExportAssessmentAttempts">تصدير CSV (Excel)</button>
+              <button type="button" class="btn btn-sm btn-ghost" id="btnPrintAssessmentReport">تقرير PDF</button>
+              <button type="button" class="btn btn-sm btn-primary" id="btnReleaseAssessmentResults">إتاحة كل النتائج</button>
+            </div>
+            <div id="assessmentReportPanel" class="assessment-report-panel" hidden></div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>الطالب</th>
+                            <th>رقم المحاولة</th>
+                            <th>الدرجة المحققة</th>
+                            <th>النسبة المئوية</th>
+                            <th>النتيجة</th>
+                            <th>تاريخ التسليم</th>
+                        </tr>
+                    </thead>
+                    <tbody id="quizAttemptsTableBody">
+                        <tr><td colspan="6" style="text-align:center;color:var(--slate-400)">جاري التحميل...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ins-modal-overlay" id="assessmentGradeModal" hidden>
+  <div class="ins-modal-card assessment-grade-modal">
+    <div class="surface-head"><div><h2 id="assessmentGradeTitle">مراجعة محاولة الطالب</h2><p id="assessmentGradeMeta"></p></div><button type="button" class="btn btn-sm btn-outline" data-close-grade>✕</button></div>
+    <div id="assessmentGradeBody" class="assessment-grade-body"></div>
+  </div>
+</div>
+
+<div class="ins-modal-overlay" id="assessmentAiChatModal" hidden>
+  <section class="ins-modal-card assessment-ai-chat" role="dialog" aria-modal="true" aria-labelledby="assessmentAiChatTitle">
+    <header class="surface-head"><div><h2 id="assessmentAiChatTitle">محادثة المساعد الأكاديمي</h2><p>اسأله عن إعداد الاختبارات وبنك الأسئلة والمحتوى التعليمي.</p></div><button type="button" class="btn btn-sm btn-outline" data-close-ai-chat aria-label="إغلاق">✕</button></header>
+    <div id="assessmentAiChatMessages" class="assessment-ai-chat-messages" aria-live="polite"><div class="assessment-ai-chat-empty">مرحبًا، كيف أساعدك في إعداد اختبار أو تحسين سؤال؟</div></div>
+    <form id="assessmentAiChatForm" class="assessment-ai-chat-form"><textarea id="assessmentAiChatInput" rows="2" maxlength="8000" placeholder="اكتب سؤالك هنا…" aria-label="رسالتك للمساعد"></textarea><button type="submit" class="btn btn-primary" id="btnSendAssessmentAiChat">إرسال</button></form>
+    <p class="assessment-ai-chat-note" id="assessmentAiChatNote">يتطلب اتصالًا ومفتاحًا مضبوطًا في الخادم. لا تستخدم المحادثة لتوجيه علاج مريض.</p>
+  </section>
+</div>
+
+<div id="nanoBananaModal" class="nano-banana-modal" hidden aria-hidden="true">
+  <section class="nano-banana-dialog" role="dialog" aria-modal="true" aria-labelledby="nanoBananaTitle">
+    <div class="nano-banana-head"><div><span class="welcome-badge">GEMINI IMAGE MODEL</span><h2 id="nanoBananaTitle">🍌 توليد صورة بـ Nano Banana 2</h2><p>ولّد صورة تعليمية للكورس، ثم عاينها قبل إضافتها.</p></div><button type="button" class="btn btn-ghost" id="nanoBananaClose" aria-label="إغلاق">×</button></div>
+    <label class="nano-banana-prompt-label" for="nanoBananaPrompt">وصف الصورة</label>
+    <textarea id="nanoBananaPrompt" rows="4" maxlength="2000" placeholder="مثال: غلاف احترافي لكورس أساسيات التمريض، ممرضة في بيئة سريرية حديثة، ألوان طبية هادئة، بدون كتابة..."></textarea>
+    <div class="nano-banana-actions"><label>نسبة الأبعاد<select id="nanoBananaRatio"><option value="1:1">مربع 1:1</option><option value="3:2">أفقي 3:2</option><option value="16:9">عريض 16:9</option><option value="4:3">أفقي 4:3</option><option value="2:3">طولي 2:3</option><option value="9:16">طولي 9:16</option><option value="3:4">طولي 3:4</option></select></label><button type="button" class="btn btn-primary" id="nanoBananaGenerate">✨ توليد الصورة</button></div>
+    <div id="nanoBananaMessage" class="notice" hidden></div>
+    <div id="nanoBananaPreviewWrap" class="nano-banana-preview-wrap" hidden><img id="nanoBananaPreview" alt="معاينة الصورة المولدة"><div class="nano-banana-actions"><a id="nanoBananaDownload" class="btn btn-outline" download="nano-banana-2.jpg">تنزيل الصورة</a><button type="button" id="nanoBananaUse" class="btn btn-primary">استخدام الصورة في حقل الرفع</button></div></div>
+  </section>
+</div>
+
+<link rel="stylesheet" href="asset/image-cropper.css?v=20261118-1">
+<link rel="stylesheet" href="asset/nano-banana-admin.css?v=20261119-2">
+<script src="asset/js/image-cropper.js?v=20261118-1"></script>
+<script src="asset/js/dashboard-effects.js?v=20261118-1"></script>
+<script src="asset/js/instructor.js?v=20261120-3"></script>
+<script src="asset/js/assessment-instructor.js?v=20261122-2"></script>
+<script src="asset/js/nano-banana-admin.js?v=20261119-2" data-endpoint="api/instructor/ai-image-generate.php" data-csrf-global="nbcInstructorCsrfToken"></script>
+<script src="asset/js/medical-theme.js?v=20261120-4" defer></script>
+<script src="asset/responsive-tables.js" defer></script>
+<script src="asset/responsive-nav.js" defer></script>
+</body>
+</html>

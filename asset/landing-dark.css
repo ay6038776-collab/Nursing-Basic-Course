@@ -1,0 +1,214 @@
+/* Public landing page dark theme. Theme selection is stored in the existing
+   browser preference only; this file has no data or API behavior. */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --ink-900: #f1f5f9;
+  --ink-700: #cbd5e1;
+  --ink-500: #94a3b8;
+  --ink-300: #64748b;
+  --navy-900: #0b1525;
+  --navy-800: #111f35;
+  --navy-700: #18304d;
+  --line: #26364d;
+  --bg: #070d18;
+  --white: #111e31;
+  --gold-100: rgba(245, 158, 11, .14);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,.28);
+  --shadow: 0 12px 30px rgba(0,0,0,.32);
+  --shadow-lg: 0 28px 60px rgba(0,0,0,.42);
+}
+
+html[data-theme="dark"],
+html[data-theme="dark"] body { background: var(--bg); color: var(--ink-900); }
+[data-theme="dark"] section[style*="background:#fff"] {
+  background: #0b1525 !important;
+}
+[data-theme="dark"] .offers-section {
+  background: linear-gradient(180deg, #10261f 0%, #0b1525 100%) !important;
+  border-color: #244538 !important;
+}
+[data-theme="dark"] .header { background: rgba(7,13,24,.88); border-color: var(--line); }
+[data-theme="dark"] .brand-name,
+[data-theme="dark"] .nav-link,
+[data-theme="dark"] .btn-outline,
+[data-theme="dark"] .hero h1,
+[data-theme="dark"] .hero-card-title,
+[data-theme="dark"] .card-title,
+[data-theme="dark"] .feature h3,
+[data-theme="dark"] .section-title { color: var(--ink-900); }
+[data-theme="dark"] .brand-tag,
+[data-theme="dark"] .hero-sub,
+[data-theme="dark"] .hero-author-role,
+[data-theme="dark"] .section-desc,
+[data-theme="dark"] .card-desc,
+[data-theme="dark"] .card-meta { color: var(--ink-500); }
+[data-theme="dark"] .hero,
+[data-theme="dark"] .section,
+[data-theme="dark"] .mobile-nav-panel { background-color: var(--bg); }
+[data-theme="dark"] .hero {
+  background:
+    radial-gradient(1000px 500px at 85% -10%, rgba(20,184,166,.14), transparent 60%),
+    radial-gradient(800px 400px at 10% 10%, rgba(212,175,55,.08), transparent 60%),
+    linear-gradient(180deg, #0e1829 0%, #070d18 100%) !important;
+}
+[data-theme="dark"] .hero-card,
+[data-theme="dark"] .hero-author,
+[data-theme="dark"] .hero-float,
+[data-theme="dark"] .feature,
+[data-theme="dark"] .card,
+[data-theme="dark"] .testi,
+[data-theme="dark"] .faq-item,
+[data-theme="dark"] .contact-card,
+[data-theme="dark"] .modal,
+[data-theme="dark"] .modal-box,
+[data-theme="dark"] .auth-card,
+[data-theme="dark"] .filters,
+[data-theme="dark"] .detail-side,
+[data-theme="dark"] .dash-sidebar,
+[data-theme="dark"] .overview-course-mini,
+[data-theme="dark"] .progress-course-card,
+[data-theme="dark"] .notification-item,
+[data-theme="dark"] .instructor-card,
+[data-theme="dark"] .stat-card,
+[data-theme="dark"] .panel,
+[data-theme="dark"] .cart-item,
+[data-theme="dark"] .summary,
+[data-theme="dark"] .empty-state,
+[data-theme="dark"] .toast {
+  background-color: #111e31;
+  border-color: var(--line);
+  color: var(--ink-900);
+}
+[data-theme="dark"] .page-head {
+  background: linear-gradient(180deg, #111e31 0%, #070d18 100%);
+  border-color: var(--line);
+}
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] .hero-author-name,
+[data-theme="dark"] .hero-float-text strong,
+[data-theme="dark"] .card-price,
+[data-theme="dark"] .detail-price,
+[data-theme="dark"] .detail-meta-item strong,
+[data-theme="dark"] .testi-name,
+[data-theme="dark"] .contact-card h3,
+[data-theme="dark"] .auth-card h2,
+[data-theme="dark"] .dash-user-info strong,
+[data-theme="dark"] .dash-head h2,
+[data-theme="dark"] .panel-title,
+[data-theme="dark"] .faq-q,
+[data-theme="dark"] .empty-state h3 { color: #f1f5f9; }
+[data-theme="dark"] .testi-text,
+[data-theme="dark"] .form-label,
+[data-theme="dark"] .summary-row,
+[data-theme="dark"] .detail-meta-item,
+[data-theme="dark"] .dash-menu-item,
+[data-theme="dark"] .card-foot { color: #cbd5e1; }
+[data-theme="dark"] .auth-tabs { background: #0b1525; }
+[data-theme="dark"] .auth-tab.active,
+[data-theme="dark"] .curriculum-item .num {
+  background: #1a2b42;
+  color: #f1f5f9;
+}
+[data-theme="dark"] .modal-close { background: #17263b; color: #e2e8f0; }
+[data-theme="dark"] .loader { background: #070d18; }
+[data-theme="dark"] .detail-tab { color: #aebed2; }
+[data-theme="dark"] .detail-tab.active { color: var(--teal-400, #5eead4); border-color: var(--teal-400, #2dd4bf); }
+[data-theme="dark"] .role-opt { color: #cbd5e1; }
+[data-theme="dark"] .role-opt.active { background: color-mix(in srgb,var(--brand-primary),transparent 86%); color: var(--teal-400, #5eead4); }
+[data-theme="dark"] .dash-menu-item:hover { background: #17263b; color: #f1f5f9; }
+[data-theme="dark"] .cart-remove { background: rgba(248,113,113,.14); }
+[data-theme="dark"] .overview-course-mini-info strong,
+[data-theme="dark"] .progress-course-info h4,
+[data-theme="dark"] .lesson-info strong,
+[data-theme="dark"] .instructor-card-name,
+[data-theme="dark"] .ins-stat-num,
+[data-theme="dark"] .instructor-course-info strong { color: #f1f5f9; }
+[data-theme="dark"] .instructor-card-stats { background: #0b1525; border-color: var(--line); }
+[data-theme="dark"] .instructor-card-spec,
+[data-theme="dark"] .instructor-card-badge,
+[data-theme="dark"] .card-price-current,
+[data-theme="dark"] .progress-label strong { color: var(--teal-400, #5eead4); }
+[data-theme="dark"] .notification-item.unread {
+  background: linear-gradient(135deg, rgba(20,184,166,.12), rgba(212,175,55,.05));
+  border-color: rgba(45,212,191,.32);
+}
+[data-theme="dark"] .progress-lesson-chip { color: #cbd5e1; }
+[data-theme="dark"] .chip-check,
+[data-theme="dark"] .lesson-check {
+  background: #17263b;
+  border-color: #344861;
+  color: #aebed2;
+}
+[data-theme="dark"] .lesson-item:hover { background: #17263b; }
+[data-theme="dark"] .dash-sidebar-toggle {
+  background: #111e31;
+  color: #f1f5f9;
+  border-color: var(--line);
+}
+[data-theme="dark"] .category-filter-pill {
+  background: #142238;
+  border-color: #344861;
+  color: #cbd5e1;
+}
+[data-theme="dark"] .category-filter-pill:hover,
+[data-theme="dark"] .category-filter-pill.active {
+  background: var(--brand-primary, #0d9488);
+  border-color: var(--teal-400, #2dd4bf);
+  color: #fff;
+}
+[data-theme="dark"] .summary-total { color: #f1f5f9; border-color: var(--line); }
+[data-theme="dark"] .table-wrap { border-color: var(--line); }
+[data-theme="dark"] table th { background: #0b1525; color: #bdcbe0; }
+[data-theme="dark"] table td { color: #d5deea; border-color: var(--line); }
+[data-theme="dark"] table tbody tr:hover td { background: rgba(45,212,191,.06); }
+[data-theme="dark"] .form-input,
+[data-theme="dark"] .form-select,
+[data-theme="dark"] .form-textarea,
+[data-theme="dark"] .search-box input {
+  background: #0b1525;
+  border-color: var(--line);
+  color: #f1f5f9;
+}
+[data-theme="dark"] .form-input::placeholder,
+[data-theme="dark"] .form-textarea::placeholder,
+[data-theme="dark"] .search-box input::placeholder { color: #8291a6; }
+[data-theme="dark"] .form-input:focus,
+[data-theme="dark"] .form-select:focus,
+[data-theme="dark"] .form-textarea:focus { border-color: var(--teal-400, #2dd4bf); }
+[data-theme="dark"] .auth-tab { color: #aebed2; }
+[data-theme="dark"] .auth-tab.active { color: #f1f5f9; }
+[data-theme="dark"] .btn-outline,
+[data-theme="dark"] .lang-btn,
+[data-theme="dark"] .cart-btn { background-color: #111e31; border-color: var(--line); }
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea { background-color: #0b1525; border-color: var(--line); color: var(--ink-900); }
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder { color: #8291a6; }
+[data-theme="dark"] .faq-q,
+[data-theme="dark"] .faq-a-inner,
+[data-theme="dark"] .footer { color: var(--ink-700); }
+[data-theme="dark"] .footer,
+[data-theme="dark"] .modal-wrap { border-color: var(--line); }
+[data-theme="dark"] .card-media { background-color: #0b1525; }
+[data-theme="dark"] .top-announcement-bar,
+[data-theme="dark"] .hero-card-main { color: #fff; }
+[data-theme="dark"] .detail-back-btn {
+  background: #123b43;
+  border-color: #2dd4bf;
+  color: #f0fdfa;
+  box-shadow: 0 8px 22px rgba(0,0,0,.28);
+}
+[data-theme="dark"] .detail-back-btn:hover,
+[data-theme="dark"] .detail-back-btn:focus-visible {
+  background: #0f766e;
+  border-color: #5eead4;
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html, body, .header, .card, .feature, .hero-card { transition: background-color .2s ease, color .2s ease, border-color .2s ease; }
+}

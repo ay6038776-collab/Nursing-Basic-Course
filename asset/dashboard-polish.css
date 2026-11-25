@@ -1,0 +1,28 @@
+/* Clearer, calmer dashboards with compact expressive section markers. */
+.admin-content,.st-content{font-size:15px;line-height:1.7}
+.admin-content h1,.st-content h1{font-size:clamp(1.55rem,2.4vw,2rem);line-height:1.3;letter-spacing:-.02em}
+.admin-content h2,.st-content h2{font-size:clamp(1.25rem,1.8vw,1.55rem);line-height:1.4}
+.admin-content h3,.st-content h3{font-size:1.12rem;line-height:1.45}
+.side-link,.st-nav-item{font-size:14.5px;font-weight:750;min-height:46px;gap:11px}
+.nav-group-label,.st-nav-label{font-size:12px;letter-spacing:.035em}
+.admin-content th,.admin-content td,.st-content th,.st-content td{font-size:14px}
+.admin-content th,.st-content th{font-weight:800}
+.admin-content .btn,.st-content .st-btn{font-size:14px;font-weight:750}
+.admin-content .surface,.st-content .st-card,.st-content .st-panel{transition:box-shadow .25s ease,border-color .25s ease,transform .25s ease}
+.admin-content .surface:hover,.st-content .st-card:hover{box-shadow:0 16px 40px rgba(7,20,40,.09)}
+.side-link-icon,.st-nav-item svg{transition:transform .24s ease,color .24s ease}
+.side-link:hover .side-link-icon,.st-nav-item:hover svg{transform:scale(1.12) rotate(-4deg)}
+.admin-sidebar .side-link[data-tab]::after,.st-nav-item[data-tab]::after{content:attr(data-section-emoji);display:grid;place-items:center;width:26px;height:26px;flex:0 0 26px;border-radius:9px;background:rgba(13,148,136,.09);font-size:15px;line-height:1;transition:transform .22s ease,background .22s ease}
+.admin-sidebar .side-link.active::after,.st-nav-item.active::after{background:rgba(13,148,136,.18);transform:scale(1.06)}
+.dashboard-panel-enter{animation:dashboardPanelEnter .38s cubic-bezier(.2,.75,.25,1) both}
+@keyframes dashboardPanelEnter{from{opacity:0;transform:translateY(10px) scale(.995);filter:blur(3px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+.dashboard-transition{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;background:rgba(7,16,31,.18);backdrop-filter:blur(9px) saturate(1.25);-webkit-backdrop-filter:blur(9px) saturate(1.25);opacity:0;pointer-events:none;transition:opacity .2s ease}
+.dashboard-transition[hidden]{display:none}
+.dashboard-transition.is-active{opacity:1;pointer-events:auto}
+.dashboard-transition-card{display:grid;justify-items:center;gap:13px;min-width:170px;padding:22px 28px;border:1px solid rgba(255,255,255,.38);border-radius:22px;background:rgba(12,28,48,.68);color:#f8fafc;box-shadow:0 20px 60px rgba(3,12,25,.28);font-weight:800;font-size:14px;transform:translateY(8px) scale(.96);transition:transform .28s cubic-bezier(.2,.8,.2,1)}
+.dashboard-transition.is-active .dashboard-transition-card{transform:translateY(0) scale(1)}
+.dashboard-transition-mark{display:grid;place-items:center;width:58px;height:58px;border-radius:18px;background:linear-gradient(145deg,#2dd4bf,#0d9488);box-shadow:0 9px 24px rgba(13,148,136,.35);font-size:28px;animation:dashboardMarkPulse 1s ease-in-out infinite alternate}
+.dashboard-transition-spinner{position:absolute;width:72px;height:72px;border:2px solid transparent;border-top-color:rgba(255,255,255,.9);border-left-color:rgba(255,255,255,.4);border-radius:50%;animation:dashboardSpin .95s linear infinite}
+@keyframes dashboardSpin{to{transform:rotate(360deg)}}@keyframes dashboardMarkPulse{to{transform:scale(.93);filter:brightness(1.15)}}
+@media(max-width:760px){.admin-content,.st-content{font-size:14.5px}.admin-content th,.admin-content td,.st-content th,.st-content td{font-size:13px}.dashboard-transition-card{min-width:150px;padding:18px 23px}}
+@media(prefers-reduced-motion:reduce){.dashboard-panel-enter,.dashboard-transition-spinner,.dashboard-transition-mark{animation:none!important}.side-link-icon,.st-nav-item svg,.admin-content .surface,.st-content .st-card{transition:none!important}}

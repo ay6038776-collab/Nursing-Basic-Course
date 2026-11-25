@@ -1,0 +1,90 @@
+.home-medical-slider[hidden], .home-slider-form[hidden] { display: none !important; }
+.hero-visual { width: 100%; }
+.founder-photos-carousel { position: relative; overflow: hidden; background: #09283d; isolation: isolate; }
+.founder-photo-slide { position: absolute; inset: 0; opacity: 0; transition: opacity .6s ease; }
+.founder-photo-slide.active { opacity: 1; }
+.founder-photo-slide img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.founder-photo-slide::after { content: ""; position: absolute; inset: 45% 0 0; background: linear-gradient(transparent,rgba(2,16,29,.75)); }
+.founder-photo-caption { position: absolute; z-index: 1; inset-inline: 12px; bottom: 27px; color: #fff; font-size: 11px; font-weight: 700; text-align: center; text-shadow: 0 1px 8px #000; }
+.founder-photo-dots { position: absolute; z-index: 2; inset-inline: 0; bottom: 10px; display: flex; justify-content: center; gap: 6px; }
+.founder-photo-dot { width: 7px; height: 7px; padding: 0; border: 0; border-radius: 8px; background: rgba(255,255,255,.6); cursor: pointer; }
+.founder-photo-dot.active { width: 18px; background: #5eead4; }
+.founder-photo-initial { position: relative; z-index: 1; }
+.home-medical-slider {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 30px;
+  background: #08233a;
+  box-shadow: 0 28px 72px rgba(8, 35, 58, .28), 0 0 0 1px rgba(255,255,255,.65);
+  isolation: isolate;
+}
+.home-medical-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.035);
+  transition: opacity .8s ease, transform 6s ease;
+  pointer-events: none;
+}
+.home-medical-slide.active { opacity: 1; transform: scale(1); pointer-events: auto; }
+.home-medical-slide img { width: 100%; height: 100%; display: block; object-fit: cover; }
+.home-medical-slide::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg,rgba(2,16,29,.05) 28%,rgba(3,22,38,.88) 100%),linear-gradient(90deg,rgba(3,28,45,.12),transparent 70%);
+}
+.home-medical-caption {
+  position: absolute; z-index: 2; inset-inline: 26px; bottom: 62px; color: #fff;
+  text-shadow: 0 2px 16px rgba(0,0,0,.38);
+}
+.home-medical-kicker {
+  display: inline-flex; align-items: center; gap: 7px; margin-bottom: 10px;
+  padding: 6px 11px; border: 1px solid rgba(153,246,228,.42); border-radius: 999px;
+  color: #c5fff5; background: rgba(5,74,78,.45); backdrop-filter: blur(12px);
+  font-size: 10px; font-weight: 800; letter-spacing: .08em;
+}
+.home-medical-kicker::before { content:""; width:6px; height:6px; border-radius:50%; background:#5eead4; box-shadow:0 0 12px #5eead4; }
+.home-medical-caption h2 { margin:0 0 7px; max-width:90%; font-size:clamp(19px,2.3vw,28px); line-height:1.25; font-weight:900; }
+.home-medical-caption p { margin:0; max-width:90%; color:rgba(241,245,249,.84); font-size:12px; line-height:1.65; }
+.home-medical-controls {
+  position:absolute; z-index:3; inset-inline:20px; bottom:17px; display:flex; align-items:center; justify-content:space-between; gap:12px;
+}
+.home-medical-dots { display:flex; align-items:center; gap:7px; }
+.home-medical-dot { width:7px; height:7px; border:0; padding:0; border-radius:9px; background:rgba(255,255,255,.5); cursor:pointer; transition:width .25s,background .25s; }
+.home-medical-dot.active { width:24px; background:#5eead4; }
+.home-medical-arrows { display:flex; gap:7px; }
+.home-medical-arrow { width:34px; height:34px; display:grid; place-items:center; border:1px solid rgba(255,255,255,.3); border-radius:50%; color:#fff; background:rgba(4,24,40,.52); backdrop-filter:blur(10px); cursor:pointer; }
+.home-medical-arrow:hover { background:rgba(20,184,166,.82); border-color:transparent; }
+.home-slider-admin { overflow:hidden; }
+.home-slider-form { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; padding:18px; margin:0 16px 16px; border:1px solid var(--line); border-radius:14px; background:var(--surface,var(--white,#f8fafc)); }
+.home-slider-form label { display:flex; flex-direction:column; gap:6px; font-size:13px; font-weight:700; }
+.home-slider-form label input:not([type=checkbox]) { width:100%; }
+.home-slider-form label small { color:var(--slate-500); font-size:11px; }
+.home-slider-preview { display:flex; align-items:center; gap:12px; grid-column:1/-1; color:var(--slate-500); font-size:12px; }
+.home-slider-preview img { width:150px; aspect-ratio:16/9; object-fit:cover; border-radius:10px; border:1px solid var(--line); }
+.home-slider-form .home-slider-active { flex-direction:row; align-items:center; }
+.home-slider-form .home-slider-active input { width:auto; }
+.home-slider-form .form-actions { grid-column:1/-1; }
+.home-slider-list { display:grid; grid-template-columns:repeat(auto-fill,minmax(245px,1fr)); gap:14px; padding:0 16px 16px; }
+.home-slider-empty { grid-column:1/-1; padding:35px 18px; border:1px dashed var(--line); border-radius:14px; color:var(--slate-500); text-align:center; }
+.home-slider-admin-card { overflow:hidden; border:1px solid var(--line); border-radius:14px; background:var(--surface,var(--white,#fff)); color:var(--ui-text,var(--ink-900,#0f172a)); }
+.home-slider-admin-image { position:relative; aspect-ratio:16/9; background:#0b2034; }
+.home-slider-admin-image img { width:100%; height:100%; object-fit:cover; display:block; }
+.home-slider-order { position:absolute; top:10px; inset-inline-start:10px; padding:4px 8px; border-radius:8px; color:#fff; background:rgba(7,18,32,.75); font-size:11px; }
+.home-slider-admin-copy { padding:12px; }
+.home-slider-admin-copy strong { display:block; font-size:14px; }
+.home-slider-admin-copy p { min-height:35px; margin:5px 0 10px; color:var(--slate-500); font-size:11px; }
+.home-slider-admin-actions { display:flex; gap:7px; flex-wrap:wrap; }
+@media (max-width:720px) {
+  .home-medical-slider { border-radius:22px; }
+  .home-medical-caption { inset-inline:17px; bottom:58px; }
+  .home-medical-caption h2 { font-size:20px; }
+  .home-medical-caption p { font-size:11px; }
+  .home-medical-controls { inset-inline:14px; bottom:13px; }
+  .home-medical-arrow { width:31px; height:31px; }
+  .home-slider-form { grid-template-columns:1fr; margin-inline:10px; padding:13px; }
+  .home-slider-form .form-actions { grid-column:auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-medical-slide { transition:opacity .2s ease; transform:none; }
+}

@@ -1,0 +1,1224 @@
+/* ==========================================================================
+   responsive.css — Mobile-first proportions for ALL screens
+   Edu Nursing Medical Platform
+
+   ضع هذا الملف في آخر <head> بعد كل ملفات CSS الأخرى:
+     style.css, student.css, student-details.css, admin.css, admin-extras.css,
+     admin-features.css, courses.css, instructor.css, instructor-proportions.css,
+     vclasses-landing.css, responsive.css   <-- الأخير
+
+   وتأكد أن الـ <head> فيه:
+     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+   Breakpoints المستخدمة:
+     ≥1600  شاشات كبيرة      | ≤1200 لاب توب صغير   | ≤1024 تابلت أفقي
+     ≤768   تابلت عمودي      | ≤600  موبايل كبير    | ≤480 موبايل | ≤360 موبايل صغير
+   ========================================================================== */
+
+
+/* ==========================================================================
+   0) Fluid tokens
+   ========================================================================== */
+:root {
+  --gutter: clamp(14px, 4vw, 28px);        /* هامش الصفحة الجانبي */
+  --gap-s: clamp(10px, 2.4vw, 14px);
+  --gap-m: clamp(12px, 3vw, 20px);
+  --gap-l: clamp(16px, 4vw, 28px);
+  --tap: 44px;                              /* أقل مساحة لمس مريحة */
+  --safe-t: env(safe-area-inset-top, 0px);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-l: env(safe-area-inset-left, 0px);
+  --safe-r: env(safe-area-inset-right, 0px);
+}
+
+
+/* ==========================================================================
+   1) Global safety net — no horizontal scroll, media never overflows
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  scroll-padding-top: 90px;
+}
+html, body { max-width: 100%; }
+body {
+  overflow-x: clip;                          /* clip لا يكسر position:sticky */
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-wrap: break-word;
+}
+
+img, svg, video, canvas, iframe { max-width: 100%; }
+img, video { height: auto; }
+iframe { border: 0; }
+
+/* عناصر flex/grid تقدر تنكمش بدل ما تدفع الصفحة */
+.admin-main, .st-main, .main, .dash-main, .surface, .panel,
+.card, .card-body, .stat, .stat-card { min-width: 0; }
+
+/* نصوص طويلة (إيميلات / روابط) ما تكسرش التصميم */
+.student-card-userinfo, .instructor-card-userinfo,
+.lesson-text, .cinfo, .time-details { min-width: 0; overflow-wrap: anywhere; }
+
+/* الجداول: لفّ أي جدول مش جوه wrapper */
+.table-wrap, .detail-table-wrapper, .tw {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+
+/* ==========================================================================
+   2) Large screens (≥1600) — لا تتمدد العناصر بشكل مبالغ فيه
+   ========================================================================== */
+@media (min-width: 1600px) {
+  :root { --container: 1360px; }
+  .admin-content { max-width: 1640px !important; }
+  .st-content { max-width: 1500px; margin-inline: auto; }
+  .stats-grid { gap: 20px; }
+}
+
+@media (min-width: 2200px) {
+  html { font-size: 112.5%; }               /* تكبير هادئ على 4K */
+  .admin-content { max-width: 1900px !important; }
+}
+
+
+/* ==========================================================================
+   3) Cards grids — لا تتجاوز عرض الشاشة أبدًا (min(100%, X))
+      المشكلة الأصلية: minmax(310px,1fr) أكبر من عرض موبايل 320px
+   ========================================================================== */
+.students-cards-grid    { grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+.instructors-cards-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 310px), 1fr)); }
+.timetable-grid         { grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+.stats-grid             { grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); }
+.st-stats-grid          { grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
+.check-grid             { grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); }
+.coupon-form            { grid-template-columns: repeat(auto-fit, minmax(min(100%, 130px), 1fr)); }
+#settingsForm .form-grid{ grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+
+/* instructor-proportions كان يستخدم minmax(460px) → يفيض على الموبايل */
+.two-col { grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
+.two-col > * { min-width: 0; }
+
+.student-card, .instructor-card, .timetable-card { min-width: 0; }
+
+/* أزرار الكروت: تلتف بدل ما تضغط */
+.student-card-actions,
+.timetable-actions { flex-wrap: wrap; }
+.student-card-actions .small-btn { flex: 1 1 30%; min-width: 84px; }
+.instructor-card-actions .small-btn { flex: 1 1 40%; }
+
+
+/* ==========================================================================
+   4) ADMIN — Drawer sidebar, topbar, content
+   ========================================================================== */
+
+/* Drawer: ارتفاع الموبايل الحقيقي + عرض متناسب */
+@media (max-width: 1024px) {
+  .admin-sidebar {
+    height: 100vh;
+    height: 100dvh;
+    width: min(86vw, 300px);
+    padding-bottom: var(--safe-b);
+    overscroll-behavior: contain;
+  }
+  /* إصلاح: في الإنجليزي (LTR) القائمة كانت تظهر على الشاشة بدل ما تختفي */
+  html[dir="ltr"] .admin-sidebar { transform: translateX(-100%); }
+  html[dir="ltr"] .admin-sidebar.mobile-open,
+  html .admin-sidebar.mobile-open { transform: translateX(0); }
+
+  .sidebar-toggle-btn { width: var(--tap); height: var(--tap); flex: none; }
+
+  .admin-topbar { padding-inline: var(--gutter); }
+  .topbar-refresh-btn span:last-child { display: none; }  /* أيقونة فقط */
+}
+
+@media (max-width: 768px) {
+  .admin-topbar {
+    padding-top: calc(10px + var(--safe-t));
+    padding-bottom: 10px;
+    gap: 8px;
+  }
+  .topbar-left  { min-width: 0; flex: 1 1 auto; }
+  .topbar-right { gap: 8px; flex: 0 0 auto; }
+  .topbar-user  { padding: 4px; gap: 0; }
+  .topbar-user .who,
+  .topbar-user-info { display: none; }                    /* نخلي الأفاتار بس */
+  .topbar-logout-btn { min-height: 38px; }
+  .topbar-lang-btn { padding: 6px 10px; }
+
+  .admin-content,
+  .admin-content[class] {
+    padding: var(--gutter) var(--gutter) calc(32px + var(--safe-b)) !important;
+  }
+
+  .welcome-hero { padding: clamp(16px, 5vw, 24px); border-radius: 16px; gap: 12px; }
+  .welcome-hero h1 { font-size: clamp(19px, 5.4vw, 24px); line-height: 1.3; }
+  .welcome-hero p  { font-size: 13px; }
+
+  .surface, .panel { border-radius: 14px; }
+  #settingsForm .surface,
+  #adminProfilePanel .surface { padding: 18px 16px; margin-bottom: 16px; }
+
+  .surface-head { padding: 12px 14px; }
+  .surface-head > * { min-width: 0; }
+
+  /* الفلاتر والأدوات: ترتيب عمودي كامل العرض */
+  .toolbar, .toolbar.filters { flex-direction: column; align-items: stretch; gap: 10px; }
+  .toolbar > *, .toolbar.filters > *, .toolbar label { width: 100%; max-width: 100%; }
+  .quick-actions, .form-actions { gap: 8px; }
+  .quick-actions > .btn, .form-actions > .btn,
+  .quick-actions > button, .form-actions > button { flex: 1 1 140px; }
+
+  .view-toggle-group { width: 100%; }
+  .view-toggle-btn { flex: 1; justify-content: center; }
+
+  .tabs { margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter);
+          scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .tabs::-webkit-scrollbar { display: none; }
+
+  th, td { padding: 11px 12px; }
+  .data-table th, .data-table td { padding: 9px 10px; }
+  /* جداول بدون wrapper */
+  .data-table:not(.table-wrap *) {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+
+  .admin-footer { padding-bottom: calc(16px + var(--safe-b)); }
+}
+
+@media (max-width: 600px) {
+  /* إحصائيات: عمودين متناسبين بدل عمود واحد طويل */
+  .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .stat, .stat-card { padding: 14px 12px; }
+  .stat-value { font-size: clamp(18px, 6vw, 22px); overflow-wrap: anywhere; }
+  .stat-label { font-size: 11.5px; }
+}
+
+@media (max-width: 360px) {
+  .stats-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+
+/* ==========================================================================
+   5) Forms — منع زوم iOS + مساحات لمس مريحة
+   ========================================================================== */
+@media (max-width: 768px) {
+  .form-grid,
+  .student-details-form-grid,
+  .instructor-inline-form,
+  .grid2,
+  .ins-edit-grid { grid-template-columns: minmax(0, 1fr) !important; }
+  .form-grid .full, .grid2 .full { grid-column: 1 / -1; }
+
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]),
+  select, textarea,
+  .in, .form-input, .form-select, .form-textarea {
+    font-size: 16px !important;             /* أقل من 16px يعمل زوم تلقائي في iOS */
+    min-height: var(--tap);
+    max-width: 100%;
+  }
+  textarea { min-height: 96px; }
+
+  .btn, .small-btn, button.btn-p, .st-btn, .detail-btn {
+    min-height: 40px;
+  }
+  .st-icon-btn, .topbar-icon-btn { width: var(--tap); height: var(--tap); }
+}
+
+@media (pointer: coarse) {
+  .btn, .small-btn, .tab, .menu a, .side-link, .nav-link,
+  .dash-menu-item, .category-filter-pill { min-height: 40px; }
+  input[type="checkbox"], input[type="radio"] { width: 20px; height: 20px; }
+}
+
+
+/* ==========================================================================
+   6) Modals → Bottom sheet على الموبايل
+   ========================================================================== */
+.modal-overlay { padding: max(16px, var(--safe-t)) max(16px, var(--safe-r)) max(16px, var(--safe-b)) max(16px, var(--safe-l)); }
+.modal-box { max-height: 90vh; max-height: 90dvh; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+.ins-modal-card { max-height: 90vh !important; max-height: 90dvh !important; width: min(94%, 580px) !important; overflow-y: auto; }
+
+@media (max-width: 600px) {
+  .modal-overlay { align-items: flex-end; padding: 0; }
+  .modal-box {
+    max-width: 100% !important;
+    width: 100%;
+    max-height: 92vh;
+    max-height: 92dvh;
+    border-radius: 20px 20px 0 0;
+    margin: 0;
+    padding-bottom: var(--safe-b);
+    animation: sheetUp .28s cubic-bezier(.16, 1, .3, 1);
+  }
+  .modal-header { padding: 14px 16px; position: sticky; top: 0; background: inherit; z-index: 1; }
+  .modal-body { padding: 16px 16px 20px; }
+  .modal-close { width: var(--tap); height: 40px; }
+  .ins-modal-card form { padding: 16px !important; }
+}
+@keyframes sheetUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+
+/* ==========================================================================
+   7) INSTRUCTOR panel (instructor.css + instructor-proportions.css)
+   ========================================================================== */
+@media (max-width: 1100px) {
+  .shell { grid-template-columns: 220px minmax(0, 1fr); }
+}
+
+@media (max-width: 860px) {
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  .side {
+    position: sticky; top: 0; z-index: 60;
+    height: auto; padding: calc(10px + var(--safe-t)) 12px 10px; gap: 10px;
+    flex-direction: column;
+  }
+  .brand { padding: 0 4px; }
+  .me { padding: 8px 10px; }
+  /* قائمة أفقية قابلة للتمرير بدل ما تاخد نص الشاشة */
+  .menu {
+    flex-direction: row; flex-wrap: nowrap; overflow-x: auto; gap: 6px;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 2px;
+  }
+  .menu::-webkit-scrollbar { display: none; }
+  .menu a { flex: 0 0 auto; white-space: nowrap; padding: 9px 14px; }
+  .side > .btn { align-self: stretch; }
+  .main { padding: var(--gutter) var(--gutter) calc(28px + var(--safe-b)); }
+  .panel { padding: clamp(14px, 4vw, 22px); }
+  .crow { flex-wrap: wrap; gap: 10px; }
+  .crow .cinfo { flex: 1 1 60%; }
+  .toast { bottom: calc(18px + var(--safe-b)); }
+}
+
+@media (max-width: 480px) {
+  .thumb { width: 72px; }
+  .stat b { font-size: 22px; }
+  .auth { padding: 14px; }
+  .big, .up { gap: 12px; }
+  .prev { width: 100%; }
+  table { min-width: 520px; }
+}
+
+/* منهج المحاضر + الجداول الزمنية */
+@media (max-width: 640px) {
+  .curriculum-wrap, .timetable-grid { gap: 12px; margin-top: 12px; }
+  .unit-head { padding: 12px 14px; align-items: flex-start; }
+  .unit-title-box { flex: 1 1 100%; min-width: 0; }
+  .unit-title { font-size: 14.5px; }
+  .unit-actions { width: 100%; }
+  .unit-actions .btn, .unit-actions .small-btn { flex: 1 1 auto; }
+  .unit-lessons-list { padding: 10px 12px; }
+  .unit-lesson-row { flex-wrap: wrap; padding: 10px 12px; }
+  .lesson-info { flex: 1 1 100%; }
+  .lesson-name { white-space: normal; }
+  .lesson-meta { flex-wrap: wrap; gap: 6px 10px; }
+  .lesson-row-actions { width: 100%; justify-content: flex-end; }
+  .timetable-card { padding: 16px; }
+  .timetable-time-box { padding: 9px 12px; }
+}
+
+
+/* ==========================================================================
+   8) COURSES admin (courses.css) — المنهج والكوبونات
+   ========================================================================== */
+@media (max-width: 900px) {
+  .cur-lesson { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .cur-lesson > :first-child + * { grid-column: 1 / -1; }   /* عنوان الدرس عرض كامل */
+  .cur-unit-head { flex-wrap: wrap; }
+  .cur-unit-head input { flex: 1 1 160px; min-width: 0; }
+  .cur-tools { margin-inline-start: auto; }
+}
+@media (max-width: 560px) {
+  .cur-lesson { grid-template-columns: minmax(0, 1fr); }
+  .cover-box { flex-direction: column; align-items: stretch; }
+  .cover-preview { width: 100%; }
+  .cover-side { align-items: stretch; }
+  .cf-group { padding: 4px 12px 14px; }
+  .crs-cell { min-width: 220px; }
+}
+
+
+/* ==========================================================================
+   9) STUDENT dashboard (student.css + student-details.css)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .st-sidebar {
+    width: min(86vw, 300px);
+    height: 100vh; height: 100dvh;
+    padding-bottom: var(--safe-b);
+    overscroll-behavior: contain;
+  }
+  .st-topbar { gap: 10px; }
+  .st-content { padding: var(--gutter); }
+}
+
+@media (max-width: 640px) {
+  .st-topbar { padding-top: var(--safe-t); }
+  .st-topbar-end { gap: 8px; }
+  .st-user-chip { padding: 4px; }
+  .st-user-chip > :not(.st-user-avatar) { display: none; }   /* الاسم يختفي */
+  .st-hero { padding: clamp(18px, 5vw, 24px); border-radius: 18px; }
+  .st-hero h1, .st-hero h2 { font-size: clamp(20px, 6vw, 26px); line-height: 1.3; }
+  .st-hero-actions { width: 100%; }
+  .st-hero-actions > * { flex: 1 1 140px; }
+  .st-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .st-content { padding-bottom: calc(28px + var(--safe-b)); }
+}
+@media (max-width: 360px) {
+  .st-stats-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* student-details */
+.detail-table-wrapper { -webkit-overflow-scrolling: touch; }
+.detail-card { min-width: 0; }
+
+@media (max-width: 768px) {
+  .student-details-view { padding: var(--gutter); }
+  .detail-hero { padding: clamp(16px, 4.5vw, 22px); }
+  .student-ident { flex-direction: row; align-items: center; gap: 12px; min-width: 0; }
+  .detail-hero-meta { flex-wrap: wrap; gap: 6px; }
+  .detail-actions { flex-wrap: wrap; gap: 8px; }
+  .detail-actions .btn, .detail-actions .detail-btn { flex: 1 1 130px; }
+  .detail-kpis { gap: 10px; }
+  .detail-kpi { padding: 14px; }
+  .detail-kpi-value { font-size: clamp(20px, 6vw, 26px); }
+  .detail-card-header { flex-wrap: wrap; gap: 8px; }
+}
+@media (max-width: 520px) {
+  .detail-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }  /* بدل عمود واحد */
+  .student-avatar { width: 56px; height: 56px; flex: none; }
+}
+@media (max-width: 340px) {
+  .detail-kpis { grid-template-columns: minmax(0, 1fr); }
+}
+
+
+/* ==========================================================================
+   10) PUBLIC SITE (style.css) — الهيدر، الهيرو، الأقسام، الفوتر
+   ========================================================================== */
+@media (max-width: 960px) {
+  .header-inner { height: var(--header-h, 68px); }
+  .hero { padding-block: clamp(36px, 8vw, 64px); }
+  .hero-grid { gap: clamp(28px, 6vw, 40px); }
+  .hero-visual { width: 100%; max-width: 440px; margin-inline: auto; }
+  .section-head { margin-bottom: clamp(28px, 6vw, 44px); }
+}
+
+@media (max-width: 720px) {
+  :root { --header-h: 64px; }
+  .site-header, header.header { padding-top: var(--safe-t); }
+  .section { padding: clamp(40px, 10vw, 56px) 0; }
+  .container { padding-inline: max(16px, var(--safe-l)) max(16px, var(--safe-r)); }
+
+  .hero h1 { font-size: clamp(28px, 8.2vw, 38px); line-height: 1.25; }
+  .hero-sub { font-size: 15.5px; max-width: 100%; }
+  .hero-ctas { flex-direction: column; }
+  .hero-ctas > .btn, .hero-ctas > a, .hero-ctas > button { width: 100%; justify-content: center; }
+  .hero-card-title { font-size: 19px; }
+  .hero-card-stats { gap: 12px; flex-wrap: wrap; }
+
+  .section-title { font-size: clamp(22px, 6.4vw, 30px); }
+  .section-desc { font-size: 14.5px; }
+
+  .features-grid, .testi-grid, .grid-cards {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+    gap: 14px;
+  }
+  .feature { padding: 22px 20px; border-radius: 18px; }
+  .instructor { padding: 24px 18px; gap: 20px; }
+
+  .footer-grid { gap: 24px; }
+  .footer-bottom { flex-direction: column; text-align: center; gap: 8px; }
+
+  .toast { max-width: calc(100vw - 32px); bottom: calc(16px + var(--safe-b)); }
+}
+
+@media (max-width: 480px) {
+  .header-actions .lang-btn { padding: 7px 10px; }
+  .brand-tag { display: none; }
+  .brand-name { font-size: 13px; }
+  .role-picker { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+  .role-picker > * { padding-inline: 6px; font-size: 12.5px; }
+  .auth-card { padding: 22px 18px; border-radius: 18px; }
+  .detail-meta { grid-template-columns: minmax(0, 1fr); }
+  .cart-item { grid-template-columns: 58px minmax(0, 1fr); }
+  .cart-item-img { width: 58px; height: 58px; }
+  .panel { padding: 16px; }
+  .form-input, .form-select, .form-textarea { font-size: 16px; }
+  .footer-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 360px) {
+  .brand-text { display: none; }               /* الشعار فقط على الشاشات الضيقة جدًا */
+  .auth-actions .btn { padding: 7px 8px; font-size: 10.5px; }
+  .stats-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* قائمة الموبايل (الدرج) */
+.mobile-nav-panel {
+  width: min(320px, 86%);
+  padding: calc(20px + var(--safe-t)) 18px calc(20px + var(--safe-b));
+  overscroll-behavior: contain;
+}
+
+
+/* ==========================================================================
+   11) VCLASSES LANDING (vclasses-landing.css)
+   ========================================================================== */
+.stat-counter-num { font-size: clamp(28px, 7vw, 38px); }
+.stat-counter-label { font-size: clamp(12px, 3.2vw, 13.5px); }
+
+@media (max-width: 900px) {
+  .stats-counter-section { padding: clamp(28px, 6vw, 40px) 0; }
+  .stats-counter-grid { gap: 14px; }
+}
+@media (max-width: 540px) {
+  /* عمودين متناسبين بدل عمود طويل واحد */
+  .stats-counter-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .stat-counter-item { padding: 14px 8px; }
+  .stats-counter-section::before { width: 300px; height: 300px; right: -40%; }
+}
+
+/* زر واتساب العائم: أصغر + يحترم الـ safe-area + بدون tooltip على اللمس */
+.floating-wa-btn {
+  bottom: calc(18px + var(--safe-b));
+  left: calc(18px + var(--safe-l));
+  width: clamp(50px, 14vw, 60px);
+  height: clamp(50px, 14vw, 60px);
+}
+@media (hover: none) { .wa-tooltip { display: none; } }
+@media (max-width: 480px) { .wa-icon-pulse { inset: -4px; } }
+
+/* فلاتر التصنيفات: صف واحد قابل للتمرير على الموبايل */
+@media (max-width: 640px) {
+  .category-filter-bar {
+    flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto;
+    margin-inline: calc(var(--gutter) * -1); padding: 2px var(--gutter) 6px;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity;
+  }
+  .category-filter-bar::-webkit-scrollbar { display: none; }
+  .category-filter-pill { flex: 0 0 auto; scroll-snap-align: start; padding: 8px 16px; }
+}
+
+.top-announcement-bar { padding-top: var(--safe-t); }
+@media (max-width: 480px) { .top-announcement-bar { font-size: 12px; line-height: 1.5; } }
+
+
+/* ==========================================================================
+   12) أجهزة اللمس: لا hover ملزق + أداء
+   ========================================================================== */
+@media (hover: none) {
+  .student-card:hover, .instructor-card:hover, .timetable-card:hover,
+  .stat-counter-item:hover, .curriculum-unit-card:hover { transform: none; }
+}
+
+
+/* ==========================================================================
+   13) موبايل أفقي (ارتفاع قصير)
+   ========================================================================== */
+@media (max-height: 500px) and (orientation: landscape) {
+  .admin-topbar { min-height: 52px; height: 52px; }
+  .modal-box, .ins-modal-card { max-height: 96vh !important; max-height: 96dvh !important; }
+  .modal-overlay { align-items: center; padding: 8px; }
+  .modal-box { border-radius: 16px; }
+  .hero { padding-block: 24px; }
+  .floating-wa-btn { width: 46px; height: 46px; }
+}
+
+
+/* ==========================================================================
+   14) Reduced motion + Print
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .wa-icon-pulse { display: none; }
+}
+
+@media print {
+  .admin-sidebar, .sidebar-backdrop, .admin-topbar, .floating-wa-btn,
+  .top-announcement-bar, .modal-overlay { display: none !important; }
+  .app-shell { display: block; }
+  .admin-content { max-width: 100% !important; padding: 0 !important; }
+  .table-wrap { overflow: visible; }
+}
+
+
+/* ==========================================================================
+   15) PATCH — Topbar صف واحد + إصلاح بانر الترحيب
+   ========================================================================== */
+
+/* بانر الترحيب: يرجع للتدرج الأزرق (admin-features.css كان بيحوله لأبيض والعنوان أبيض = مخفي) */
+.welcome-hero {
+  background: linear-gradient(135deg, var(--navy-900, #0a1f3d) 0%, var(--navy-800, #0f2a52) 60%, var(--teal-700, #0f766e) 100%);
+  color: #fff;
+  border: 0;
+}
+.welcome-hero h1, .welcome-hero h2 { color: #fff; }
+.welcome-hero p { color: rgba(255, 255, 255, .82); }
+
+@media (max-width: 768px) {
+  /* ---- Topbar: [☰] + أزرار قابلة للسحب في صف واحد، والبحث تحتها ---- */
+  .admin-topbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+  .topbar-left  { order: 1; flex: 0 0 auto; }
+  .topbar-right {
+    order: 2;
+    flex: 1 1 0;
+    min-width: 0;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 6px;
+    padding-block: 2px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .topbar-right::-webkit-scrollbar { display: none; }
+  .topbar-right > * { flex: 0 0 auto; }
+
+  .topbar-right .topbar-refresh-btn,
+  .topbar-right .topbar-logout-btn,
+  .topbar-right .topbar-lang-btn,
+  .topbar-right button,
+  .topbar-right a {
+    white-space: nowrap;              /* يمنع التفاف النص لسطرين */
+    font-size: 12px;
+    min-height: 38px;
+    padding-inline: 10px;
+  }
+  .topbar-search { order: 3; flex: 1 1 100%; width: 100%; max-width: 100%; }
+
+  /* ---- بانر الترحيب ---- */
+  .welcome-hero { flex-direction: column; align-items: stretch; }
+  .welcome-hero > * { min-width: 0; width: 100%; }
+  .welcome-hero .quick-actions,
+  .welcome-hero .hero-actions { display: grid; grid-template-columns: 1fr; gap: 8px; width: 100%; }
+  .welcome-hero .quick-actions > *,
+  .welcome-hero .hero-actions > * { width: 100%; justify-content: center; }
+  .welcome-hero p { font-size: 12.5px; line-height: 1.7; }
+
+  /* ---- أسطح وجداول ---- */
+  .surface-head { flex-wrap: wrap; }
+  .surface-head h2, .surface-head h3 { flex: 1 1 auto; min-width: 0; }
+  .surface-head .btn, .surface-head .small-btn { white-space: nowrap; }
+}
+
+
+/* ==========================================================================
+   16) PATCH — الصفحة الرئيسية: الشريط العلوي + الهيدر + منع الفيض الأفقي
+   ========================================================================== */
+html { overflow-x: hidden; }
+
+/* أي زر داخل الـ topbar في الأدمن: لا يلتف لسطرين */
+.admin-topbar button, .admin-topbar .btn, .admin-topbar a { white-space: nowrap; }
+
+@media (max-width: 720px) {
+
+  /* شريط الإعلانات: النص يلتف ويتوسّط بدل ما يتقطع من اليمين */
+  .top-announcement-bar { overflow: hidden; padding-inline: 12px; }
+  .top-announcement-bar,
+  .top-announcement-bar * {
+    white-space: normal !important;
+    flex-wrap: wrap;
+    min-width: 0;
+    max-width: 100%;
+  }
+  .top-announcement-bar > *,
+  .top-announcement-bar .container {
+    justify-content: center;
+    text-align: center;
+    gap: 4px 10px;
+  }
+  .top-announcement-bar { font-size: 12px; line-height: 1.6; }
+
+  /* الهيدر: صف 1 = الشعار + زر القائمة، صف 2 = الأزرار (تتسحب أفقيًا) */
+  .header-inner {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: var(--header-h, 64px);
+    padding-block: 8px;
+    gap: 8px;
+  }
+  .brand { flex: 1 1 auto; min-width: 0; }
+  .brand-text { min-width: 0; }
+  .brand-name { white-space: nowrap; }
+  .menu-toggle { flex: 0 0 auto; }
+
+  .header-actions {
+    order: 3;
+    flex: 1 1 100%;
+    width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 6px;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .header-actions::-webkit-scrollbar { display: none; }
+  .header-actions > *, .auth-actions { flex: 0 0 auto; }
+  .auth-actions { flex-wrap: nowrap; }
+  .auth-actions .btn, .auth-actions a { white-space: nowrap; padding: 8px 12px; font-size: 12px; }
+}
+
+
+/* ==========================================================================
+   17) الجداول → كروت على الموبايل
+       يحتاج: asset/responsive-tables.js (بيضيف data-label + class rt-cards)
+       لاستثناء جدول معيّن: <table data-no-cards>
+   ========================================================================== */
+@media (max-width: 720px) {
+
+  /* الحاوية: بدون سكرول ولا إطار */
+  .table-wrap:has(> table.rt-cards),
+  .detail-table-wrapper:has(> table.rt-cards),
+  .tw:has(> table.rt-cards) {
+    overflow: visible;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  table.rt-cards.rt-cards,
+  table.rt-cards.rt-cards tbody,
+  table.rt-cards.rt-cards tfoot {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    overflow: visible;
+    white-space: normal;
+    border: 0;
+  }
+  table.rt-cards.rt-cards tbody { padding: 12px; }
+
+  /* رأس الجدول يختفي بصريًا (يفضل متاح لقارئات الشاشة) */
+  table.rt-cards.rt-cards thead {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+  }
+
+  /* كل صف = كارت */
+  table.rt-cards.rt-cards tr {
+    display: block;
+    background: var(--white, #fff);
+    border: 1px solid var(--line, #e2e8f0);
+    border-radius: 14px;
+    padding: 4px 14px;
+    margin: 0 0 12px;
+    box-shadow: 0 2px 8px rgba(10, 31, 61, .05);
+  }
+  table.rt-cards.rt-cards tr:last-child { margin-bottom: 0; }
+
+  /* كل خلية = سطر: العنوان على الجنب والقيمة على الجنب التاني */
+  table.rt-cards.rt-cards td {
+    display: block;
+    position: relative;
+    min-height: 44px;
+    padding: 11px 0 11px 0;
+    padding-inline-start: 42%;
+    text-align: end;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    border: 0;
+    border-bottom: 1px dashed var(--line, #e2e8f0);
+    background: transparent;
+  }
+  table.rt-cards.rt-cards td:last-child { border-bottom: 0; }
+  table.rt-cards.rt-cards tr:hover td { background: transparent; }
+
+  table.rt-cards.rt-cards td::before {
+    content: attr(data-label);
+    position: absolute;
+    inset-inline-start: 0;
+    top: 11px;
+    width: 38%;
+    text-align: start;
+    font-size: 11.5px;
+    font-weight: 800;
+    line-height: 1.5;
+    color: var(--slate-500, #64748b);
+  }
+
+  /* خلايا بدون عنوان (أزرار الإجراءات / صفوف فاضية): عرض كامل */
+  table.rt-cards.rt-cards td[data-label=""],
+  table.rt-cards.rt-cards td[colspan] {
+    padding-inline-start: 0;
+    text-align: center;
+  }
+  table.rt-cards.rt-cards td[data-label=""]::before,
+  table.rt-cards.rt-cards td[colspan]::before { display: none; }
+
+  /* أزرار داخل الخلية: تلتف وتتوزع */
+  table.rt-cards.rt-cards td .small-btn,
+  table.rt-cards.rt-cards td .btn { margin-block: 2px; }
+  table.rt-cards.rt-cards td[data-label=""] { display: flex; flex-wrap: wrap; gap: 6px; justify-content: stretch; }
+  table.rt-cards.rt-cards td[data-label=""] > .small-btn,
+  table.rt-cards.rt-cards td[data-label=""] > .btn { flex: 1 1 90px; text-align: center; justify-content: center; }
+
+  /* Dark mode */
+  [data-theme="dark"] table.rt-cards.rt-cards tr { background: #0e1829; border-color: #1c2b42; box-shadow: 0 4px 12px rgba(0,0,0,.3); }
+  [data-theme="dark"] table.rt-cards.rt-cards td { border-bottom-color: #1c2b42; }
+  [data-theme="dark"] table.rt-cards.rt-cards td::before { color: #94a3b8; }
+}
+
+
+/* ==========================================================================
+   18) PATCH — كروت الجداول: خلية الأزرار + مساحات أضيق على الموبايل
+   ========================================================================== */
+@media (max-width: 720px) {
+
+  /* الأزرار ما تتكسرش حرف حرف (كان بسبب overflow-wrap:anywhere الموروثة) */
+  table.rt-cards.rt-cards td button,
+  table.rt-cards.rt-cards td .btn,
+  table.rt-cards.rt-cards td .small-btn,
+  table.rt-cards.rt-cards td a.btn {
+    overflow-wrap: normal;
+    word-break: normal;
+    white-space: nowrap;
+    writing-mode: horizontal-tb;
+    min-width: 44px;
+    min-height: 40px;
+    max-width: 100%;
+  }
+
+  /* خلية الإجراءات: العنوان فوق، والأزرار تحته في صف يلتف داخل الكارت */
+  table.rt-cards.rt-cards td[data-actions] {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding-inline-start: 0;
+    padding-top: 36px;
+    text-align: start;
+  }
+  table.rt-cards.rt-cards td[data-actions]::before {
+    top: 11px;
+    width: 100%;
+  }
+  table.rt-cards.rt-cards td[data-actions] > * {
+    flex: 1 1 44px;
+    margin: 0;
+    justify-content: center;
+    text-align: center;
+  }
+  /* لو الأزرار جوه wrapper (div) */
+  table.rt-cards.rt-cards td[data-actions] > div,
+  table.rt-cards.rt-cards td[data-actions] > span {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    flex: 1 1 100%;
+  }
+  table.rt-cards.rt-cards td[data-actions] > div > *,
+  table.rt-cards.rt-cards td[data-actions] > span > * { flex: 1 1 44px; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  table.rt-cards.rt-cards tbody { padding: 6px 0; }
+  table.rt-cards.rt-cards tr { padding: 2px 12px; border-radius: 12px; margin-bottom: 10px; }
+  table.rt-cards.rt-cards td { padding-inline-start: 40%; font-size: 13px; }
+  table.rt-cards.rt-cards td::before { width: 37%; font-size: 11px; }
+
+  /* الحاويات حوالين الجدول: حشو أقل علشان الكارت ياخد عرض أكبر */
+  .surface:has(table.rt-cards) { padding-inline: 10px; }
+  .surface:has(table.rt-cards) > .table-wrap,
+  .surface:has(table.rt-cards) > .detail-table-wrapper { margin-inline: -2px; }
+}
+
+
+/* ==========================================================================
+   19) PATCH — الملف الشخصي (رفع صورة + حقول) + ترتيب الـ Topbar بالمحتوى
+   ========================================================================== */
+
+/* ---- زر اختيار الملف: شكل موحّد ومايفيضش ---- */
+input[type="file"] {
+  max-width: 100%;
+  min-width: 0;
+  font-size: 13px;
+  color: var(--slate-600, #475569);
+}
+input[type="file"]::file-selector-button {
+  margin-inline-end: 10px;
+  padding: 9px 14px;
+  border: 1px solid var(--line, #e2e8f0);
+  border-radius: 10px;
+  background: var(--teal-50, #f0fdfa);
+  color: var(--teal-700, #0f766e);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+[data-theme="dark"] input[type="file"] { color: #94a3b8; }
+[data-theme="dark"] input[type="file"]::file-selector-button {
+  background: rgba(20, 184, 166, .15);
+  border-color: rgba(20, 184, 166, .3);
+  color: var(--teal-400, #2dd4bf);
+}
+
+@media (max-width: 720px) {
+
+  /* صف الصورة (أفاتار + أدوات الرفع): يلتف ويتوسّط */
+  .surface div:has(> div > input[type="file"]),
+  .surface div:has(> label > input[type="file"]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    min-width: 0;
+    max-width: 100%;
+  }
+  /* مجموعة الرفع نفسها: عمود بعرض كامل */
+  .surface div:has(> input[type="file"]) {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    flex: 1 1 220px;
+    min-width: 0;
+    max-width: 100%;
+    text-align: start;
+  }
+  .surface div:has(> input[type="file"]) > * { max-width: 100%; }
+  .surface div:has(> input[type="file"]) small,
+  .surface div:has(> input[type="file"]) p { overflow-wrap: anywhere; white-space: normal; }
+  .surface div:has(> input[type="file"]) .btn,
+  .surface div:has(> input[type="file"]) button { width: 100%; justify-content: center; }
+
+  /* ---- الحقول: نشيل الحشو الزايد جوه الكارت ---- */
+  #adminProfilePanel .surface form,
+  #settingsForm .surface form,
+  #adminProfilePanel form { padding-inline: 0 !important; }
+  #adminProfilePanel label,
+  #settingsForm label { width: 100%; }
+  #adminProfilePanel .surface,
+  #settingsForm .surface { padding: 18px 14px; }
+  #adminProfilePanel .two-col { gap: 14px; }
+
+  /* ---- الـ Topbar: نرتّب بالمحتوى مش بأسماء الحاويات ---- */
+  .admin-topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 8px; }
+
+  .admin-topbar > .sidebar-toggle-btn,
+  .admin-topbar > :has(.sidebar-toggle-btn):not(:has(.topbar-logout-btn)) {
+    order: 1;
+    flex: 0 0 auto;
+  }
+  .admin-topbar > :has(.topbar-logout-btn),
+  .admin-topbar > :has(.topbar-user),
+  .admin-topbar > :has(.topbar-refresh-btn) {
+    order: 2;
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .admin-topbar > :has(.topbar-logout-btn)::-webkit-scrollbar,
+  .admin-topbar > :has(.topbar-user)::-webkit-scrollbar { display: none; }
+  .admin-topbar > :has(.topbar-logout-btn) > *,
+  .admin-topbar > :has(.topbar-user) > * { flex: 0 0 auto; white-space: nowrap; }
+
+  .admin-topbar > .topbar-search,
+  .admin-topbar > :has(> .topbar-search) { order: 3; flex: 1 1 100%; width: 100%; max-width: 100%; }
+}
+
+
+/* ==========================================================================
+   20) PATCH — أزرار الدخول داخل قايمة البرجر (مع responsive-nav.js)
+   ========================================================================== */
+
+/* الهيدر بعد نقل أزرار الدخول: صف واحد = [شعار] ........ [EN][سلة][☰] */
+@media (max-width: 960px) {
+  .header-inner {
+    flex-wrap: nowrap;
+    height: var(--header-h, 64px);
+    min-height: 0;
+    padding-block: 0;
+    gap: 10px;
+  }
+  .brand { flex: 1 1 auto; min-width: 0; }
+  .brand-text { min-width: 0; overflow: hidden; }
+  .brand-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .header-actions {
+    order: 0;
+    flex: 0 0 auto;
+    width: auto;
+    overflow: visible;
+    gap: 6px;
+  }
+}
+
+/* القايمة نفسها: عمود، والأزرار تحت الروابط */
+.mobile-nav-panel { display: flex; flex-direction: column; }
+.mobile-nav-links { flex: 0 0 auto; }
+
+.mobile-auth {
+  margin-top: auto;                       /* تنزل لآخر القايمة */
+  padding-top: 18px;
+  border-top: 1px solid var(--line, #e6e9ef);
+}
+.mobile-auth:empty { display: none; }
+
+.mobile-nav-panel .mobile-auth .auth-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  width: 100%;
+}
+.mobile-nav-panel .mobile-auth .auth-actions .btn,
+.mobile-nav-panel .mobile-auth .auth-actions a {
+  width: 100%;
+  min-height: 46px;
+  padding: 12px 16px;
+  font-size: 14.5px;
+  justify-content: center;
+  text-align: center;
+  white-space: normal;
+}
+[data-theme="dark"] .mobile-auth { border-top-color: #1c2b42; }
+
+/* لو الـ JS ما اشتغلش: ما نخفيش حاجة، الأزرار تفضل في الهيدر وتتسحب (احتياطي من قسم 16) */
+
+
+/* ==========================================================================
+   21) PATCH — بوابة الطالب: إصلاح الهيرو + الـ Topbar على الموبايل
+   ========================================================================== */
+
+/* السبب الجذري: --st-teal-700 مستخدم في student.css (سطر 552 و770) بس مش معرّف
+   فكان بيبوّظ خلفية الهيرو بالكامل (نص أبيض على خلفية فاتحة) */
+:root {
+  --st-teal-700: var(--teal-700, #0f766e);
+  --st-teal-800: #115e59;
+}
+.st-hero {
+  background: linear-gradient(135deg, var(--st-navy-900, #0a1f3d) 0%, #0d3862 60%, var(--st-teal-700, #0f766e) 100%);
+  color: #fff;
+}
+.st-hero-title { color: #fff; }
+.st-hero-desc  { color: rgba(255, 255, 255, .88); opacity: 1; }
+
+/* أي زر داخل الهيرو غير الأساسي/الأبيض: شكل زجاجي بنص أبيض (كان نصه مش باين) */
+.st-hero .st-btn:not(.st-btn-primary):not(.st-btn-white) {
+  background: rgba(255, 255, 255, .12);
+  color: #fff;
+  border-color: rgba(255, 255, 255, .35);
+}
+.st-hero .st-btn-white { color: var(--st-navy-900, #0a1f3d); }
+
+@media (max-width: 640px) {
+
+  /* ---- Topbar الطالب: مدمج في صف واحد ---- */
+  .st-topbar { gap: 8px; padding-inline: 12px; }
+  .st-topbar-start { flex: 1 1 auto; min-width: 0; gap: 8px; }
+  .st-topbar-breadcrumb {
+    min-width: 0;
+    font-size: 12.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .st-topbar-breadcrumb > :not(.current) { display: none; }   /* نسيب الصفحة الحالية بس */
+  .st-topbar-end { flex: 0 0 auto; gap: 6px; }
+  .st-topbar-end .st-btn,
+  .st-topbar-end button:not(.st-icon-btn) {
+    padding: 8px 10px;
+    font-size: 12px;
+    white-space: nowrap;
+    min-height: 40px;
+  }
+  .st-icon-btn { width: 40px; height: 40px; border-radius: 11px; flex: none; }
+
+  /* ---- الهيرو: عمود، والأزرار بعرض متناسب ---- */
+  .st-hero { flex-direction: column; align-items: stretch; gap: 16px; }
+  .st-hero > * { min-width: 0; }
+  .st-hero::after { font-size: 100px; bottom: -14px; }
+  .st-hero-badge { font-size: 11px; max-width: 100%; white-space: normal; }
+  .st-hero-title { font-size: clamp(19px, 5.8vw, 24px); line-height: 1.35; overflow-wrap: anywhere; }
+  .st-hero-desc { font-size: 13px; }
+  .st-hero-actions {
+    width: 100%;
+    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .st-hero-actions > * { width: 100%; min-width: 0; padding-inline: 10px; text-align: center; }
+}
+
+@media (max-width: 380px) {
+  .st-hero-actions { grid-template-columns: minmax(0, 1fr); }
+}
+
+
+/* ==========================================================================
+   22) PATCH — أي Layout بعمودين مكتوب inline في الـ HTML (إشعارات / اختبارات / دعم ...)
+       على الموبايل والتابلت الصغير: عمود واحد بعرض كامل
+   ========================================================================== */
+@media (max-width: 900px) {
+
+  /* عناصر ids بتنتهي بـ Layout (quizzesLayout, supportLayout, notifLayout ...) */
+  [id$="Layout"],
+  [id$="layout"] {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  /* أي grid متحدد inline بأعمدة ثابتة/fr (بدون auto-fit/auto-fill اللي أصلاً متجاوبين) */
+  [style*="grid-template-columns"]:not([style*="auto-fit"]):not([style*="auto-fill"]):not([style*="min("]) {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  /* الأعمدة نفسها تقدر تنكمش وما تفيضش */
+  [id$="Layout"] > *,
+  [style*="grid-template-columns"] > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* Flex عمودين inline (شمال/يمين): يلتف بدل ما يضغط */
+  [style*="display:flex"][style*="gap"]:not(.topbar-right):not(.topbar-left),
+  [style*="display: flex"][style*="gap"]:not(.topbar-right):not(.topbar-left) {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 768px) {
+  /* فورمات الإرسال: الأزرار بعرض كامل ومريحة للمس */
+  form > button[type="submit"],
+  form .btn-p,
+  form > .form-actions > button {
+    width: 100%;
+    min-height: 46px;
+    justify-content: center;
+  }
+
+  /* قوائم "آخر العناصر" (إشعارات/تذاكر): نصوص طويلة ما تفيضش */
+  .surface [class*="item"],
+  .surface [class*="notif"],
+  .surface [class*="ticket"] { min-width: 0; overflow-wrap: anywhere; }
+}
+
+
+/* ==========================================================================
+   23) PATCH — Topbar الطالب: زر القائمة ☰ لازم يفضل ظاهر دايمًا
+       (الأزرار على الجنب التاني هي اللي تتسحب أفقيًا، مش اللي تزقّ الزرار)
+   ========================================================================== */
+@media (max-width: 640px) {
+  .st-topbar-start {
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: 42%;
+  }
+  .st-menu-btn { flex: 0 0 auto; display: inline-flex; }
+
+  .st-topbar-end {
+    flex: 1 1 0;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-block: 2px;
+  }
+  .st-topbar-end::-webkit-scrollbar { display: none; }
+  .st-topbar-end > * { flex: 0 0 auto; }
+  .st-topbar-end > :first-child { margin-inline-start: auto; }  /* محاذاة للنهاية بدون ما نخسر السكرول */
+}
+
+@media (max-width: 480px) {
+  .st-topbar-breadcrumb { display: none; }      /* عنوان الصفحة موجود في الهيرو/العنوان */
+  .st-topbar-start { max-width: none; }
+  .st-topbar-end .st-btn,
+  .st-topbar-end button:not(.st-icon-btn) { padding: 8px 9px; font-size: 11.5px; }
+}
+
+
+/* ======================================================================
+   Mobile dark mode finishing layer
+   Keep responsive overrides from reintroducing light text/surfaces.
+   ====================================================================== */
+@media (max-width: 768px) {
+  [data-theme="dark"] { color-scheme: dark; }
+
+  [data-theme="dark"] .mobile-nav-panel,
+  [data-theme="dark"] .mobile-nav-panel .mobile-nav-head,
+  [data-theme="dark"] .mobile-nav-panel .mobile-auth {
+    background-color: #0e1829;
+    color: #f1f5f9;
+    border-color: #1c2b42;
+  }
+
+  [data-theme="dark"] .mobile-nav-panel .nav-link,
+  [data-theme="dark"] .mobile-nav-panel .auth-actions a {
+    color: #dbe5f2;
+  }
+
+  [data-theme="dark"] .mobile-nav-panel .nav-link:hover,
+  [data-theme="dark"] .mobile-nav-panel .nav-link.active {
+    background: #142238;
+    color: var(--teal-400, #5eead4);
+  }
+
+  [data-theme="dark"] .st-hero .st-btn-white {
+    background: #17263b;
+    border-color: #33475f;
+    color: #f1f5f9;
+  }
+
+  [data-theme="dark"] .admin-content .surface,
+  [data-theme="dark"] .admin-content .panel,
+  [data-theme="dark"] .admin-content .stat-card,
+  [data-theme="dark"] .st-content .st-card,
+  [data-theme="dark"] .st-content .st-stat-card,
+  [data-theme="dark"] .st-content .st-course-card {
+    background-color: #0e1829;
+    border-color: #1c2b42;
+    color: #f1f5f9;
+  }
+
+  [data-theme="dark"] .data-table th,
+  [data-theme="dark"] table.rt-cards th {
+    background: #0a1423;
+    color: #bdcbe0;
+  }
+
+  [data-theme="dark"] .data-table td,
+  [data-theme="dark"] table.rt-cards td {
+    color: #d5deea;
+    border-color: #24364e;
+  }
+
+  [data-theme="dark"] .data-table tbody tr:hover td,
+  [data-theme="dark"] table.rt-cards tbody tr:hover td {
+    background: transparent;
+  }
+
+  [data-theme="dark"] input::placeholder,
+  [data-theme="dark"] textarea::placeholder {
+    color: #8291a6;
+    opacity: 1;
+  }
+}

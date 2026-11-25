@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex,nofollow">
+    <title>تفاصيل الطالب | Nursing Basic Course</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="asset/admin.css">
+    <link rel="stylesheet" href="asset/student-details.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="asset/responsive.css?v=20261117-mobile-dark">
+<link rel="stylesheet" href="asset/mobile-ux.css?v=20261122-2">
+
+    <script>
+      (function() {
+        try {
+          const t = localStorage.getItem('nbc_admin_theme');
+          const isDark = t === 'dark' || (!t && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          const theme = isDark ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', theme);
+          document.documentElement.style.backgroundColor = isDark ? '#070d18' : '#f4f7fb';
+        } catch (_) {}
+      })();
+    </script>
+    <style>
+      body {
+        margin: 0;
+        background: var(--bg, #f4f7fb);
+        font-family: var(--font-ar, 'Cairo', sans-serif);
+        color: var(--slate-800, #1e293b);
+      }
+      .detail-wrap {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 24px 20px 48px;
+      }
+      .standalone-topbar {
+        background: var(--white, #fff);
+        border-bottom: 1px solid var(--slate-200, #e2e8f0);
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      [data-theme="dark"] .standalone-topbar {
+        background: #0e1829;
+        border-bottom-color: #1c2b42;
+      }
+      .brand-group {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, var(--teal-600, #0d9488), var(--teal-700, #0f766e));
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-size: 20px;
+        font-weight: 800;
+      }
+      .brand-text strong {
+        display: block;
+        font-size: 15px;
+        color: var(--slate-900, #0f172a);
+      }
+      .brand-text small {
+        display: block;
+        font-size: 12px;
+        color: var(--slate-500, #64748b);
+      }
+      [data-theme="dark"] .brand-text strong {
+        color: #f8fafc;
+      }
+      .top-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .theme-toggle-btn {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        border: 1px solid var(--slate-200, #e2e8f0);
+        background: var(--white, #fff);
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        color: var(--slate-600, #475569);
+      }
+      [data-theme="dark"] .theme-toggle-btn {
+        background: #111e33;
+        border-color: #1c2b42;
+        color: #e2e8f0;
+      }
+      .theme-toggle-btn svg {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+      }
+    </style>
+    <link rel="stylesheet" href="asset/medical-themes.css?v=20261120-4">
+    <link rel="stylesheet" href="asset/platform-responsive-polish.css?v=20261120-3">
+</head>
+<body>
+    <header class="standalone-topbar">
+        <div class="brand-group">
+            <div class="brand-mark">✚</div>
+            <div class="brand-text">
+                <strong>Nursing Basic Course</strong>
+                <small data-i18n="student_profile_heading">تفاصيل الطالب الأكاديمية</small>
+            </div>
+        </div>
+        <div class="top-actions">
+            <button id="themeToggle" class="theme-toggle-btn" type="button" title="تبديل الوضع الليلي">
+                <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
+            <span id="who" class="who" style="font-weight:700;color:var(--teal-600,#0d9488);font-size:13.5px;">لوحة الإدارة</span>
+            <button id="logout" class="btn btn-ghost" style="padding:7px 14px;font-size:13px;" data-i18n="logout_btn">تسجيل الخروج</button>
+        </div>
+    </header>
+
+    <main class="detail-wrap">
+        <section id="studentDetailsContainer" class="student-details-view">
+            <div class="student-details-header">
+                <div>
+                    <span class="eyebrow">STUDENT PROFILE</span>
+                    <h2 data-i18n="student_profile_title">ملف الطالب الأكاديمي</h2>
+                    <p data-i18n="student_profile_subtitle">بيانات الحساب والتسجيلات والتقدم الدراسي وسجل العمليات.</p>
+                </div>
+                <div class="student-details-actions">
+                    <a class="btn btn-outline" href="admin.html#students" data-i18n="back_to_students">← الرجوع لقائمة الطلاب</a>
+                    <button id="exportBtn" class="btn btn-primary" type="button" data-i18n="export_csv">تصدير البيانات CSV</button>
+                </div>
+            </div>
+
+            <div id="message" class="notice" hidden></div>
+            <div id="content" class="loading">جارٍ تحميل بيانات الطالب...</div>
+
+            <section id="editCard" class="detail-card form-card" style="margin-top:24px;" hidden>
+                <div class="detail-card-header">
+                    <div class="detail-card-header-left">
+                        <div class="detail-card-icon">✏️</div>
+                        <div>
+                            <h3 data-i18n="edit_student_title">تعديل بيانات الطالب</h3>
+                            <p data-i18n="edit_student_subtitle">تحديث الاسم، البريد، الهاتف وحالة الحساب في النظام</p>
+                        </div>
+                    </div>
+                </div>
+                <form id="editForm">
+                    <div class="student-details-form-grid">
+                        <label>
+                            <span data-i18n="student_name_label">الاسم الكامل</span>
+                            <input name="full_name" maxlength="150" required>
+                        </label>
+                        <label>
+                            <span data-i18n="student_email_label">البريد الإلكتروني</span>
+                            <input name="email" type="email" maxlength="190" required>
+                        </label>
+                        <label>
+                            <span data-i18n="student_phone_label">رقم الهاتف</span>
+                            <input name="phone" type="tel" maxlength="30">
+                        </label>
+                        <label>
+                            <span data-i18n="student_status_label">حالة الحساب</span>
+                            <select name="status">
+                                <option value="active">نشط</option>
+                                <option value="inactive">غير نشط</option>
+                                <option value="suspended">موقوف</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-primary" type="submit" data-i18n="save_changes">حفظ التعديلات</button>
+                        <button class="btn btn-outline" id="cancelEdit" type="button" data-i18n="cancel">إلغاء</button>
+                    </div>
+                </form>
+            </section>
+        </section>
+    </main>
+
+    <link rel="stylesheet" href="asset/image-cropper.css?v=20261118-1">
+    <script src="asset/js/image-cropper.js?v=20261118-1"></script>
+    <script src="asset/js/student-details.js?v=3.2"></script>
+    <script>
+      // Standalone Theme toggle
+      const themeBtn = document.getElementById('themeToggle');
+      if (themeBtn) {
+        themeBtn.addEventListener('click', () => {
+          const current = document.documentElement.getAttribute('data-theme') || 'light';
+          const next = current === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', next);
+          document.documentElement.style.backgroundColor = next === 'dark' ? '#070d18' : '#f4f7fb';
+          localStorage.setItem('nbc_admin_theme', next);
+        });
+      }
+    </script>
+    <script src="asset/responsive-tables.js" defer></script>
+    <script src="asset/responsive-nav.js" defer></script>
+</body>
+</html>

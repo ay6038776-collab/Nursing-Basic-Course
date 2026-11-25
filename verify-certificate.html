@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <title>التحقق من الشهادة | Nursing Basic Course</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="asset/responsive.css">
+<link rel="stylesheet" href="asset/medical-themes.css?v=20261120-4">
+<script>(function(){try{var t=localStorage.getItem('nbc_theme')||'light';document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light')}catch(e){}})();</script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      color: #1e293b;
+    }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.12);
+      max-width: 560px;
+      width: 100%;
+      overflow: hidden;
+    }
+    .card-header {
+      background: linear-gradient(135deg, #0f766e, #0369a1);
+      padding: 28px 32px;
+      text-align: center;
+      color: white;
+    }
+    .card-header .brand { font-size: 32px; margin-bottom: 8px; }
+    .card-header h1 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+    .card-header p { font-size: 13px; opacity: .85; }
+    .card-body { padding: 28px 32px; }
+
+    .search-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .search-row input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: 'Cairo', sans-serif;
+      transition: border-color .2s;
+    }
+    .search-row input:focus { outline: none; border-color: #0d9488; }
+    .search-row button {
+      padding: 12px 20px;
+      background: #0d9488;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: 'Cairo', sans-serif;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background .2s;
+    }
+    .search-row button:hover { background: #0f766e; }
+
+    #resultBox { display: none; }
+
+    .cert-valid {
+      background: linear-gradient(135deg, #f0fdf4, #ecfeff);
+      border: 2px solid #34d399;
+      border-radius: 14px;
+      padding: 24px;
+      text-align: center;
+    }
+    .cert-valid .check { font-size: 48px; margin-bottom: 12px; }
+    .cert-valid h2 { color: #065f46; font-size: 20px; margin-bottom: 16px; }
+
+    .cert-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+      text-align: start;
+    }
+    @media (max-width: 480px) { .cert-info-grid { grid-template-columns: 1fr; } }
+    .cert-info-item { background: #fff; border-radius: 8px; padding: 10px 14px; border: 1px solid #d1fae5; }
+    .cert-info-label { font-size: 11px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
+    .cert-info-value { font-size: 14px; font-weight: 700; color: #1e293b; }
+
+    .cert-number-badge {
+      display: inline-block;
+      background: #0d9488;
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-family: monospace;
+      letter-spacing: .05em;
+      margin-bottom: 16px;
+    }
+
+    .cert-invalid {
+      background: #fff1f2;
+      border: 2px solid #fca5a5;
+      border-radius: 14px;
+      padding: 24px;
+      text-align: center;
+    }
+    .cert-invalid .x { font-size: 48px; margin-bottom: 12px; }
+    .cert-invalid h2 { color: #991b1b; font-size: 18px; }
+
+    .cert-revoked {
+      background: #fef3c7;
+      border: 2px solid #fcd34d;
+      border-radius: 14px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .loading { text-align: center; padding: 24px; color: #64748b; }
+    .error-msg { color: #991b1b; background: #fee2e2; border-radius: 8px; padding: 12px; text-align: center; }
+
+    .footer-note {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #94a3b8;
+      text-align: center;
+      border-top: 1px solid #f1f5f9;
+      padding-top: 16px;
+    }
+    .back-link { display: inline-block; margin-top: 16px; color: #0d9488; font-size: 13px; text-decoration: none; font-weight: 600; }
+    .back-link:hover { text-decoration: underline; }
+  </style>
+  <link rel="stylesheet" href="asset/platform-responsive-polish.css?v=20261120-3">
+</head>
+<body>
+  <div class="card">
+    <div class="card-header">
+      <div class="brand">✚</div>
+      <h1>التحقق من الشهادة</h1>
+      <p>Nursing Basic Course — منصة التدريب التمريضي الاحترافي</p>
+    </div>
+
+    <div class="card-body">
+      <div class="search-row">
+        <input type="text" id="certInput" placeholder="أدخل رقم الشهادة (NBC-...)" autocomplete="off" spellcheck="false">
+        <button onclick="verifyCert()">🔍 تحقق</button>
+      </div>
+
+      <div id="resultBox"></div>
+
+      <div class="footer-note">
+        هذه الصفحة تُستخدم للتحقق من صحة شهادات إتمام كورسات Nursing Basic Course.
+        الشهادة صادرة من المنصة وتُعدّ معتمدة داخلياً وفق الشروط المُعلنة.
+      </div>
+      <a href="index.html" class="back-link">← العودة إلى المنصة</a>
+    </div>
+  </div>
+
+  <script>
+    // Pre-fill from URL param
+    const urlParams = new URLSearchParams(location.search);
+    const certParam = urlParams.get('cert');
+    if (certParam) {
+      document.getElementById('certInput').value = certParam;
+      verifyCert();
+    }
+
+    document.getElementById('certInput').addEventListener('keydown', e => {
+      if (e.key === 'Enter') verifyCert();
+    });
+
+    async function verifyCert() {
+      const certNum = document.getElementById('certInput').value.trim();
+      const box = document.getElementById('resultBox');
+      if (!certNum) { box.style.display='block'; box.innerHTML='<div class="error-msg">يرجى إدخال رقم الشهادة.</div>'; return; }
+
+      box.style.display = 'block';
+      box.innerHTML = '<div class="loading">⏳ جارٍ التحقق...</div>';
+
+      try {
+        const res  = await fetch('api/public/verify-certificate.php?cert=' + encodeURIComponent(certNum));
+        const data = await res.json();
+
+        if (!data.success && !data.valid) {
+          box.innerHTML = `
+            <div class="cert-invalid">
+              <div class="x">❌</div>
+              <h2>شهادة غير موجودة</h2>
+              <p style="font-size:13px;color:#64748b;margin-top:8px">لم يتم العثور على شهادة بهذا الرقم في سجلات المنصة.</p>
+            </div>`;
+          return;
+        }
+
+        if (data.status === 'revoked') {
+          box.innerHTML = `
+            <div class="cert-revoked">
+              <div style="font-size:48px;margin-bottom:12px">⚠️</div>
+              <h2 style="color:#92400e">تم سحب هذه الشهادة</h2>
+              <p style="font-size:13px;color:#78350f;margin-top:8px">رقم الشهادة: <strong>${data.certificate_number}</strong></p>
+            </div>`;
+          return;
+        }
+
+        // Valid certificate
+        const issuedDate = new Date(data.issued_at).toLocaleDateString('ar-EG', { year:'numeric', month:'long', day:'numeric' });
+        box.innerHTML = `
+          <div class="cert-valid">
+            <div class="check">🎓</div>
+            <h2>✅ شهادة صحيحة ومعتمدة</h2>
+            <div class="cert-number-badge">${data.certificate_number}</div>
+            <div class="cert-info-grid">
+              <div class="cert-info-item">
+                <div class="cert-info-label">اسم الحاصل على الشهادة</div>
+                <div class="cert-info-value">${data.student_name}</div>
+              </div>
+              <div class="cert-info-item">
+                <div class="cert-info-label">الكورس</div>
+                <div class="cert-info-value">${data.course_title_ar}</div>
+              </div>
+              <div class="cert-info-item">
+                <div class="cert-info-label">تاريخ الإصدار</div>
+                <div class="cert-info-value">${issuedDate}</div>
+              </div>
+              <div class="cert-info-item">
+                <div class="cert-info-label">الجهة المصدرة</div>
+                <div class="cert-info-value">${data.issuer_name}</div>
+              </div>
+            </div>
+            <p style="margin-top:16px;font-size:12px;color:#0f766e;background:#f0fdfa;padding:10px;border-radius:8px">
+              ⚠️ هذه الشهادة تُثبت إتمام الكورس بنجاح. لا تُعدّ اعتماداً مهنياً رسمياً إلا بموجب قرار من جهة اعتماد مرخصة.
+            </p>
+          </div>`;
+      } catch (err) {
+        box.innerHTML = `<div class="error-msg">تعذر الاتصال بالخادم. يرجى المحاولة لاحقاً.</div>`;
+      }
+    }
+  </script>
+<script src="asset/js/medical-theme.js?v=20261120-4" defer></script>
+</body>
+</html>

@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="description" content="Edu Nursing – Medical Education Academy — المنصة الطبية الرائدة في التعليم والتدريب التمريضي السريري، إشراف د. خالد عبد الناصر محمد المرسي (محاضر دولي معتمد)" />
+<title>Edu Nursing – Medical Education Academy | د. خالد عبد الناصر</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=Almarai:wght@300;400;700;800&family=Cairo:wght@300;400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700;800;900&family=Readex+Pro:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="asset/style.css?v=20261118-detail-back">
+<link rel="stylesheet" href="asset/home-slider.css?v=20261118-2">
+<link rel="stylesheet" href="asset/vclasses-landing.css">
+<link rel="stylesheet" href="asset/landing-dark.css?v=20261118-3">
+<link rel="stylesheet" href="asset/medical-themes.css?v=20261120-4">
+<link rel="stylesheet" href="asset/image-cropper.css?v=20261118-1">
+<script>
+(function(){try{var t=localStorage.getItem('nbc_theme')||'light';document.documentElement.setAttribute('data-theme',t)}catch(e){}})();
+</script>
+<link rel="stylesheet" href="asset/responsive.css?v=20261117-mobile-dark">
+<link rel="stylesheet" href="asset/home-apple.css?v=20261118-8">
+<link rel="stylesheet" href="asset/mobile-ux.css?v=20261122-2">
+<link rel="stylesheet" href="asset/appearance-system.css?v=20261120-6">
+<link rel="stylesheet" href="asset/homepage-designs.css?v=20261120-6">
+<link rel="stylesheet" href="asset/platform-responsive-polish.css?v=20261120-3">
+<script src="asset/js/language-runtime.js?v=20261120-5" defer></script>
+</head>
+<body>
+
+<!-- ============ LOADER ============ -->
+<div class="loader" id="loader"><div class="loader-spinner"></div></div>
+<script>
+(function() {
+  function dropLoader() {
+    var l = document.getElementById("loader");
+    if (l) {
+      l.classList.add("hide");
+      l.style.opacity = "0";
+      l.style.pointerEvents = "none";
+      setTimeout(function() { if (l) l.style.display = "none"; }, 250);
+    }
+  }
+  window.addEventListener("DOMContentLoaded", dropLoader);
+  setTimeout(dropLoader, 600);
+})();
+</script>
+
+<!-- ============ HEADER ============ -->
+<header class="header">
+  <div class="container header-inner">
+
+    <!-- BRAND -->
+    <div class="brand" onclick="navigate('home')" role="button" tabindex="0">
+      <div class="brand-mark">
+        <svg width="24" height="24" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2.2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2v6M9 5h6"/>
+          <path d="M20 12a8 8 0 1 1-16 0 8 8 0 0 1 16 0z"/>
+          <path d="M12 8v8M8 12h8"/>
+        </svg>
+      </div>
+
+      <div class="brand-text">
+        <span class="brand-name">Edu Nursing</span>
+        <span class="brand-tag" data-i18n="brand_tag">
+          Medical Education Academy
+        </span>
+      </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="nav" id="mainNav">
+      <a href="#home" class="nav-link" data-route="home"
+         ><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9M9 20v-7h6v7"/></svg><span data-i18n="nav_home">الرئيسية</span></a>
+
+      <a href="#courses" class="nav-link" data-route="courses"
+         ><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 0 4 22z"/><path d="M4 5.5V22M8 7h8M8 11h7"/></svg><span data-i18n="nav_courses">الكورسات</span></a>
+
+      <a href="#books" class="nav-link" data-route="books"
+         ><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v18H6.5A2.5 2.5 0 0 0 4 22z"/><path d="M4 4.5V22M8 6h8M8 10h8"/></svg><span data-i18n="nav_books">الكتب</span></a>
+
+      <a href="#offers" class="nav-link" data-route="offers"
+         ><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m20.6 13.4-7.2 7.2a2 2 0 0 1-2.8 0L3 13V4h9l8.6 8.6a.6.6 0 0 1 0 .8Z"/><circle cx="7.5" cy="8.5" r="1.3"/></svg><span data-i18n="nav_offers">العروض</span></a>
+
+      <a href="#instructors" class="nav-link" data-route="instructors"
+         ><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20v-1.5A5.5 5.5 0 0 1 8 13h2a5.5 5.5 0 0 1 5.5 5.5V20zM16 4.8a3.5 3.5 0 0 1 0 6.4M17 14h.5a4 4 0 0 1 4 4v2"/></svg><span data-i18n="nav_instructors">المحاضرون</span></a>
+
+      <a href="#contact" class="nav-link" data-route="contact"
+         ><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-4-.9L3 21l1.9-4.5a9 9 0 0 1-.9-4A8.5 8.5 0 0 1 12.5 4h.5A8.5 8.5 0 0 1 21 11.5Z"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></svg><span data-i18n="nav_contact">تواصل معنا</span></a>
+    </nav>
+
+    <!-- ACTIONS -->
+    <div class="header-actions">
+
+      <button class="btn btn-icon btn-outline" type="button" id="landingThemeToggle" aria-label="تبديل الوضع الليلي" title="تبديل الوضع الليلي / النهاري">
+        <span aria-hidden="true" id="landingThemeIcon">☾</span>
+      </button>
+
+      <!-- LANGUAGE -->
+      <button class="lang-btn" onclick="toggleLang()"
+              id="langBtn" title="Toggle language">
+        <svg width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/>
+        </svg>
+        <span id="langLabel">EN</span>
+      </button>
+
+      <!-- CART -->
+      <button class="btn btn-icon btn-outline cart-btn"
+              onclick="navigate('cart')" title="Cart"
+              aria-label="Shopping cart">
+        <svg width="18" height="18" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"/>
+          <circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/>
+        </svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+
+     
+<!-- AUTH BUTTONS --> 
+ <div class="auth-actions" id="authActions"> 
+  <a href="auth/login.php" class="btn btn-outline btn-sm" data-i18n="nav_login">تسجيل الدخول</a>
+  <a href="auth/register.php" class="btn btn-primary btn-sm" data-i18n="nav_register">إنشاء حساب</a>
+  <button type="button" class="btn btn-outline btn-sm" id="logoutBtn" onclick="logoutUser()" hidden>تسجيل الخروج</button>
+ </div>
+
+
+
+</div>
+
+
+      <!-- MOBILE MENU -->
+      <button class="btn btn-icon btn-outline menu-toggle"
+              onclick="toggleMobileNav()"
+              aria-label="Open navigation menu"
+              aria-expanded="false"
+              id="menuToggle">
+        <svg width="20" height="20" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+
+    </div>
+  </div>
+</header>
+
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav" onclick="if(event.target===this)toggleMobileNav()">
+  <div class="mobile-nav-panel">
+    <div class="mobile-nav-head">
+      <div class="brand">
+        <div class="brand-mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M9 5h6"/><path d="M20 12a8 8 0 1 1-16 0 8 8 0 0 1 16 0z"/><path d="M12 8v8M8 12h8"/></svg></div>
+        <div class="brand-text"><span class="brand-name">Edu Nursing</span></div>
+      </div>
+      <button class="btn btn-icon btn-outline" onclick="toggleMobileNav()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <select id="mobileThemeSelect" class="mobile-theme-select" aria-label="اختيار هوية المنصة"></select>
+    <div class="mobile-nav-links">
+      <a class="nav-link" data-route="home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9M9 20v-7h6v7"/></svg><span data-i18n="nav_home">الرئيسية</span></a>
+      <a class="nav-link" data-route="courses"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 0 4 22z"/><path d="M4 5.5V22M8 7h8M8 11h7"/></svg><span data-i18n="nav_courses">الكورسات</span></a>
+      <a class="nav-link" data-route="books"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v18H6.5A2.5 2.5 0 0 0 4 22z"/><path d="M4 4.5V22M8 6h8M8 10h8"/></svg><span data-i18n="nav_books">الكتب</span></a>
+      <a class="nav-link" data-route="offers"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m20.6 13.4-7.2 7.2a2 2 0 0 1-2.8 0L3 13V4h9l8.6 8.6a.6.6 0 0 1 0 .8Z"/><circle cx="7.5" cy="8.5" r="1.3"/></svg><span data-i18n="nav_offers">العروض</span></a>
+      <a class="nav-link" data-route="instructors"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20v-1.5A5.5 5.5 0 0 1 8 13h2a5.5 5.5 0 0 1 5.5 5.5V20zM16 4.8a3.5 3.5 0 0 1 0 6.4M17 14h.5a4 4 0 0 1 4 4v2"/></svg><span data-i18n="nav_instructors">المحاضرون</span></a>
+      <a class="nav-link" data-route="contact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-4-.9L3 21l1.9-4.5a9 9 0 0 1-.9-4A8.5 8.5 0 0 1 12.5 4h.5A8.5 8.5 0 0 1 21 11.5Z"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></svg><span data-i18n="nav_contact">تواصل معنا</span></a>
+      <a class="nav-link" href="auth/login.php">تسجيل الدخول</a>
+      <a class="nav-link" href="auth/register.php">إنشاء حساب</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MAIN CONTENT ============ -->
+<main id="mainContent">
+
+  <!-- ========== HOME PAGE ========== -->
+  <div class="page" id="page-home">
+    <!-- HERO -->
+    <section class="hero">
+      <div id="homeMedicalSlider" class="home-medical-slider" hidden aria-roledescription="carousel" aria-label="الصور الطبية المميزة"></div>
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="hero-eyebrow">
+              <span data-i18n="hero_eyebrow">منصة تعليمية طبية معتمدة المحتوى</span>
+            </div>
+            <h1 data-i18n="hero_title">ارتقِ بمستواك في التمريض والعلوم الطبية مع <span class="accent">Edu Nursing</span></h1>
+            <p class="hero-sub" data-i18n="hero_sub">تعلّم المهارات التمريضية والسريرية من خلال محتوى أكاديمي معتمد وتجربة تعلم حديثة، بإشراف وتدريب متخصص.</p>
+            <div class="hero-author">
+              <div class="hero-author-avatar">خ</div>
+              <div class="hero-author-info">
+                <span class="hero-author-name" data-i18n="hero_author">د. خالد عبد الناصر محمد المرسي</span>
+                <span class="hero-author-role" data-i18n="hero_author_role">محاضر دولي معتمد – Certified International Lecturer</span>
+              </div>
+            </div>
+            <div class="hero-ctas">
+              <button class="btn btn-primary btn-lg" onclick="navigate('courses')">
+                <span data-i18n="hero_cta1">استكشف الكورسات</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+              <button class="btn btn-outline btn-lg" onclick="openIntroVideoModal()" style="display:inline-flex;align-items:center;gap:8px;">
+                <span>شاهد الفيديو التعريفي</span>
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:var(--teal-600);color:#fff;border-radius:50%;font-size:10px;">▶</span>
+              </button>
+              <button class="btn btn-outline btn-lg" onclick="navigate('books')" data-i18n="hero_cta2">تصفح الكتب</button>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div id="heroVisualFallback">
+            <div class="hero-card hero-card-main">
+              <div class="hero-card-top">
+                <div class="hero-logo-big">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M9 5h6"/><path d="M20 12a8 8 0 1 1-16 0 8 8 0 0 1 16 0z"/><path d="M12 8v8M8 12h8"/></svg>
+                </div>
+                <span class="hero-badge" data-i18n="hero_badge">الأقوى في الشرق الأوسط</span>
+              </div>
+              <div class="hero-card-body">
+                <h3 class="hero-card-title" data-i18n="hero_card_title">تعلّم التمريض بأسلوب احترافي</h3>
+                <p class="hero-card-desc" data-i18n="hero_card_desc">كورسات عملية ونظرية، كتب مرجعية، ومحتوى مُحدَّث وفق أحدث الممارسات السريرية.</p>
+                <div class="hero-card-stats">
+                  <div class="hero-stat"><span class="hero-stat-num">8+</span><span class="hero-stat-lbl" data-i18n="stat_courses">كورسات</span></div>
+                  <div class="hero-stat"><span class="hero-stat-num">7+</span><span class="hero-stat-lbl" data-i18n="stat_books">مراجع</span></div>
+                  <div class="hero-stat"><span class="hero-stat-num">24/7</span><span class="hero-stat-lbl" data-i18n="stat_support">دعم</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="hero-float hero-float-1">
+              <div class="hero-float-icon" style="background:var(--teal-50);color:var(--teal-600)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+              </div>
+              <div class="hero-float-text"><strong data-i18n="float1_t">محتوى مُعتمد</strong><span data-i18n="float1_d">أكاديميًا</span></div>
+            </div>
+            <div class="hero-float hero-float-2">
+              <div class="hero-float-icon" style="background:var(--gold-100);color:var(--gold-500)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <div class="hero-float-text"><strong data-i18n="float2_t">تقييم 4.9/5</strong><span data-i18n="float2_d">من طلابنا</span></div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STATS COUNTER BAR ============ -->
+    <section class="stats-counter-section">
+      <div class="container">
+        <div class="stats-counter-grid">
+          <div class="stat-counter-item">
+            <div class="stat-counter-num">—</div>
+            <div class="stat-counter-label">طالب مسجل</div>
+          </div>
+          <div class="stat-counter-item">
+            <div class="stat-counter-num">—</div>
+            <div class="stat-counter-label">كورس متاح</div>
+          </div>
+          <div class="stat-counter-item">
+            <div class="stat-counter-num">—</div>
+            <div class="stat-counter-label">كتاب متاح</div>
+          </div>
+          <div class="stat-counter-item">
+            <div class="stat-counter-num">—</div>
+            <div class="stat-counter-label">التحاق نشط</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow" data-i18n="feat_eyebrow">لماذا نحن</span>
+          <h2 class="section-title" data-i18n="feat_title">منصة مصممة لطموح الممرض المحترف</h2>
+          <p class="section-desc" data-i18n="feat_desc">تجربة تعليمية متكاملة تجمع بين المحتوى العلمي الموثوق وأدوات التعلم الحديثة.</p>
+        </div>
+        <div class="features-grid" id="featuresGrid"></div>
+      </div>
+    </section>
+
+    <!-- TOP COURSES -->
+    <section class="section" style="background:#fff">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow" data-i18n="topc_eyebrow">الأكثر تميزًا</span>
+          <h2 class="section-title" data-i18n="topc_title">كورسات مختارة بعناية</h2>
+          <p class="section-desc" data-i18n="topc_desc">مسارات تعليمية تغطي أساسيات التمريض والتخصصات الدقيقة.</p>
+        </div>
+        <div class="grid-cards" id="topCourses"></div>
+        <div class="text-center mt-6">
+          <button class="btn btn-outline" onclick="navigate('courses')" data-i18n="view_all">عرض الكل</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKS -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow" data-i18n="books_eyebrow">المكتبة</span>
+          <h2 class="section-title" data-i18n="books_title">الكتب والمراجع التعليمية</h2>
+          <p class="section-desc" data-i18n="books_desc">مراجع عملية ونظرية من إعداد د. خالد عبد الناصر محمد.</p>
+        </div>
+        <div class="grid-cards" id="topBooks"></div>
+        <div class="text-center mt-6">
+          <button class="btn btn-outline" onclick="navigate('books')" data-i18n="view_all_books">عرض جميع الكتب</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFLINE CENTERS -->
+    <section class="section centers-section" id="offline-centers-section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">🏥 التدريب الحضوري</span>
+          <h2 class="section-title">السناتر والحجز الأوفلاين</h2>
+          <p class="section-desc">اختر السنتر المناسب، اعرض تفاصيله ومواعيده، وتواصل للحجز مباشرة.</p>
+        </div>
+        <div class="grid-cards" id="homeCenters" aria-live="polite"><div class="center-loading">جارٍ تحميل السناتر…</div></div>
+      </div>
+    </section>
+
+    <!-- OFFERS & DISCOUNTS -->
+    <section class="section offers-section" id="offers-section" style="background:linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);border-top:1px solid #dcfce7;border-bottom:1px solid #dcfce7;">
+      <div class="container">
+        <div class="section-head">
+          <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(13,148,136,0.12);color:var(--teal-700);padding:6px 14px;border-radius:20px;font-size:12.5px;font-weight:700;margin-bottom:8px;">
+            <span>🔥</span>
+            <span data-i18n="offers_badge">عروض وتخفيضات حصرية لفترة محدودة</span>
+          </div>
+          <h2 class="section-title" data-i18n="offers_title">باقات التميز والخصومات الخاصة</h2>
+          <p class="section-desc" data-i18n="offers_desc">استفد من خصومات حصرية على الكورسات المعتمدة والمراجع السريرية، مع إمكانية استخدام كود الخصم عند الدفع.</p>
+        </div>
+
+        <!-- Coupon Announcement Box -->
+        <div class="coupon-banner" id="couponBanner"></div>
+
+        <!-- Offers Grid -->
+        <div class="grid-cards" id="offersGrid"></div>
+      </div>
+    </section>
+
+    <!-- INSTRUCTORS -->
+    <section class="section" style="background:#fff" id="home-instructors-section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow" data-i18n="ins_eyebrow">هيئة التدريس</span>
+          <h2 class="section-title" data-i18n="ins_page_title">نخبة المحاضرين المعتمدين</h2>
+          <p class="section-desc" data-i18n="ins_page_desc">خبراء واستشاريون في التمريض السريري والرعاية الحرجة لإرشادك خطوة بخطوة.</p>
+        </div>
+
+        <!-- Certified Instructors Grid -->
+        <div class="instructors-grid" id="homeInstructors" style="margin-bottom:40px;"></div>
+
+        <!-- Founder Spotlight Banner -->
+        <div class="instructor founder-spotlight" id="founderSpotlight">
+          <div class="founder-portrait-shell">
+            <div class="founder-photos-carousel" id="founderPhotosCarousel" aria-label="صور مالك المنصة"><span class="founder-photo-initial">خ</span></div>
+            <div class="founder-portrait-caption"><span data-i18n="founder_seal">إشراف أكاديمي متخصص</span></div>
+          </div>
+          <div class="founder-copy">
+            <span class="founder-copy-eyebrow" data-i18n="founder_badge">مؤسس ومشرف المنصة</span>
+            <h3 data-i18n="ins_name">د. خالد عبد الناصر محمد</h3>
+            <div class="role" data-i18n="ins_role">المُعدّ والمشرف التعليمي العام</div>
+            <p data-i18n="ins_bio">خبير في التعليم التمريضي السريري، يُشرف على إعداد المحتوى التعليمي لمنصة Nursing Basic Course، ويهتم بتقديم مادة علمية عملية تواكب أحدث الممارسات في أقسام الطوارئ والعناية المركزة والعمليات.</p>
+            <div class="founder-platform-note"><strong data-i18n="founder_platform">عن المنصة</strong><p data-i18n="ins_platform_bio">منصة تعليمية تجمع الكورسات والكتب والتدريب الحضوري في تجربة واحدة، بمحتوى منظم يساعد طلاب وممارسي التمريض على تطوير مهاراتهم خطوة بخطوة.</p></div>
+            <div class="instructor-stats">
+              <div class="instructor-stat"><strong id="statLiveCourses">9+</strong><span data-i18n="ins_stat1">كورسات</span></div>
+              <div class="instructor-stat"><strong id="statLiveBooks">3+</strong><span data-i18n="ins_stat2">مراجع مطبوعة</span></div>
+              <div class="instructor-stat"><strong>12+</strong><span data-i18n="ins_stat3">سنوات خبرة</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow" data-i18n="test_eyebrow">آراء الطلاب</span>
+          <h2 class="section-title" data-i18n="test_title">تجارب حقيقية من طلاب المنصة</h2>
+        </div>
+        <div class="testi-grid" id="testiGrid"></div>
+        <div class="text-center mt-6">
+          <div class="demo-notice">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <span data-i18n="demo_notice">الآراء المعروضة بيانات توضيحية تجريبية</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" style="background:#fff">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow" data-i18n="faq_eyebrow">أسئلة شائعة</span>
+          <h2 class="section-title" data-i18n="faq_title">إجابات لأهم استفساراتك</h2>
+        </div>
+        <div class="faq-list" id="faqList"></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact-section">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow" data-i18n="ct_eyebrow">تواصل مباشر</span>
+          <h2 class="section-title" data-i18n="ct_title">نحن هنا لمساعدتك</h2>
+          <p class="section-desc" data-i18n="ct_desc">تواصل معنا عبر واتساب أو أرسل استفسارك وسنرد في أقرب وقت.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3 data-i18n="ct_form_title">أرسل استفسارك</h3>
+            <form id="contactForm" onsubmit="submitContact(event)">
+              <div class="form-group">
+                <label class="form-label" data-i18n="ct_name">الاسم</label>
+                <input class="form-input" name="name" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="ct_phone">رقم الهاتف</label>
+                <input class="form-input" name="phone" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="ct_email">البريد الإلكتروني (اختياري)</label>
+                <input class="form-input" type="email" name="email" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="ct_type">نوع الاستفسار</label>
+                <select class="form-select" name="type" required>
+                  <option value="" data-i18n="ct_choose">اختر...</option>
+                  <option data-i18n="ct_type1">استفسار عن كورس</option>
+                  <option data-i18n="ct_type2">استفسار عن كتاب</option>
+                  <option data-i18n="ct_type3">الدعم الفني</option>
+                  <option data-i18n="ct_type4">أخرى</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="ct_msg">نص الرسالة</label>
+                <textarea class="form-textarea" name="message" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg" style="width:100%" data-i18n="ct_send">إرسال الرسالة</button>
+            </form>
+          </div>
+          <div class="whatsapp-card">
+            <h3 data-i18n="ct_wa_title">تواصل مباشر عبر واتساب</h3>
+            <p data-i18n="ct_wa_desc">اضغط على الزر لبدء محادثة مباشرة مع فريق المنصة.</p>
+            <a class="wa-btn" href="https://wa.me/201289492477" target="_blank" rel="noopener">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              <span data-i18n="ct_wa_btn">ابدأ محادثة واتساب</span>
+            </a>
+            <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.2)">
+              <div style="font-size:13px;opacity:.85" data-i18n="ct_phone_label">رقم التواصل</div>
+              <div style="font-size:18px;font-weight:800;direction:ltr;text-align:start">01289492477</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========== COURSES PAGE ========== -->
+  <div class="page" id="page-courses">
+    <div class="page-head">
+      <div class="container">
+        <div class="breadcrumb">
+          <a onclick="navigate('home')" data-i18n="nav_home">الرئيسية</a>
+          <span>/</span>
+          <span data-i18n="nav_courses">الكورسات</span>
+        </div>
+        <h1 data-i18n="courses_title">جميع الكورسات التعليمية</h1>
+        <p data-i18n="courses_desc">اختر المسار المناسب لتطوير مهاراتك التمريضية.</p>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container">
+        <div class="filters">
+          <div class="search-box">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            <input id="courseSearch" placeholder="ابحث عن كورس..." data-i18n-ph="search_courses" oninput="renderCourses()"/>
+          </div>
+          <select class="form-select" id="courseLevel" style="width:auto;min-width:160px" onchange="renderCourses()">
+            <option value="" data-i18n="filter_all">جميع المستويات</option>
+            <option value="beginner" data-i18n="lvl_beginner">مبتدئ</option>
+            <option value="intermediate" data-i18n="lvl_intermediate">متوسط</option>
+            <option value="advanced" data-i18n="lvl_advanced">متقدم</option>
+          </select>
+        </div>
+        <div class="grid-cards" id="allCourses"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========== COURSE DETAIL ========== -->
+  <div class="page" id="page-course-detail">
+    <div class="page-head">
+      <div class="container">
+        <button class="detail-back-btn" type="button" onclick="navigate('courses')" aria-label="العودة إلى الكورسات">→ <span>رجوع للكورسات</span></button>
+        <div class="breadcrumb">
+          <a onclick="navigate('home')" data-i18n="nav_home">الرئيسية</a>
+          <span>/</span>
+          <a onclick="navigate('courses')" data-i18n="nav_courses">الكورسات</a>
+          <span>/</span>
+          <span id="cd-crumb">—</span>
+        </div>
+        <h1 id="cd-title">—</h1>
+        <p id="cd-sub">—</p>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container">
+        <div class="detail-grid">
+          <div>
+            <div class="detail-cover" id="cd-cover"></div>
+            <div class="detail-tabs">
+              <button class="detail-tab active" data-tab="desc" data-i18n="tab_desc">الوصف</button>
+              <button class="detail-tab" data-tab="goals" data-i18n="tab_goals">أهداف التعلم</button>
+              <button class="detail-tab" data-tab="curr" data-i18n="tab_curr">المحتوى</button>
+            </div>
+            <div class="tab-panel active" id="tab-desc"></div>
+            <div class="tab-panel" id="tab-goals"></div>
+            <div class="tab-panel" id="tab-curr"></div>
+          </div>
+          <div class="detail-side">
+            <div class="detail-price" id="cd-price">—</div>
+            <div class="detail-meta" id="cd-meta"></div>
+            <button class="btn btn-primary btn-lg" style="width:100%" onclick="addToCartFromDetail('course')" data-i18n="add_cart">أضف إلى السلة</button>
+            <button class="btn btn-outline" style="width:100%" onclick="toggleFavFromDetail('course')" id="cd-fav-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              <span data-i18n="add_fav">أضف إلى المفضلة</span>
+            </button>
+            <a class="btn btn-outline" style="width:100%" href="https://wa.me/201289492477" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              <span data-i18n="ask_wa">استفسار عبر واتساب</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========== BOOKS PAGE ========== -->
+  <div class="page" id="page-books">
+    <div class="page-head">
+      <div class="container">
+        <div class="breadcrumb">
+          <a onclick="navigate('home')" data-i18n="nav_home">الرئيسية</a>
+          <span>/</span>
+          <span data-i18n="nav_books">الكتب</span>
+        </div>
+        <h1 data-i18n="books_page_title">الكتب والمراجع التعليمية</h1>
+        <p data-i18n="books_page_desc">مراجع عملية ونظرية من إعداد د. خالد عبد الناصر محمد.</p>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container">
+        <div class="filters">
+          <div class="search-box">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            <input id="bookSearch" placeholder="ابحث عن كتاب..." data-i18n-ph="search_books" oninput="renderBooks()"/>
+          </div>
+        </div>
+        <div class="grid-cards" id="allBooks"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========== BOOK DETAIL ========== -->
+  <div class="page" id="page-book-detail">
+    <div class="page-head">
+      <div class="container">
+        <button class="detail-back-btn" type="button" onclick="navigate('books')" aria-label="العودة إلى الكتب">→ <span>رجوع للكتب</span></button>
+        <div class="breadcrumb">
+          <a onclick="navigate('home')" data-i18n="nav_home">الرئيسية</a>
+          <span>/</span>
+          <a onclick="navigate('books')" data-i18n="nav_books">الكتب</a>
+          <span>/</span>
+          <span id="bd-crumb">—</span>
+        </div>
+        <h1 id="bd-title">—</h1>
+        <p id="bd-sub">—</p>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container">
+        <div class="detail-grid">
+          <div>
+            <div class="detail-cover" id="bd-cover"></div>
+            <div class="detail-tabs">
+              <button class="detail-tab active" data-tab="desc" data-i18n="tab_desc">الوصف</button>
+              <button class="detail-tab" data-tab="cont" data-i18n="tab_cont">المحتويات</button>
+            </div>
+            <div class="tab-panel active" id="bd-tab-desc"></div>
+            <div class="tab-panel" id="bd-tab-cont"></div>
+          </div>
+          <div class="detail-side">
+            <div class="detail-price" id="bd-price">—</div>
+            <div class="detail-meta" id="bd-meta"></div>
+            <button class="btn btn-primary btn-lg" style="width:100%" onclick="addToCartFromDetail('book')" data-i18n="add_cart">أضف إلى السلة</button>
+            <button class="btn btn-outline" style="width:100%" onclick="toggleFavFromDetail('book')" id="bd-fav-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              <span data-i18n="add_fav">أضف إلى المفضلة</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========== OFFERS PAGE ========== -->
+  <div class="page" id="page-offers">
+    <div class="page-head">
+      <div class="container">
+        <div class="breadcrumb">
+          <a onclick="navigate('home')" data-i18n="nav_home">الرئيسية</a>
+          <span>/</span>
+          <span data-i18n="nav_offers">العروض والتخفيضات</span>
+        </div>
+        <h1 data-i18n="offers_title">العروض والتخفيضات الحصرية</h1>
+        <p data-i18n="offers_desc">أقوى التخفيضات على الكورسات والكتب والمراجع التمريضية.</p>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container">
+        <div class="coupon-banner" id="allOffersCouponBanner"></div>
+        <div class="grid-cards" id="allOffersGrid"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========== INSTRUCTORS PAGE ========== -->
+  <div class="page" id="page-instructors">
+    <div class="page-head">
+      <div class="container">
+        <div class="breadcrumb">
+          <a onclick="navigate('home')" data-i18n="nav_home">الرئيسية</a>
+          <span>/</span>
+          <span data-i18n="nav_instructors">المحاضرون</span>
+        </div>
+        <h1 data-i18n="ins_page_title">المحاضرون المعتمدون</h1>
+        <p data-i18n="ins_page_desc">نخبة من المتخصصين في التعليم والتدريب التمريضي السريري.</p>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container">
+        <!-- Certified Instructors Grid -->
+        <div class="instructors-grid" id="allInstructors" style="margin-bottom:36px"></div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h3 class="panel-title" data-i18n="become_ins">هل أنت محاضر وتريد الانضمام؟</h3>
+          </div>
+          <p style="color:var(--ink-500);margin:0 0 16px" data-i18n="become_ins_desc">يمكنك التسجيل كمحاضر، وستتم مراجعة طلبك من قبل الإدارة. جميع المحاضرين يخضعون لاعتماد إداري قبل نشر محتواهم.</p>
+          <button class="btn btn-primary" onclick="location.href='auth/register.php'" data-i18n="register_now">سجّل الآن</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========== CONTACT PAGE ========== -->
+  <div class="page" id="page-contact">
+    <div class="page-head">
+      <div class="container">
+        <div class="breadcrumb">
+          <a onclick="navigate('home')" data-i18n="nav_home">الرئيسية</a>
+          <span>/</span>
+          <span data-i18n="nav_contact">تواصل معنا</span>
+        </div>
+        <h1 data-i18n="ct_title">تواصل معنا</h1>
+        <p data-i18n="ct_desc">نحن هنا لمساعدتك</p>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3 data-i18n="ct_form_title">أرسل استفسارك</h3>
+            <form onsubmit="submitContact(event)">
+              <div class="form-group"><label class="form-label" data-i18n="ct_name">الاسم</label><input class="form-input" name="name" required/></div>
+              <div class="form-group"><label class="form-label" data-i18n="ct_phone">رقم الهاتف</label><input class="form-input" name="phone" required/></div>
+              <div class="form-group"><label class="form-label" data-i18n="ct_email">البريد (اختياري)</label><input class="form-input" type="email" name="email"/></div>
+              <div class="form-group"><label class="form-label" data-i18n="ct_type">نوع الاستفسار</label>
+                <select class="form-select" name="type" required>
+                  <option value="" data-i18n="ct_choose">اختر...</option>
+                  <option data-i18n="ct_type1">استفسار عن كورس</option>
+                  <option data-i18n="ct_type2">استفسار عن كتاب</option>
+                  <option data-i18n="ct_type3">الدعم الفني</option>
+                  <option data-i18n="ct_type4">أخرى</option>
+                </select>
+              </div>
+              <div class="form-group"><label class="form-label" data-i18n="ct_msg">الرسالة</label><textarea class="form-textarea" name="message" required></textarea></div>
+              <button type="submit" class="btn btn-primary btn-lg" style="width:100%" data-i18n="ct_send">إرسال</button>
+            </form>
+          </div>
+          <div class="whatsapp-card">
+            <h3 data-i18n="ct_wa_title">واتساب مباشر</h3>
+            <p data-i18n="ct_wa_desc">اضغط لبدء محادثة.</p>
+            <a class="wa-btn" href="https://wa.me/201289492477" target="_blank" rel="noopener">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              <span data-i18n="ct_wa_btn">ابدأ محادثة</span>
+            </a>
+            <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.2)">
+              <div style="font-size:13px;opacity:.85" data-i18n="ct_phone_label">رقم التواصل</div>
+              <div style="font-size:18px;font-weight:800;direction:ltr;text-align:start">01289492477</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-head mt-6">
+          <h2 class="section-title" data-i18n="faq_title">أسئلة شائعة</h2>
+        </div>
+        <div class="faq-list" id="faqList2"></div>
+      </div>
+    </section>
+  </div>
+
+ 
+
+  
+
+  <!-- ========== CART ========== -->
+  <div class="page" id="page-cart">
+    <div class="page-head">
+      <div class="container">
+        <div class="breadcrumb">
+          <a onclick="navigate('home')" data-i18n="nav_home">الرئيسية</a>
+          <span>/</span>
+          <span data-i18n="cart_title">سلة المشتريات</span>
+        </div>
+        <h1 data-i18n="cart_title">سلة المشتريات</h1>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container">
+        <div id="cartContent"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========== CHECKOUT ========== -->
+  <div class="page" id="page-checkout">
+    <div class="page-head">
+      <div class="container">
+        <div class="breadcrumb">
+          <a onclick="navigate('home')" data-i18n="nav_home">الرئيسية</a>
+          <span>/</span>
+          <a onclick="navigate('cart')" data-i18n="cart_title">السلة</a>
+          <span>/</span>
+          <span data-i18n="checkout_title">إتمام الطلب</span>
+        </div>
+        <h1 data-i18n="checkout_title">إتمام الطلب والدفع</h1>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container">
+        <div id="checkoutContent"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========== PAYMENT INSTRUCTIONS ========== -->
+  <div class="page" id="page-payment">
+    <div class="page-head">
+      <div class="container">
+        <h1 data-i18n="pay_title">تعليمات الدفع</h1>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container">
+        <div id="paymentContent"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Separated Portals Redirection Handlers -->
+  <div id="page-student-dash" class="page">
+    <div class="container" style="text-align:center;padding:80px 20px;">
+      <h2 style="font-size:24px;font-weight:800;color:var(--teal-600);margin-bottom:12px;">جاري توجيهك إلى بوابة الطالب الأكاديمية...</h2>
+      <p style="color:var(--muted);margin-bottom:24px;">تم ترقية بوابة الطالب إلى منصة سريرية متكاملة ومستقلة.</p>
+      <a href="student.html" class="btn btn-primary btn-lg">انتقل إلى بوابة الطالب الآن ←</a>
+    </div>
+  </div>
+
+  <div id="page-instructor-dash" class="page">
+    <div class="container" style="text-align:center;padding:80px 20px;">
+      <h2 style="font-size:24px;font-weight:800;color:var(--teal-600);margin-bottom:12px;">جاري توجيهك إلى بوابة المحاضرين...</h2>
+      <p style="color:var(--muted);margin-bottom:24px;">لوحة تحكم المحاضر المعتمد ومتابعة الكورسات والطلاب.</p>
+      <a href="instructor.html" class="btn btn-primary btn-lg">انتقل إلى بوابة المحاضرين الآن ←</a>
+    </div>
+  </div>
+
+  <div id="page-admin-dash" class="page">
+    <div class="container" style="text-align:center;padding:80px 20px;">
+      <h2 style="font-size:24px;font-weight:800;color:var(--teal-600);margin-bottom:12px;">جاري توجيهك إلى لوحة الإدارة المركزية...</h2>
+      <p style="color:var(--muted);margin-bottom:24px;">لوحة الإدارة الأكاديمية والمالية الشاملة للمنصة.</p>
+      <a href="admin.html" class="btn btn-primary btn-lg">انتقل إلى لوحة الإدارة الآن ←</a>
+    </div>
+  </div>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <div class="brand-mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M9 5h6"/><path d="M20 12a8 8 0 1 1-16 0 8 8 0 0 1 16 0z"/><path d="M12 8v8M8 12h8"/></svg></div>
+          <div class="brand-text">
+            <span class="brand-name">Edu Nursing</span>
+            <span class="brand-tag">Medical Education Academy</span>
+          </div>
+        </div>
+        <p>المنصة الطبية والتعليمية الرائدة في التعليم والتدريب التمريضي السريري، بإشراف وتدريب د. خالد عبد الناصر محمد المرسي (محاضر دولي معتمد).</p>
+      </div>
+      <div>
+        <h4>روابط سريعة</h4>
+        <ul>
+          <li><a onclick="navigate('home')">الرئيسية</a></li>
+          <li><a onclick="navigate('courses')">الكورسات</a></li>
+          <li><a onclick="navigate('books')">المكتبة والكتب</a></li>
+          <li><a onclick="navigate('instructors')">المحاضرون</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>المساعدة والسياسات</h4>
+        <ul>
+          <li><a onclick="navigate('contact')">تواصل معنا</a></li>
+          <li><a onclick="openPolicyModal('privacy')">سياسة الخصوصية</a></li>
+          <li><a onclick="openPolicyModal('terms')">الشروط والأحكام</a></li>
+          <li><a onclick="openPolicyModal('refund')">سياسة الاسترداد والإلغاء</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>تواصل والدفع</h4>
+        <ul>
+          <li><a href="https://wa.me/201289492477" target="_blank" rel="noopener">WhatsApp: 01289492477</a></li>
+          <li><span>رقم الدفع:</span> 01061709999</li>
+          <li><span>المشرف الأكاديمي:</span> د. خالد عبد الناصر المرسي</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Edu Nursing – Medical Education Academy. جميع الحقوق محفوظة.</span>
+      <span>نظام تعليمي متكامل معتمد بقاعدة بيانات مركزية آمنة.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FLOATING WHATSAPP ============ -->
+<a class="wa-float" href="https://wa.me/201289492477" target="_blank" rel="noopener" title="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ============ TOAST CONTAINER ============ -->
+<div class="toast-wrap" id="toastWrap"></div>
+
+<!-- ============ MODAL ============ -->
+<div class="modal-wrap" id="modalWrap" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="modalTitle">—</h3>
+      <button class="modal-close" onclick="closeModal()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<div class="center-detail-modal" id="centerDetailModal" hidden aria-hidden="true">
+  <section class="center-detail-dialog" role="dialog" aria-modal="true" aria-labelledby="centerDetailTitle">
+    <button type="button" class="center-detail-close" id="centerDetailClose" aria-label="إغلاق">×</button>
+    <div id="centerDetailContent"></div>
+  </section>
+</div>
+
+<!-- ============ INTRO VIDEO MODAL ============ -->
+<div id="introVideoModal" class="modal-overlay" hidden onclick="if(event.target===this)closeIntroVideoModal()">
+  <div class="modal-box" style="max-width:850px;background:#000;border-radius:18px;overflow:hidden;position:relative;box-shadow:0 25px 60px rgba(0,0,0,0.6);margin:auto;">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:#0a1f3d;color:#fff;">
+      <span style="font-weight:700;font-size:14px;">فيديو تعريفي عن منصة Edu Nursing — إشراف د. خالد عبد الناصر المرسي</span>
+      <button type="button" onclick="closeIntroVideoModal()" style="background:transparent;border:none;color:#fff;font-size:22px;cursor:pointer;line-height:1;">✕</button>
+    </div>
+    <div style="position:relative;padding-top:56.25%;background:#000;">
+      <video id="introVideoPlayer" controls playsinline preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;background:#000;object-fit:contain"></video>
+    </div>
+  </div>
+</div>
+
+<script>
+function openIntroVideoModal() {
+  const m = document.getElementById('introVideoModal');
+  const player = document.getElementById('introVideoPlayer');
+  if (player && window.platformIntroVideo) { player.src = window.platformIntroVideo; player.play().catch(() => {}); }
+  if (m) m.hidden = false;
+}
+function closeIntroVideoModal() {
+  const m = document.getElementById('introVideoModal');
+  const player = document.getElementById('introVideoPlayer');
+  if (player) { player.pause(); player.removeAttribute('src'); player.load(); }
+  if (m) m.hidden = true;
+}
+</script>
+
+<script src="asset/js/image-cropper.js?v=20261118-1"></script>
+<script src="asset/js/main.js?v=20261120-4"></script>
+<script src="asset/js/homepage-designs.js?v=20261120-1"></script>
+<script src="asset/js/medical-theme.js?v=20261120-4" defer></script>
+<script>
+(function(){
+  var button=document.getElementById('landingThemeToggle');
+  function apply(theme){document.documentElement.setAttribute('data-theme',theme);try{localStorage.setItem('nbc_theme',theme)}catch(e){}if(button){button.querySelector('#landingThemeIcon').textContent=theme==='dark'?'☀':'☾';button.setAttribute('aria-label',theme==='dark'?'تفعيل الوضع النهاري':'تفعيل الوضع الليلي')}}
+  apply(document.documentElement.getAttribute('data-theme')==='dark'?'dark':'light');
+  if(button)button.addEventListener('click',function(){apply(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')});
+})();
+</script>
+<script src="asset/avatar.js"></script>
+<script src="asset/responsive-tables.js" defer></script>
+<script src="asset/responsive-nav.js" defer></script>
+
+</body>
+
+
+</html>

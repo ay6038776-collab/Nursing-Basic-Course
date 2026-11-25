@@ -1,0 +1,188 @@
+/* Shared responsive and dark-mode finish for the existing platform pages.
+   Presentation only: no routes, form names, or application behavior changed. */
+:root {
+  --platform-bg: #f4f7fb;
+  --platform-surface: #ffffff;
+  --platform-surface-raised: #ffffff;
+  --platform-text: #172033;
+  --platform-muted: #66758b;
+  --platform-border: #dce4ee;
+  --platform-shadow: 0 12px 32px rgba(15, 35, 62, .08);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --platform-bg: #07111f;
+  --platform-surface: #0d192a;
+  --platform-surface-raised: #122137;
+  --platform-text: #edf3fb;
+  --platform-muted: #a7b6ca;
+  --platform-border: #263950;
+  --platform-shadow: 0 14px 34px rgba(0, 0, 0, .24);
+}
+html[data-theme="dark"],
+html[data-theme="dark"] body { background: var(--platform-bg) !important; color: var(--platform-text); }
+html[data-theme="dark"] :is(.page, .admin-main, .admin-content, .st-main, .st-content,
+  .instructor-main, .main, .dash-main, .main-content) { color: var(--platform-text); }
+html[data-theme="dark"] :is(.surface, .panel, .st-card, .detail-card, .detail-side,
+  .form-card, .filters-card, .filters, .stat, .stat-card, .st-stat-card,
+  .student-card, .instructor-card, .timetable-card, .course-card,
+  .st-course-card, .empty-state, .notice:not(.error), .notification-item,
+  .progress-course-card, .overview-course-mini, .auth-card, .modal,
+  .modal-box, .modal-card, .st-modal-card, .center-detail-dialog,
+  .center-slot, .center-file-link, .center-media-item) {
+  color: var(--platform-text);
+  background-color: var(--platform-surface) !important;
+  border-color: var(--platform-border) !important;
+  box-shadow: var(--platform-shadow);
+}
+html[data-theme="dark"] :is(.card, .card-body, .card-foot, .center-card,
+  .center-card-body, .feature-card, .testi, .instructor, .curriculum-item,
+  .lesson-item, .faq-item, .contact-card, .summary, .cart-item) {
+  color: var(--platform-text);
+  background-color: var(--platform-surface) !important;
+  border-color: var(--platform-border) !important;
+}
+html[data-theme="dark"] :is(h1, h2, h3, h4, h5, h6, .section-title, .page-head h1,
+  .panel-title, .surface-head h2, .st-card-title, .card-title, .course-card-title,
+  .center-card-body h3, .detail-price, .card-price, .stat-value, .stat-card-value,
+  .st-stat-value, .student-card-name, .instructor-card-name, .lesson-name) {
+  color: #f4f7fc;
+}
+html[data-theme="dark"] :is(p, li, .muted, .helper-text, .form-help, .form-hint,
+  .section-desc, .page-head p, .card-desc, .card-meta, .center-card-body p,
+  .stat-label, .stat-card-label, .st-stat-label, .detail-meta-item,
+  .student-card-userinfo, .instructor-card-userinfo, .lesson-text) {
+  color: var(--platform-muted);
+}
+html[data-theme="dark"] :is(input, select, textarea, .form-input, .form-select,
+  .form-textarea, .search-box input, .topbar-search input) {
+  color: var(--platform-text);
+  background-color: #081423 !important;
+  border-color: var(--platform-border) !important;
+}
+html[data-theme="dark"] :is(input, textarea, .form-input, .form-textarea)::placeholder { color: #8293aa; }
+html[data-theme="dark"] :is(input, select, textarea, button, a, [tabindex]):focus-visible {
+  outline-color: color-mix(in srgb, var(--brand-primary, #20a99b), white 22%);
+  outline-offset: 2px;
+}
+html[data-theme="dark"] :is(table, .data-table) { color: var(--platform-text); }
+html[data-theme="dark"] :is(th, .data-table th) { color: #dce7f5; background: #0a1524; border-color: var(--platform-border); }
+html[data-theme="dark"] :is(td, .data-table td) { color: #cbd7e6; border-color: var(--platform-border); }
+html[data-theme="dark"] :is(tbody tr:hover, .data-table tbody tr:hover) { background: rgba(45, 212, 191, .07); }
+html[data-theme="dark"] :is(.footer, .admin-footer) { color: #d5e0ed; background: #07101c; border-color: var(--platform-border); }
+html[data-theme="dark"] :is(.mobile-nav-panel, .admin-sidebar, .dash-sidebar, .side) {
+  color: var(--platform-text);
+  background-color: #0a1524;
+  border-color: var(--platform-border);
+}
+html[data-theme="dark"] :is(.toast, .toast-wrap, .dropdown-menu, .search-dropdown, .popover) {
+  color: var(--platform-text);
+  background-color: #122137;
+  border-color: var(--platform-border);
+}
+html[data-theme="dark"] :is(.cert-valid, .cert-info-item) { background:#10251f !important; border-color:#235c48 !important; color:#e8f7ef !important; }
+html[data-theme="dark"] :is(.cert-invalid, .error-msg) { background:#2a151a !important; border-color:#71333d !important; color:#ffe1e4 !important; }
+html[data-theme="dark"] .cert-revoked { background:#2b2414 !important; border-color:#705a22 !important; color:#fff1c2 !important; }
+html[data-theme="dark"] :is(.cert-valid h2, .cert-info-value, .cert-invalid h2) { color:#f4f7fc !important; }
+html[data-theme="dark"] :is(.cert-info-label, .footer-note) { color:#a7b6ca !important; }
+html[data-theme="dark"] :is(button:disabled, .btn:disabled, [aria-disabled="true"]) { opacity: .58; }
+
+/* Keep every selected homepage identity dark from hero through footer. */
+html[data-theme="dark"] body:has(#page-home.active[data-home-design]) #page-home.active > section:not(.hero) {
+  color: #e7edf6 !important;
+  background: #0a1422 !important;
+  border-color: #1d2c40;
+}
+html[data-theme="dark"] body:has(#page-home.active[data-home-design]) #page-home :is(
+  .stats-counter-grid, .card, .card-body, .card-foot, .center-card,
+  .center-card-body, .feature-card, .testi, .instructor, .founder-platform-note) {
+  color: #e7edf6 !important;
+  background: #111e31 !important;
+  border-color: #2a3b53 !important;
+  box-shadow: 0 14px 34px rgba(0,0,0,.25) !important;
+}
+html[data-theme="dark"] body:has(#page-home.active[data-home-design]) #page-home :is(
+  .section-title, .card-title, .center-card-body h3, .feature-card h3,
+  .instructor-name, .stat-counter-label, .card-body strong) { color: #f4f7fc !important; }
+html[data-theme="dark"] body:has(#page-home.active[data-home-design]) #page-home :is(
+  .section-desc, .card-desc, .card-meta, .center-card-body p, .feature-card p) { color: #aebbd0 !important; }
+
+@media (max-width: 768px) {
+  html { scroll-padding-top: calc(68px + env(safe-area-inset-top, 0px)); }
+  body { width: 100%; max-width: 100%; overflow-x: clip; }
+  :is(main, .admin-main, .st-main, .main, .dash-main) { min-width: 0; max-width: 100%; }
+  :is(button, .btn, .small-btn, .st-btn, .detail-btn, .menu-toggle, .sidebar-toggle-btn) { touch-action: manipulation; }
+  :is(.modal-wrap, .modal-overlay, .center-detail-modal) { padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left)); }
+  :is(.modal, .modal-box, .modal-card, .center-detail-dialog) { max-width: 100%; max-height: calc(100dvh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom)); overflow: auto; overscroll-behavior: contain; }
+  :is(.footer, .admin-footer) { padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px)); }
+  :is(.wa-float, .student-ai-float, .student-assistant-float) { bottom: calc(18px + env(safe-area-inset-bottom, 0px)); }
+  :is(.table-wrap, .detail-table-wrapper, .tw) { max-width: 100%; overflow-x: auto; overscroll-behavior-inline: contain; -webkit-overflow-scrolling: touch; }
+  :is(input, select, textarea, .form-input, .form-select, .form-textarea) { max-width: 100%; }
+  #page-home.active[data-home-design] .hero-grid { display: block; }
+  #page-home.active[data-home-design] .hero-grid > div:first-child { width: 100%; max-width: 100%; }
+}
+@media (min-width: 769px) and (max-width: 1100px) {
+  :is(.admin-sidebar, .dash-sidebar, .side) { max-width: min(34vw, 300px); }
+  :is(.admin-content, .st-content, .main, .dash-main) { min-width: 0; }
+}
+@media (min-width: 851px) {
+  html[dir="rtl"] body:has(#page-home.active[data-home-design]) .hero-grid { display: block !important; width: 100%; }
+  html[dir="rtl"] body:has(#page-home.active[data-home-design]) .hero-grid > div:first-child {
+    width: min(58%, 980px) !important;
+    max-width: 980px !important;
+    margin: 0 0 0 auto !important;
+    text-align: right !important;
+  }
+  html[dir="rtl"] body:has(#page-home.active[data-home-design]) .hero h1,
+  html[dir="rtl"] body:has(#page-home.active[data-home-design]) .hero-sub { text-align: right !important; }
+  html[dir="rtl"] body:has(#page-home.active[data-home-design]) .hero h1 { font-size: clamp(36px, 3.55vw, 58px) !important; }
+}
+html[dir="rtl"] body:has(#page-home.active[data-home-design]) .hero-grid > div:first-child,
+html[dir="rtl"] body:has(#page-home.active[data-home-design]) .hero h1,
+html[dir="rtl"] body:has(#page-home.active[data-home-design]) .hero-sub { text-align:right !important; }
+html[dir="ltr"] body:has(#page-home.active[data-home-design]) .hero-grid > div:first-child,
+html[dir="ltr"] body:has(#page-home.active[data-home-design]) .hero h1,
+html[dir="ltr"] body:has(#page-home.active[data-home-design]) .hero-sub { text-align:left !important; }
+/* Arabic landing-page copy should sit on the right, including section headings
+   and card descriptions, instead of inheriting centered showcase styles. */
+html[dir="rtl"] body:has(#page-home.active[data-home-design]) #page-home :is(
+  .hero-grid > div:first-child, .hero h1, .hero-sub, .hero-eyebrow,
+  .section-head, .section-title, .section-desc, .card-body, .card-title,
+  .card-desc, .card-meta, .center-card-body, .feature-card, .feature-card h3,
+  .feature-card p, .instructor, .instructor-name, .instructor p) {
+  text-align: right !important;
+}
+html[dir="rtl"] body:has(#page-home.active[data-home-design]) .hero-ctas {
+  justify-content: flex-start !important;
+}
+html[dir="ltr"] body:has(#page-home.active[data-home-design]) #page-home :is(
+  .section-head, .section-title, .section-desc, .card-body, .card-title,
+  .card-desc, .card-meta, .center-card-body, .feature-card, .feature-card h3,
+  .feature-card p, .instructor, .instructor-name, .instructor p) {
+  text-align: left !important;
+}
+/* Keep the public mobile drawer readable when the glass header style is active. */
+@media (max-width: 720px) {
+  html:not([data-theme="dark"]) .mobile-nav-panel {
+    color: #172033 !important;
+    background: #ffffff !important;
+    border-inline-start: 1px solid #dce4ee;
+  }
+  html:not([data-theme="dark"]) .mobile-nav-panel .brand-name,
+  html:not([data-theme="dark"]) .mobile-nav-panel .nav-link,
+  html:not([data-theme="dark"]) .mobile-nav-panel .mobile-nav-head button {
+    color: #243247 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+  }
+  html:not([data-theme="dark"]) .mobile-nav-panel .nav-link svg { color: currentColor; opacity: 1; }
+  html:not([data-theme="dark"]) .mobile-nav-panel .nav-link.active {
+    color: var(--brand-primary, #0f8f87) !important;
+    background: color-mix(in srgb, var(--brand-primary, #0f8f87), white 88%) !important;
+  }
+  html[data-theme="dark"] .mobile-nav-panel .nav-link,
+  html[data-theme="dark"] .mobile-nav-panel .brand-name { color: #e8eef7 !important; opacity: 1 !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

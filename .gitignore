@@ -1,0 +1,47 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies
+/vendor/
+/node_modules/
+
+# Logs and temporary files
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# User uploads and private data
+/uploads/
+
+# Database credentials and local database files
+*.sqlite
+*.db
+*.bak
+*.dump
+
+# Local server configuration
+my.ini*
+
+# Temporary diagnostics and repair scripts
+check.php
+check_db*.php
+fix_db.php
+nbc_fix.php
+nbc_master_fix.php
+migrate_features.php
+setup_features.php
+
+# Disabled test scripts
+*.php.disabled
+
+# Test and temporary files
+test-register.html
+admin-js-patch.txt
+security-load-summary.json
+
+# Account promotion script
+database/OPTIONAL_promote_existing_account_to_admin.sql
+update_domain_database.sql

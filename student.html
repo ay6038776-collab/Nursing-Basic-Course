@@ -1,0 +1,972 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex,nofollow">
+    <title>بوابة الطالب الأكاديمية | Edu Nursing</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=Almarai:wght@300;400;700;800&family=Cairo:wght@300;400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700;800;900&family=Readex+Pro:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="asset/student.css?v=2.9">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="asset/responsive.css?v=20261117-mobile-dark">
+<link rel="stylesheet" href="asset/medical-themes.css?v=20261120-4">
+<link rel="stylesheet" href="asset/dashboard-polish.css?v=20261118-2">
+<link rel="stylesheet" href="asset/mobile-ux.css?v=20261122-2">
+<link rel="stylesheet" href="asset/assessment.css?v=20261119-2">
+<link rel="stylesheet" href="asset/student-dashboard-unified.css?v=20261118-1">
+<link rel="stylesheet" href="asset/appearance-system.css?v=20261120-6">
+<link rel="stylesheet" href="asset/platform-responsive-polish.css?v=20261120-3">
+<script src="asset/js/language-runtime.js?v=20261120-5" defer></script>
+
+    <script>
+      (function() {
+        try {
+          const t = localStorage.getItem('nbc_theme') || localStorage.getItem('nbc_student_theme') || 'light';
+          const isDark = (t === 'dark');
+          document.documentElement.setAttribute('data-theme', t);
+          document.documentElement.style.backgroundColor = isDark ? '#070d18' : '#f4f7fb';
+          const lang = localStorage.getItem('nbc_lang') || 'ar';
+          document.documentElement.setAttribute('lang', lang);
+          document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+        } catch (_) {}
+      })();
+    </script>
+</head>
+
+<body>
+
+<div class="st-shell">
+  <!-- Mobile Sidebar Backdrop -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop" style="position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:95;display:none;"></div>
+
+  <!-- الشريط الجانبي للطالب (Student Sidebar) -->
+  <aside class="st-sidebar" id="studentSidebar">
+    <div class="st-sidebar-header">
+      <div class="st-brand-logo">🩺</div>
+      <div class="st-brand-title">
+        <strong>Edu Nursing</strong>
+        <small data-i18n="portal_title">بوابة الطالب الطبية</small>
+      </div>
+    </div>
+
+    <nav class="st-nav">
+      <div class="st-nav-label" data-i18n="sidebar_group_main">الرئيسية والملخص</div>
+      <button type="button" class="st-nav-item active" data-tab="overview">
+        <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+        <span class="st-item-text" data-i18n="nav_overview">الرئيسية والملخص</span>
+      </button>
+
+      <div class="st-nav-label" data-i18n="sidebar_group_edu">التعليم والمسارات</div>
+      <button type="button" class="st-nav-item" data-tab="enrolled-courses">
+        <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span class="st-item-text" data-i18n="nav_my_courses">كورساتي المسجل بها</span>
+        <span class="st-nav-badge" id="sidebarEnrolledCount">0</span>
+      </button>
+
+      <button type="button" class="st-nav-item" data-tab="explore-courses">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span class="st-item-text" data-i18n="nav_explore">تصفح الكورسات المتاحة</span>
+      </button>
+
+      <button type="button" class="st-nav-item" data-tab="meetings">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span class="st-item-text" data-i18n="nav_meetings">محاضرات Zoom المباشرة</span>
+      </button>
+
+      <div class="st-nav-label" data-i18n="sidebar_group_eval">التقييم والشهادات</div>
+      <button type="button" class="st-nav-item" data-tab="quizzes">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <span class="st-item-text" data-i18n="nav_quizzes">الاختبارات السريرية</span>
+      </button>
+
+      <button type="button" class="st-nav-item" data-tab="grades">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span class="st-item-text" data-i18n="nav_grades">النتائج وسجل الدرجات</span>
+      </button>
+
+      <button type="button" class="st-nav-item" data-tab="notes">
+        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        <span class="st-item-text" data-i18n="nav_notes">المذكرات والمراجع PDF</span>
+      </button>
+
+      <button type="button" class="st-nav-item" data-tab="certificates">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+        <span class="st-item-text" data-i18n="nav_certificates">الشهادات المعتمدة</span>
+      </button>
+
+      <div class="st-nav-label" data-i18n="sidebar_group_fin">المالية والدعم</div>
+      <button type="button" class="st-nav-item" data-tab="orders">
+        <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        <span class="st-item-text" data-i18n="nav_orders">الطلبات والمدفوعات</span>
+      </button>
+
+      <button type="button" class="st-nav-item" data-tab="support">
+        <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        <span class="st-item-text" data-i18n="nav_support">الدعم الفني والمساعدة</span>
+      </button>
+
+      <button type="button" class="st-nav-item" data-tab="profile">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg>
+        <span class="st-item-text" data-i18n="nav_profile">الملف الشخصي والبطاقة</span>
+      </button>
+    </nav>
+
+    <div class="st-sidebar-footer">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--st-emerald-500);display:inline-block;"></span>
+        <span data-i18n="sidebar_status">حساب طالب معتمد ونشط</span>
+      </div>
+      <div style="font-size:11px;color:var(--text-muted);">Edu Nursing LMS  —  v2.8</div>
+    </div>
+  </aside>
+
+  <!-- مساحة العمل والمحتوى (Student Main) -->
+  <div class="st-main">
+
+    <!-- الشريط العلوي الاحترافي (Topbar) -->
+    <header class="st-topbar">
+      <div class="st-topbar-start">
+        <button type="button" class="st-menu-btn" id="menuToggleBtn" aria-label="قائمة الموبايل">☰</button>
+        <div class="st-topbar-breadcrumb">
+          <span data-i18n="breadcrumb_root">بوابة الطالب</span>
+          <span>/</span>
+          <span class="current" id="breadcrumbCurrent" data-i18n="nav_overview">الرئيسية والملخص</span>
+        </div>
+      </div>
+
+      <!-- شريط البحث الشامل بنمط لوحة المحاضر (Ctrl+K) -->
+      <div class="topbar-search" id="topbarSearch">
+        <div class="search-input-wrap">
+          <span class="search-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </span>
+          <input type="search" id="globalSearchInput" placeholder="بحث شامل في الكورسات، المحاضرات، المراجع... (Ctrl+K)" autocomplete="off">
+          <kbd class="search-kbd">Ctrl K</kbd>
+        </div>
+
+        <div class="search-dropdown" id="searchDropdown" hidden>
+          <div class="search-quick-links">
+            <div class="search-group-title" data-i18n="search_quick_title">الأقسام السريعة</div>
+            <button type="button" class="search-item" data-search-tab="overview">
+              <span>📊 <span data-i18n="nav_overview">الرئيسية والملخص</span></span>
+              <small>Enter</small>
+            </button>
+            <button type="button" class="search-item" data-search-tab="enrolled-courses">
+              <span>📚 <span data-i18n="nav_my_courses">كورساتي المسجل بها</span></span>
+              <small>→</small>
+            </button>
+            <button type="button" class="search-item" data-search-tab="explore-courses">
+              <span>🛒 <span data-i18n="nav_explore">تصفح الكورسات المتاحة</span></span>
+              <small>→</small>
+            </button>
+            <button type="button" class="search-item" data-search-tab="meetings">
+              <span>📡 <span data-i18n="nav_meetings">محاضرات Zoom المباشرة</span></span>
+              <small>→</small>
+            </button>
+            <button type="button" class="search-item" data-search-tab="quizzes">
+              <span>📝 <span data-i18n="nav_quizzes">الاختبارات السريرية</span></span>
+              <small>→</small>
+            </button>
+            <button type="button" class="search-item" data-search-tab="notes">
+              <span>📖 <span data-i18n="nav_notes">المذكرات والمراجع PDF</span></span>
+              <small>→</small>
+            </button>
+            <button type="button" class="search-item" data-search-tab="certificates">
+              <span>📜 <span data-i18n="nav_certificates">الشهادات المعتمدة</span></span>
+              <small>→</small>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="st-topbar-end">
+        <!-- زر تحديث البيانات المباشر -->
+        <button id="refreshBtn" class="topbar-refresh-btn" type="button" title="تحديث البيانات">
+          <span data-i18n="refresh_btn">تحديث البيانات</span>
+          <span>↻</span>
+        </button>
+
+        <!-- زر البطاقة الجامعية وكود الـ QR -->
+        <button type="button" class="st-btn st-btn-sm st-btn-outline" onclick="openModal('qrBadgeModal')" title="عرض بطاقة الطالب الجامعية وكود الـ QR">
+          <span data-i18n="my_badge">بطاقتي الطبية 🪪</span>
+        </button>
+
+        <!-- مبدل الوضع الليلي المماثل للمحاضر -->
+        <button type="button" class="st-icon-btn" id="themeToggleBtn" title="تبديل المظهر (ليلي / نهاري)">
+          <svg id="themeMoonIcon" viewBox="0 0 24 24" style="width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg id="themeSunIcon" viewBox="0 0 24 24" hidden style="width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+
+        <!-- مبدل اللغة الاحترافي -->
+        <button type="button" class="st-icon-btn" id="langToggleBtn" title="تبديل اللغة (English / العربية)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+          <span id="langToggleLabel" style="font-size:12px;font-weight:800;margin-inline-start:4px;">EN</span>
+        </button>
+
+        <!-- الإشعارات والتنبيهات -->
+        <div style="position:relative;">
+          <button type="button" class="st-icon-btn" onclick="openNotificationsModal()" title="الإشعارات والتنبيهات">
+            <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="st-notif-dot" id="notifBadge" hidden></span>
+          </button>
+        </div>
+
+        <!-- معلومات الطالب السريعة -->
+        <div class="st-user-chip" onclick="switchTab('profile')">
+          <div class="st-user-avatar" id="topAvatarCircle">ط</div>
+          <div style="display:flex;flex-direction:column;text-align:start;line-height:1.2;">
+            <span class="st-user-name" id="topStudentName">طالب الأكاديمية</span>
+            <small style="font-size:10.5px;color:var(--text-muted);" data-i18n="role_student">طالب معتمد</small>
+          </div>
+        </div>
+
+        <!-- زر تسجيل الخروج -->
+        <button type="button" class="st-btn st-btn-sm st-btn-outline" id="logoutBtn" style="color:var(--st-danger);border-color:rgba(239,68,68,0.2);" data-i18n="logout_btn">
+          تسجيل الخروج
+        </button>
+      </div>
+    </header>
+
+    <!-- منطقة المحتوى الرئيسية -->
+    <main class="st-content">
+      <div id="globalAlert" class="st-card" style="padding:14px 20px;background:rgba(13,148,136,0.12);color:var(--st-teal-600);border-color:rgba(13,148,136,0.3);font-weight:700;" hidden></div>
+
+      <!-- ===============================================================
+           1) تبويب الرئيسية والملخص (Overview)
+           =============================================================== -->
+      <section id="overviewPanel" class="st-panel">
+        <div class="st-hero">
+          <div>
+            <div class="st-hero-badge" data-i18n="hero_badge">EDU NURSING  —  المسار الأكاديمي السريري</div>
+            <h1 class="st-hero-title"><span data-i18n="hero_welcome_prefix">أهلاً بك يا دكتور</span> <span id="studentWelcomeName">طالب الأكاديمية</span> 🩺</h1>
+            <p class="st-hero-desc" data-i18n="hero_desc">تابع مسيرتك التعليمية السريرية، شاهد أحدث المحاضرات المباشرة، وتدرب على أسئلة امتحانات المزاولة والبورد.</p>
+          </div>
+          <div class="st-hero-actions">
+            <button type="button" class="st-btn st-btn-white" onclick="switchTab('enrolled-courses')" data-i18n="hero_btn_courses">كورساتي ودراستي 📚</button>
+            <button type="button" class="st-btn st-btn-outline" onclick="openModal('qrBadgeModal')" style="color:#fff;border-color:rgba(255,255,255,0.4);" data-i18n="hero_btn_id">بطاقتي والـ QR 🪪</button>
+          </div>
+        </div>
+
+        <!-- بطاقات الإحصاءات السريعة -->
+        <div class="st-stats-grid">
+          <div class="st-stat-card" onclick="switchTab('enrolled-courses')" style="cursor:pointer;" title="انقر لعرض كورساتك">
+            <div class="st-stat-header">
+              <span class="st-stat-label" data-i18n="kpi_enrolled">الكورسات المسجل بها</span>
+              <div class="st-stat-icon">📚</div>
+            </div>
+            <div class="st-stat-value" id="statEnrolledCount">0</div>
+            <div class="st-stat-sub" data-i18n="kpi_enrolled_sub">دبلومات ومسارات مفعلة ↗</div>
+          </div>
+
+          <div class="st-stat-card" onclick="switchTab('certificates')" style="cursor:pointer;" title="انقر لعرض شهاداتك">
+            <div class="st-stat-header">
+              <span class="st-stat-label" data-i18n="kpi_certs">الشهادات المعتمدة</span>
+              <div class="st-stat-icon">📜</div>
+            </div>
+            <div class="st-stat-value" id="statCertCount">0</div>
+            <div class="st-stat-sub" data-i18n="kpi_certs_sub">شهادة موثقة بكود تحقق ↗</div>
+          </div>
+
+          <div class="st-stat-card" onclick="switchTab('quizzes')" style="cursor:pointer;" title="انقر لعرض الاختبارات">
+            <div class="st-stat-header">
+              <span class="st-stat-label" data-i18n="kpi_quizzes">الاختبارات السريرية</span>
+              <div class="st-stat-icon">📝</div>
+            </div>
+            <div class="st-stat-value" id="statQuizCount">0</div>
+            <div class="st-stat-sub" data-i18n="kpi_quizzes_sub">اختبار متاح للتقييم ↗</div>
+          </div>
+
+          <div class="st-stat-card" onclick="switchTab('meetings')" style="cursor:pointer;" title="انقر لعرض جدول زوم">
+            <div class="st-stat-header">
+              <span class="st-stat-label" data-i18n="kpi_meetings">محاضرات زوم القادمة</span>
+              <div class="st-stat-icon">📡</div>
+            </div>
+            <div class="st-stat-value" id="statMeetingsCount">0</div>
+            <div class="st-stat-sub" data-i18n="kpi_meetings_sub">جلسة تفاعلية مباشرة ↗</div>
+          </div>
+        </div>
+
+        <!-- متابعة التعلم + المحاضرة القادمة -->
+        <div class="st-two-col">
+          <div class="st-card">
+            <div class="st-card-head">
+              <div class="st-card-title">
+                <h2 data-i18n="continue_title">متابعة التعلم السريري ▶</h2>
+                <p data-i18n="continue_desc">استكمل تدريبك من آخر درس توقفت عنده بنقرة واحدة</p>
+              </div>
+            </div>
+            <div style="padding:24px;" id="quickContinueBox">
+              <div style="color:var(--text-muted);text-align:center;">جارٍ التحميل...</div>
+            </div>
+          </div>
+
+          <div class="st-card">
+            <div class="st-card-head">
+              <div class="st-card-title">
+                <h2 data-i18n="next_zoom_title">أقرب جلسة تفاعلية زوم 📡</h2>
+                <p data-i18n="next_zoom_desc">بث مباشر لمناقشة الحالات السريرية مع الدكتور</p>
+              </div>
+            </div>
+            <div style="padding:24px;" id="nextLectureBox">
+              <div style="color:var(--text-muted);text-align:center;">جارٍ التحميل...</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           2) تبويب كورساتي المسجل بها (My Enrolled Courses)
+           =============================================================== -->
+      <section id="enrolled-coursesPanel" class="st-panel" hidden>
+        <div class="st-card">
+          <div class="st-card-head">
+            <div class="st-card-title">
+              <h2 data-i18n="enrolled_tab_title">كورساتي ودراستي السريرية 📚</h2>
+              <p data-i18n="enrolled_tab_desc">الكورسات والدبلومات المسجل بها رسمياً مع متابعة نسبة إنجازك لكل مسار</p>
+            </div>
+          </div>
+          <div style="padding:24px;">
+            <div class="st-course-grid" id="enrolledCoursesGrid">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           3) تبويب الكورسات المتاحة للشراء (Explore & Purchase)
+           =============================================================== -->
+      <section id="explore-coursesPanel" class="st-panel" hidden>
+        <div class="st-card">
+          <div class="st-card-head">
+            <div class="st-card-title">
+              <h2 data-i18n="explore_tab_title">الكورسات والدبلومات المتاحة للشراء 🛒</h2>
+              <p data-i18n="explore_tab_desc">طوّر مهاراتك الطبية واشترك في الدبلومات المعتمدة بإشراف د. خالد عبد الناصر</p>
+            </div>
+          </div>
+          <div style="padding:24px;">
+            <div class="st-course-grid" id="availableCoursesGrid">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           4) جدول المحاضرات المباشرة Zoom (Meetings)
+           =============================================================== -->
+      <section id="meetingsPanel" class="st-panel" hidden>
+        <div class="st-card">
+          <div class="st-card-head">
+            <div class="st-card-title">
+              <h2 data-i18n="meetings_tab_title">جدول المحاضرات واللقاءات المباشرة عبر Zoom 📡</h2>
+              <p data-i18n="meetings_tab_desc">مواعيد المحاضرات التفاعلية لكورساتك مع روابط الانضمام المباشر</p>
+            </div>
+          </div>
+          <div class="st-table-wrap">
+            <table class="st-table">
+              <thead>
+                <tr>
+                  <th data-i18n="th_meeting_title">عنوان المحاضرة</th>
+                  <th data-i18n="th_course">الكورس المرتبط</th>
+                  <th data-i18n="th_meeting_date">الموعد والتاريخ</th>
+                  <th data-i18n="th_status">الحالة</th>
+                  <th data-i18n="th_join">الانضمام للبث</th>
+                </tr>
+              </thead>
+              <tbody id="meetingsTbody">
+                <tr><td colspan="5" style="text-align:center;padding:24px;">جارٍ تحميل المحاضرات...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           5) الاختبارات السريرية (Quizzes)
+           =============================================================== -->
+      <section id="quizzesPanel" class="st-panel" hidden>
+        <div class="st-card">
+          <div class="st-card-head">
+            <div class="st-card-title">
+              <h2 data-i18n="quizzes_tab_title">الاختبارات والتقييم السريري 📝</h2>
+              <p data-i18n="quizzes_tab_desc">اختبر معلوماتك وتدرب على محاكاة امتحانات مزاولة المهنة والبورد</p>
+            </div>
+          </div>
+          <div class="st-table-wrap">
+            <table class="st-table">
+              <thead>
+                <tr>
+                  <th data-i18n="th_quiz_title">عنوان الاختبار</th>
+                  <th data-i18n="th_course">الكورس</th>
+                  <th data-i18n="th_quiz_questions">عدد الأسئلة</th>
+                  <th data-i18n="th_quiz_duration">المدة المقررة</th>
+                  <th data-i18n="th_status">الحالة</th>
+                  <th data-i18n="th_action">تقديم الاختبار</th>
+                </tr>
+              </thead>
+              <tbody id="quizzesTbody">
+                <tr><td colspan="6" style="text-align:center;padding:24px;">جارٍ تحميل الاختبارات...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           6) النتائج وسجل الدرجات (Grades)
+           =============================================================== -->
+      <section id="gradesPanel" class="st-panel" hidden>
+        <div class="st-card">
+          <div class="st-card-head">
+            <div class="st-card-title">
+              <h2 data-i18n="grades_tab_title">النتائج والدرجات وسجل المحاولات 🎯</h2>
+              <p data-i18n="grades_tab_desc">سجل تفصيلي لكافة الاختبارات التي خضتها ودرجاتك ونسبة النجاح</p>
+            </div>
+          </div>
+          <div class="st-table-wrap">
+            <table class="st-table">
+              <thead>
+                <tr>
+                  <th data-i18n="th_quiz_title">عنوان الاختبار</th>
+                  <th data-i18n="th_course">الكورس</th>
+                  <th data-i18n="th_attempt">المحاولة</th>
+                  <th data-i18n="th_grade">الدرجة والنسبة</th>
+                  <th data-i18n="th_result">التقييم النهائي</th>
+                  <th data-i18n="th_date">تاريخ الإرسال</th>
+                  <th data-i18n="th_review_details">التفاصيل</th>
+                </tr>
+              </thead>
+              <tbody id="gradesTbody">
+                <tr><td colspan="6" style="text-align:center;padding:24px;">جارٍ تحميل سجل الدرجات...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           7) المذكرات والمراجع الطبية PDF (Study Notes)
+           =============================================================== -->
+      <section id="notesPanel" class="st-panel" hidden>
+        <div class="st-card">
+          <div class="st-card-head">
+            <div class="st-card-title">
+              <h2 data-i18n="notes_tab_title">المذكرات والمراجع والكتب السريرية 📖</h2>
+              <p data-i18n="notes_tab_desc">كتب ومذكرات وملخصات المحاضرات المعتمدة والمتاحة لك للتحميل والقراءة</p>
+            </div>
+          </div>
+          <div style="padding:24px;">
+            <div class="st-course-grid" id="notesGrid">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           8) الشهادات المعتمدة (Certificates)
+           =============================================================== -->
+      <section id="certificatesPanel" class="st-panel" hidden>
+        <div class="st-card">
+          <div class="st-card-head">
+            <div class="st-card-title">
+              <h2 data-i18n="certs_tab_title">الشهادات المستحقة والمعتمدة 📜</h2>
+              <p data-i18n="certs_tab_desc">شهادات إتمام الكورسات والدبلومات الطبية مع كود التوثيق والرقم التعريفي</p>
+            </div>
+          </div>
+          <div style="padding:24px;">
+            <div class="st-course-grid" id="certificatesGrid">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           9) الطلبات والمدفوعات (Orders)
+           =============================================================== -->
+      <section id="ordersPanel" class="st-panel" hidden>
+        <div class="st-card">
+          <div class="st-card-head">
+            <div class="st-card-title">
+              <h2 data-i18n="orders_tab_title">سجل الطلبات والمدفوعات والفواتير 💳</h2>
+              <p data-i18n="orders_tab_desc">متابعة حالة مدفوعاتك (Vodafone Cash / InstaPay) وفواتير الشراء</p>
+            </div>
+          </div>
+          <div class="st-table-wrap">
+            <table class="st-table">
+              <thead>
+                <tr>
+                  <th data-i18n="th_order_num">رقم الطلب</th>
+                  <th data-i18n="th_order_amount">المبلغ الإجمالي</th>
+                  <th data-i18n="th_order_method">وسيلة الدفع</th>
+                  <th data-i18n="th_status">الحالة</th>
+                  <th data-i18n="th_date">تاريخ العملية</th>
+                  <th data-i18n="th_order_receipt">الإيصال</th>
+                </tr>
+              </thead>
+              <tbody id="ordersTbody">
+                <tr><td colspan="6" style="text-align:center;padding:24px;">جارٍ تحميل سجل المدفوعات...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           10) الدعم الفني والمساعدة (Support)
+           =============================================================== -->
+      <section id="supportPanel" class="st-panel" hidden>
+        <div class="st-two-col">
+          <!-- تذاكر الدعم الفني -->
+          <div class="st-card">
+            <div class="st-card-head">
+              <div class="st-card-title">
+                <h2 data-i18n="support_tab_title">تذاكر الدعم الفني الطبي 💬</h2>
+                <p data-i18n="support_tab_desc">متابعة استفساراتك ومشكلاتك مع الفريق التقني والأكاديمي</p>
+              </div>
+              <button type="button" class="st-btn st-btn-sm st-btn-primary" onclick="openNewTicketModal()" data-i18n="support_new_ticket">+ تذكرة جديدة</button>
+            </div>
+            <div class="st-table-wrap">
+              <table class="st-table">
+                <thead>
+                  <tr>
+                    <th data-i18n="th_ticket_num">رقم التذكرة</th>
+                    <th data-i18n="th_ticket_subject">الموضوع</th>
+                    <th data-i18n="th_ticket_cat">التصنيف</th>
+                    <th data-i18n="th_status">الحالة</th>
+                    <th data-i18n="th_date">التاريخ</th>
+                    <th data-i18n="th_action">إجراء</th>
+                  </tr>
+                </thead>
+                <tbody id="ticketsTbody">
+                  <tr><td colspan="6" style="text-align:center;padding:24px;">جارٍ تحميل التذاكر...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- قنوات التواصل المباشر السريعة -->
+          <div class="st-card" style="padding:28px;">
+            <div style="text-align:center;margin-bottom:20px;">
+              <div style="font-size:44px;margin-bottom:8px;">🩺</div>
+              <h3 style="margin:0 0 6px;" data-i18n="support_direct_title">تواصل مباشر مع الدعم الأكاديمي</h3>
+              <p style="color:var(--text-muted);font-size:13px;margin:0;" data-i18n="support_direct_desc">نحن بجانبك على مدار 24 ساعة للإجابة عن كل استفسار حول الكورسات والشهادات.</p>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <a href="https://wa.me/201289492477?text=مرحباً%20بفريق%20دعم%20Edu%20Nursing" target="_blank" class="st-btn st-btn-primary" style="background:#25D366;border-color:#25D366;" data-i18n="support_whatsapp">
+                💬 محادثة واتساب فورية: 01289492477
+              </a>
+
+              <a href="tel:01289492477" class="st-btn st-btn-outline" data-i18n="support_call">
+                📞 اتصال هاتفي: 01289492477
+              </a>
+
+              <div style="background:var(--bg-app);border-radius:14px;padding:16px;margin-top:10px;font-size:13px;">
+                <strong data-i18n="support_pay_numbers">أرقام تحويل الرسوم والاشتراكات:</strong>
+                <div style="margin-top:6px;display:flex;justify-content:space-between;">
+                  <span>Vodafone Cash:</span>
+                  <code style="font-weight:800;color:var(--st-teal-600);">01061709999</code>
+                </div>
+                <div style="margin-top:4px;display:flex;justify-content:space-between;">
+                  <span>InstaPay:</span>
+                  <code style="font-weight:800;color:var(--st-teal-600);">01061709999</code>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           11) الملف الشخصي والبطاقة الجامعية (Profile)
+           =============================================================== -->
+      <section id="profilePanel" class="st-panel" hidden>
+        <div class="st-two-col">
+          <!-- البيانات الشخصية -->
+          <div class="st-card" style="padding:26px;">
+            <div class="st-card-title" style="margin-bottom:20px;">
+              <h2 data-i18n="prof_title">بيانات الطالب الأكاديمية 👤</h2>
+              <p data-i18n="prof_desc">الاسم الكامل، رقم الهاتف، والبيانات المسجلة في الشهادات</p>
+            </div>
+
+            <!-- رفع وتعديل الصورة الشخصية للطالب -->
+            <div style="display:flex;align-items:center;gap:18px;margin-bottom:24px;padding:16px;background:var(--bg-app);border-radius:14px;">
+              <div id="profAvatarPreview" style="width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,var(--st-teal-600),var(--st-navy-900));color:#fff;display:grid;place-items:center;font-size:26px;font-weight:800;overflow:hidden;flex-shrink:0;box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+                ط
+              </div>
+              <div>
+                <div style="font-weight:800;font-size:14px;margin-bottom:4px;" data-i18n="prof_avatar_title">الصورة الشخصية للحساب</div>
+                <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px;" data-i18n="prof_avatar_sub">تظهر الصورة في شهاداتك وبطاقتك الأكاديمية</div>
+                <input type="file" id="stuAvatarInput" accept="image/png,image/jpeg,image/webp" style="display:none;">
+                <button type="button" class="st-btn st-btn-sm st-btn-outline" id="btnUploadStuAvatar" onclick="document.getElementById('stuAvatarInput').click()" data-i18n="prof_upload_btn">
+                  📷 رفع وتغيير الصورة
+                </button>
+              </div>
+            </div>
+
+            <form id="profileForm">
+              <div style="margin-bottom:14px;">
+                <label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px;" data-i18n="prof_lbl_name">الاسم الكامل (كما يظهر في الشهادات)</label>
+                <input type="text" id="profFullName" required style="width:100%;padding:10px 14px;border-radius:10px;border:1px solid var(--border-color);background:var(--bg-surface);color:inherit;font-family:inherit;">
+              </div>
+              <div style="margin-bottom:14px;">
+                <label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px;" data-i18n="prof_lbl_email">البريد الإلكتروني (محمي)</label>
+                <input type="email" id="profEmail" disabled style="width:100%;padding:10px 14px;border-radius:10px;border:1px solid var(--border-color);background:rgba(0,0,0,0.04);color:inherit;font-family:inherit;">
+              </div>
+              <div style="margin-bottom:18px;">
+                <label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px;" data-i18n="prof_lbl_phone">رقم الهاتف / الواتساب</label>
+                <input type="tel" id="profPhone" placeholder="01xxxxxxxxx" style="width:100%;padding:10px 14px;border-radius:10px;border:1px solid var(--border-color);background:var(--bg-surface);color:inherit;font-family:inherit;">
+              </div>
+              <button type="submit" class="st-btn st-btn-primary" style="width:100%;" data-i18n="prof_btn_save">حفظ تعديلات الملف الشخصي</button>
+            </form>
+
+            <hr style="border:none;border-top:1px solid var(--border-color);margin:24px 0;">
+
+            <div class="st-card-title" style="margin-bottom:16px;">
+              <h2 data-i18n="prof_pwd_title">تغيير كلمة المرور 🔒</h2>
+            </div>
+            <form id="passwordForm">
+              <div style="margin-bottom:12px;">
+                <label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px;" data-i18n="prof_lbl_oldpwd">كلمة المرور الحالية</label>
+                <input type="password" id="oldPassword" required style="width:100%;padding:10px 14px;border-radius:10px;border:1px solid var(--border-color);background:var(--bg-surface);color:inherit;font-family:inherit;">
+              </div>
+              <div style="margin-bottom:12px;">
+                <label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px;" data-i18n="prof_lbl_newpwd">كلمة المرور الجديدة</label>
+                <input type="password" id="newPassword" required minlength="8" style="width:100%;padding:10px 14px;border-radius:10px;border:1px solid var(--border-color);background:var(--bg-surface);color:inherit;font-family:inherit;">
+              </div>
+              <div style="margin-bottom:16px;">
+                <label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px;" data-i18n="prof_lbl_confirmpwd">تأكيد كلمة المرور الجديدة</label>
+                <input type="password" id="confirmPassword" required minlength="8" style="width:100%;padding:10px 14px;border-radius:10px;border:1px solid var(--border-color);background:var(--bg-surface);color:inherit;font-family:inherit;">
+              </div>
+              <button type="submit" class="st-btn st-btn-primary" style="width:100%;" data-i18n="prof_btn_updatepwd">تحديث كلمة المرور</button>
+            </form>
+          </div>
+
+          <!-- البطاقة الجامعية وكود الـ QR -->
+          <div class="st-card st-qr-badge-card" style="background:linear-gradient(135deg,var(--bg-surface),rgba(13,148,136,0.06));border:2px solid rgba(13,148,136,0.3);">
+            <div class="st-badge st-badge-teal" style="margin-bottom:10px;" data-i18n="prof_id_badge">بطاقة الهوية الأكاديمية الطبية</div>
+            <h3 style="font-size:19px;font-weight:900;margin:0 0 6px;">Edu Nursing Student ID</h3>
+            <p style="color:var(--text-muted);font-size:12.5px;max-width:320px;margin:0 auto 16px;" data-i18n="prof_id_sub">
+              رمز الاستجابة السريعة (QR) الخاص بك للتحقق السريري، حضور المحاضرات، وتوثيق الساعات المعتمدة.
+            </p>
+
+            <div class="st-qr-box">
+              <img id="studentQrImage" src="" alt="Student QR Code">
+            </div>
+
+            <div style="font-family:monospace;font-size:13px;font-weight:800;color:var(--st-teal-600);background:var(--bg-app);padding:8px 14px;border-radius:8px;display:inline-block;" id="studentQrTokenText">
+              EDU-STU-VERIFIED
+            </div>
+
+            <div style="margin-top:20px;font-size:12px;color:var(--text-muted);">
+              إشراف: <strong>د. خالد عبد الناصر محمد المرسي</strong><br>
+              محاضر دولي معتمد – Certified International Lecturer
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+
+<!-- ===========================================================================
+     المودالات التفاعلية للطالب (Modals)
+     =========================================================================== -->
+
+<!-- 1. مودال كود الـ QR وبطاقة الطالب -->
+<div class="st-modal-overlay" id="qrBadgeModal" hidden>
+  <div class="st-modal-card st-qr-badge-card" style="max-width:440px;">
+    <div style="display:flex;justify-content:flex-end;">
+      <button type="button" class="st-btn st-btn-sm st-btn-outline" onclick="closeModal('qrBadgeModal')" data-i18n="modal_close">✕ إغلاق</button>
+    </div>
+    <div style="font-size:36px;margin:8px 0;">🩺</div>
+    <h2 style="font-size:20px;font-weight:900;margin:0 0 6px;">Edu Nursing Academy</h2>
+    <div class="st-badge st-badge-teal" style="margin-bottom:12px;" data-i18n="modal_qr_sub">بطاقة التحقق السريري الرقمية</div>
+    <div class="st-qr-box">
+      <img id="modalQrImage" src="" alt="Student QR">
+    </div>
+    <div style="font-family:monospace;font-weight:800;font-size:13px;color:var(--st-teal-600);margin:8px 0;" id="modalQrToken">
+      EDU-STU-QR
+    </div>
+    <p style="font-size:12px;color:var(--text-muted);margin:0 0 14px;" data-i18n="modal_qr_note">أظهر هذا الكود للمشرف السريري لإثبات حضورك الساعات المعتمدة.</p>
+    <div style="display:flex;gap:8px;justify-content:center;">
+      <button type="button" class="st-btn st-btn-sm st-btn-primary" onclick="window.print()" data-i18n="modal_qr_print">طباعة البطاقة 🖨️</button>
+      <button type="button" class="st-btn st-btn-sm st-btn-outline" onclick="closeModal('qrBadgeModal')" data-i18n="modal_close">إغلاق</button>
+    </div>
+  </div>
+</div>
+
+<!-- 2. مودال تقديم الاختبار السريري (Quiz Taking Modal) -->
+<div class="st-modal-overlay" id="quizModal" hidden>
+  <div class="st-modal-card st-exam-card" style="max-width:940px;">
+    <div class="st-card-head">
+      <div>
+        <h2 id="quizModalTitle" style="margin:0;font-size:18px;" data-i18n="modal_quiz_title">تقديم الاختبار السريري</h2>
+        <span class="st-badge st-badge-teal" style="margin-top:4px;" data-i18n="modal_quiz_note">يرجى الإجابة عن كافة الأسئلة قبل الضغط على تسليم</span>
+      </div>
+      <button type="button" class="st-btn st-btn-sm st-btn-outline" onclick="closeModal('quizModal')" data-i18n="modal_cancel">✕ إلغاء</button>
+    </div>
+    <div class="st-exam-runtime">
+      <div class="st-exam-runtime-top"><span id="examQuestionProgress">السؤال 1 من 1</span><span class="st-exam-timer" id="examCountdown" hidden>--:--</span><span id="examSaveStatus" role="status">تم الحفظ تلقائيًا</span></div>
+      <div class="st-exam-progress"><span id="examProgressFill"></span></div>
+      <nav class="st-exam-question-nav" id="examQuestionNav" aria-label="التنقل بين الأسئلة"></nav>
+    </div>
+    <form id="quizActiveForm" onsubmit="submitActiveQuiz(event)" style="padding:24px;">
+      <input type="hidden" id="quizModalId" value="0">
+      <div id="quizModalBody">
+        <!-- questions injected via JS -->
+      </div>
+      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:20px;padding-top:16px;border-top:1px solid var(--border-color);">
+        <button type="button" class="st-btn st-btn-outline" id="examPreviousQuestion">السابق</button>
+        <button type="button" class="st-btn st-btn-outline" id="examNextQuestion">التالي</button>
+        <button type="button" class="st-btn st-btn-outline" onclick="closeModal('quizModal')" data-i18n="modal_cancel">إلغاء</button>
+        <button type="submit" id="btnSubmitQuiz" class="st-btn st-btn-primary" data-i18n="modal_quiz_submit">تسليم الإجابات واعتماد النتيجة 📝</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="st-modal-overlay" id="studentResultDetailModal" hidden>
+  <div class="st-modal-card assessment-student-result-modal"><div class="st-card-head"><div><h2 id="studentResultDetailTitle">تفاصيل النتيجة</h2><p id="studentResultDetailMeta"></p></div><button class="st-btn st-btn-sm st-btn-outline" type="button" data-close-student-result>✕</button></div><div id="studentResultDetailBody" class="assessment-student-result-body"></div></div>
+</div>
+
+<!-- 3. مودال عرض الشهادة المعتمدة -->
+<div class="st-modal-overlay" id="certificateModal" hidden>
+  <div class="st-modal-card" style="max-width:680px;text-align:center;padding:34px;background:linear-gradient(135deg,var(--bg-surface),rgba(212,175,55,0.08));border:2px solid var(--st-gold-400);">
+    <div style="font-size:44px;margin-bottom:8px;">🏆</div>
+    <div class="st-badge st-badge-gold" style="margin-bottom:12px;" data-i18n="modal_cert_badge">شهادة إتمام معتمدة رسمياً</div>
+    <h2 style="font-size:24px;font-weight:900;margin:0 0 8px;color:var(--text-main);" id="certModalTitle">اسم الكورس التدريبي</h2>
+    <p style="font-size:15px;color:var(--text-muted);margin:0 0 16px;">
+      <span data-i18n="modal_cert_text1">تشهد أكاديمية Edu Nursing بأن المتدرب/ـة:</span><br>
+      <strong style="font-size:20px;color:var(--st-navy-900);display:block;margin:6px 0;" id="certModalStudent">اسم الطالب</strong>
+      <span data-i18n="modal_cert_text2">قد أتم بنجاح كافة الساعات التدريبية والاختبارات السريرية المقررة.</span>
+    </p>
+    <div style="margin:12px auto;">
+      <img id="certModalQr" src="" alt="Certificate QR" style="width:105px;height:105px;border-radius:10px;border:1px solid var(--border-color);padding:4px;background:#fff;display:inline-block;">
+    </div>
+    <div style="background:var(--bg-app);border-radius:12px;padding:12px 18px;display:inline-block;margin-bottom:20px;font-size:13px;">
+      <span data-i18n="modal_cert_num_lbl">رقم التوثيق المعتمد:</span> <code style="font-weight:800;color:var(--st-teal-600);" id="certModalNumber">CERT-XXX</code>  —  <span data-i18n="modal_cert_date_lbl">تاريخ الإصدار:</span> <span id="certModalDate">2026-11-03</span>
+    </div>
+    <div>
+      <button type="button" class="st-btn st-btn-primary" onclick="window.print()" data-i18n="modal_cert_print">طباعة الشهادة 🖨️</button>
+      <button type="button" class="st-btn st-btn-outline" onclick="closeModal('certificateModal')" data-i18n="modal_close">إغلاق</button>
+    </div>
+  </div>
+</div>
+
+<!-- 4. مودال الاشتراك والشراء (Checkout Modal) -->
+<div class="st-modal-overlay" id="checkoutModal" hidden>
+  <div class="st-modal-card" style="max-width:540px;padding:28px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div>
+        <h2 style="margin:0;font-size:18px;" data-i18n="modal_checkout_title">تأكيد الاشتراك والطلب 🛒</h2>
+        <p id="checkoutCourseTitle" style="margin:4px 0 0;color:var(--text-muted);font-size:13px;">عنوان الكورس أو المذكرة</p>
+      </div>
+      <button type="button" class="st-btn st-btn-sm st-btn-outline" onclick="closeModal('checkoutModal')" data-i18n="modal_close">✕ إغلاق</button>
+    </div>
+
+    <input type="hidden" id="checkoutCourseId" value="0">
+    <input type="hidden" id="checkoutItemType" value="course">
+
+    <div style="background:var(--bg-app);border-radius:14px;padding:16px;margin-bottom:16px;">
+      <div style="display:flex;justify-content:space-between;font-size:16px;font-weight:800;margin-bottom:10px;">
+        <span data-i18n="modal_checkout_amount">المبلغ المطلوب سداده:</span>
+        <span style="color:var(--st-teal-600);" id="checkoutAmount">0 ج.م</span>
+      </div>
+      <div style="font-size:12.5px;line-height:1.7;">
+        <strong data-i18n="modal_checkout_methods">طرق السداد المعتمدة للأكاديمية:</strong><br>
+        1. فودافون كاش (Vodafone Cash): <code id="checkoutVodafone" style="font-weight:800;color:var(--st-teal-600);">01061709999</code><br>
+        2. إنستاباي (InstaPay): <code id="checkoutInstaPay" style="font-weight:800;color:var(--st-teal-600);">01061709999</code>
+      </div>
+    </div>
+
+    <form id="checkoutOrderForm">
+      <div style="margin-bottom:12px;">
+        <label style="display:block;font-size:12.5px;font-weight:700;margin-bottom:4px;" data-i18n="modal_checkout_method">طريقة الدفع المستخدمة</label>
+        <select id="checkoutPaymentMethod" style="width:100%;padding:9px 12px;border-radius:10px;border:1px solid var(--border-color);background:var(--bg-surface);color:inherit;font-family:inherit;">
+          <option value="vodafone_cash">فودافون كاش (Vodafone Cash)</option>
+          <option value="instapay">إنستاباي (InstaPay)</option>
+          <option value="card">بطاقة بنكية / فيزا</option>
+          <option value="manual_transfer">تحويل بنكي / فوري</option>
+        </select>
+      </div>
+
+      <div style="margin-bottom:12px;">
+        <label style="display:block;font-size:12.5px;font-weight:700;margin-bottom:4px;" data-i18n="modal_checkout_tx">الرقم المحوّل منه أو كود المعاملة</label>
+        <input type="text" id="checkoutTxRef" placeholder="رقم المحفظة أو مرجع التحويل..." style="width:100%;padding:9px 12px;border-radius:10px;border:1px solid var(--border-color);background:var(--bg-surface);color:inherit;font-family:inherit;">
+      </div>
+
+      <div style="margin-bottom:14px;">
+        <label style="display:block;font-size:12.5px;font-weight:700;margin-bottom:4px;" data-i18n="modal_checkout_receipt">صورة إيصال التحويل (اختياري)</label>
+        <input type="file" id="checkoutReceiptFile" accept="image/*" style="width:100%;padding:8px;border-radius:10px;border:1px dashed var(--border-color);background:var(--bg-surface);color:inherit;font-size:12px;">
+      </div>
+
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px;">
+        <a id="checkoutWhatsappBtn" href="https://wa.me/201289492477?text=مرحباً%20أريد%20تأكيد%20اشتراكي" target="_blank" class="st-btn st-btn-outline" style="color:#25D366;border-color:#25D366;" data-i18n="modal_checkout_wa">
+          إرسال عبر واتساب 💬
+        </a>
+        <button type="submit" id="btnSubmitOrder" class="st-btn st-btn-primary" data-i18n="modal_checkout_submit">
+          تأكيد وتسجيل الطلب 💳
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 5. مودال فتح تذكرة دعم فني جديدة -->
+<div class="st-modal-overlay" id="ticketModal" hidden>
+  <div class="st-modal-card" style="max-width:540px;padding:24px;">
+    <div class="st-card-title" style="margin-bottom:16px;">
+      <h2 data-i18n="modal_ticket_title">فتح تذكرة دعم فني جديدة 💬</h2>
+      <p data-i18n="modal_ticket_sub">اكتب استفسارك وسيقوم المشرف السريري بالرد عليك</p>
+    </div>
+    <form id="newTicketForm">
+      <div style="margin-bottom:12px;">
+        <label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px;" data-i18n="modal_ticket_subject_lbl">موضوع التذكرة</label>
+        <input type="text" id="ticketSubject" required placeholder="مثال: استفسار عن موعد محاضرة زوم" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--bg-surface);color:inherit;font-family:inherit;">
+      </div>
+      <div style="margin-bottom:12px;">
+        <label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px;" data-i18n="modal_ticket_cat_lbl">التصنيف</label>
+        <select id="ticketCategory" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--bg-surface);color:inherit;font-family:inherit;">
+          <option value="course">استفسار أكاديمي حول كورس</option>
+          <option value="technical">مشكلة تقنية في تشغيل الفيديو</option>
+          <option value="payment">سداد الرسوم والاشتراكات</option>
+          <option value="account">إعدادات الحساب</option>
+          <option value="other">استفسار عام</option>
+        </select>
+      </div>
+      <div style="margin-bottom:18px;">
+        <label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px;" data-i18n="modal_ticket_desc_lbl">تفاصيل الرسالة</label>
+        <textarea id="ticketDesc" rows="4" required placeholder="اشرح المشكلة بالتفصيل..." style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border-color);background:var(--bg-surface);color:inherit;font-family:inherit;"></textarea>
+      </div>
+      <div style="display:flex;justify-content:flex-end;gap:10px;">
+        <button type="button" class="st-btn st-btn-outline" onclick="closeModal('ticketModal')" data-i18n="modal_cancel">إلغاء</button>
+        <button type="submit" class="st-btn st-btn-primary" data-i18n="modal_ticket_send">إرسال التذكرة 🚀</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 6. مودال عرض محادثة التذكرة والرد -->
+<div class="st-modal-overlay" id="ticketViewModal" hidden>
+  <div class="st-modal-card" style="max-width:620px;padding:24px;">
+    <div class="st-card-head" style="padding:0 0 14px;margin-bottom:14px;">
+      <div>
+        <h3 id="msgTicketSubject" style="margin:0;font-size:16px;">موضوع التذكرة</h3>
+        <span class="st-badge st-badge-teal" id="msgTicketNumber">TCK-000</span>
+      </div>
+      <button type="button" class="st-btn st-btn-sm st-btn-outline" onclick="closeModal('ticketViewModal')" data-i18n="modal_close">✕ إغلاق</button>
+    </div>
+    <input type="hidden" id="activeTicketId" value="0">
+    <div id="ticketMessagesList" style="max-height:360px;overflow-y:auto;margin-bottom:16px;">
+      <!-- messages injected via JS -->
+    </div>
+    <form onsubmit="sendTicketReply(event)" style="display:flex;gap:10px;">
+      <input type="text" id="replyMessageText" placeholder="اكتب ردك هنا..." required style="flex:1;padding:10px 14px;border-radius:10px;border:1px solid var(--border-color);background:var(--bg-surface);color:inherit;font-family:inherit;">
+      <button type="submit" class="st-btn st-btn-primary" data-i18n="modal_reply_send">إرسال</button>
+    </form>
+  </div>
+</div>
+
+<!-- 7. مودال الإشعارات -->
+<div class="st-modal-overlay" id="notificationsModal" hidden>
+  <div class="st-modal-card" style="max-width:500px;">
+    <div class="st-card-head">
+      <h3 style="margin:0;font-size:16px;" data-i18n="modal_notifs_title">الإشعارات والتنبيهات 🔔</h3>
+      <button type="button" class="st-btn st-btn-sm st-btn-outline" onclick="closeModal('notificationsModal')" data-i18n="modal_close">✕ إغلاق</button>
+    </div>
+    <div id="notifList" style="max-height:420px;overflow-y:auto;">
+      <!-- notifs injected via JS -->
+    </div>
+  </div>
+</div>
+
+<!-- 8. مودال تقييم الكورس والمحاضر -->
+<div class="st-modal-overlay" id="reviewModal" hidden>
+  <div class="st-modal-card" style="max-width:480px;padding:26px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div>
+        <h2 style="margin:0;font-size:18px;" data-i18n="modal_review_title">تقييم الكورس والمحاضر ⭐</h2>
+        <p id="reviewCourseTitle" style="margin:4px 0 0;color:var(--text-muted);font-size:13px;">اسم الكورس</p>
+      </div>
+      <button type="button" class="st-btn st-btn-sm st-btn-outline" onclick="closeModal('reviewModal')" data-i18n="modal_close">✕ إغلاق</button>
+    </div>
+    <form id="courseReviewForm">
+      <input type="hidden" id="reviewCourseId" value="0">
+      <div style="margin-bottom:16px;text-align:center;">
+        <label style="display:block;font-size:13px;font-weight:700;margin-bottom:8px;" data-i18n="modal_review_rating_lbl">درجة التقييم</label>
+        <div id="starRatingBox" style="font-size:30px;cursor:pointer;display:flex;justify-content:center;gap:6px;direction:ltr;">
+          <span class="star-btn" data-val="1">★</span>
+          <span class="star-btn" data-val="2">★</span>
+          <span class="star-btn" data-val="3">★</span>
+          <span class="star-btn" data-val="4">★</span>
+          <span class="star-btn" data-val="5">★</span>
+        </div>
+        <input type="hidden" id="reviewRatingInput" value="5">
+      </div>
+      <div style="margin-bottom:18px;">
+        <label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px;" data-i18n="modal_review_comment_lbl">رأيك وتجربتك في الكورس والتدريب السريري</label>
+        <textarea id="reviewCommentText" rows="3" required maxlength="2000" placeholder="اكتب ملاحظاتك وتقييمك للشرح والاستفادة السريرية..." style="width:100%;padding:10px 14px;border-radius:10px;border:1px solid var(--border-color);background:var(--bg-surface);color:inherit;font-family:inherit;"></textarea>
+      </div>
+      <div style="display:flex;gap:10px;justify-content:flex-end;">
+        <button type="button" class="st-btn st-btn-outline" onclick="closeModal('reviewModal')" data-i18n="modal_cancel">إلغاء</button>
+        <button type="submit" id="btnSubmitReview" class="st-btn st-btn-primary" data-i18n="modal_review_submit">حفظ ونشر التقييم ⭐</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 9. مودال تفاصيل الطلب والفاتورة -->
+<div class="st-modal-overlay" id="orderViewModal" hidden>
+  <div class="st-modal-card" style="max-width:540px;padding:26px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div>
+        <h2 style="margin:0;font-size:18px;" data-i18n="modal_order_title">تفاصيل الطلب والفاتورة 📄</h2>
+        <span class="st-badge st-badge-teal" id="modalOrderNumber">ORD-000</span>
+      </div>
+      <button type="button" class="st-btn st-btn-sm st-btn-outline" onclick="closeModal('orderViewModal')" data-i18n="modal_close">✕ إغلاق</button>
+    </div>
+    <div id="modalOrderBody">
+      <!-- Injected via JS -->
+    </div>
+    <div style="display:flex;justify-content:flex-end;margin-top:16px;">
+      <button type="button" class="st-btn st-btn-primary" onclick="closeModal('orderViewModal')" data-i18n="modal_close">إغلاق</button>
+    </div>
+  </div>
+</div>
+
+<button type="button" id="studentAiAssistantButton" class="student-ai-fab" aria-label="افتح مساعد الطالب" title="مساعد الطالب">✨
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2a8.8 8.8 0 0 0-7.4 13.6L3.5 21l4.4-1.1A8.8 8.8 0 1 0 12 3.2Z"/><path d="M8 9.2h8M8 12.2h5.5"/></svg>
+  <span>مساعد الطالب</span>
+</button>
+
+<div class="st-modal-overlay" id="studentAiAssistantModal" hidden>
+  <section class="st-modal-card student-ai-chat" role="dialog" aria-modal="true" aria-labelledby="studentAiAssistantTitle">
+    <header class="student-ai-chat-head"><div><span class="student-ai-chat-icon">✦</span><div><h2 id="studentAiAssistantTitle">مساعدك الدراسي</h2><p>اسأل عن مفاهيم الكورس أو خطط المذاكرة</p></div></div><button type="button" class="st-btn st-btn-sm st-btn-outline" data-close-student-ai aria-label="إغلاق">✕</button></header>
+    <div id="studentAiAssistantMessages" class="student-ai-chat-messages" aria-live="polite"><div class="student-ai-message is-assistant">أهلًا بك! أقدر أساعدك في فهم محتوى دراستك وتنظيم المذاكرة.</div></div>
+    <form id="studentAiAssistantForm" class="student-ai-chat-form"><textarea id="studentAiAssistantInput" rows="2" maxlength="4000" placeholder="اكتب سؤالك الدراسي…" aria-label="اكتب سؤالك الدراسي"></textarea><button type="submit" id="studentAiAssistantSend" class="st-btn st-btn-primary">إرسال</button></form>
+    <p id="studentAiAssistantNotice" class="student-ai-chat-notice">المساعد تعليمي فقط، وغير متاح أثناء الاختبارات.</p>
+  </section>
+</div>
+
+<link rel="stylesheet" href="asset/image-cropper.css?v=20261118-1">
+<script src="asset/js/image-cropper.js?v=20261118-1"></script>
+<script src="asset/js/dashboard-effects.js?v=20261118-1"></script>
+<script src="asset/js/student.js?v=20261120-3"></script>
+<script src="asset/js/assessment-student.js?v=20261119-1"></script>
+<script src="asset/js/student-ai-assistant.js?v=20261122-2"></script>
+<script src="asset/js/medical-theme.js?v=20261120-4" defer></script>
+<script src="asset/js/student-features.js?v=4.0"></script>
+<script src="asset/responsive-tables.js" defer></script>
+<script src="asset/responsive-nav.js" defer></script>
+</body>
+</html>

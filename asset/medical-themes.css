@@ -1,0 +1,65 @@
+/* Royal medical palettes. Accent colors stay balanced in both color modes. */
+:root{
+  --ui-surface:var(--white,var(--bg-surface,#fff));--ui-surface-raised:var(--white,var(--bg-surface,#fff));--ui-surface-soft:var(--slate-50,var(--bg-app,#f8fafc));--ui-text:var(--ink-900,var(--slate-900,var(--text-main,#0f172a)));--ui-muted:var(--slate-500,var(--text-muted,#64748b));--ui-border:var(--line,var(--border-color,#e2e8f0));--surface:var(--ui-surface);
+  --brand-primary:#0f8b8d;--brand-navy:#0b2534;--brand-secondary:#20a88a;--brand-accent:#c7a45c;
+  --teal-600:var(--brand-primary);--teal-500:color-mix(in srgb,var(--brand-primary),white 16%);--teal-400:color-mix(in srgb,var(--brand-primary),white 34%);--teal-50:color-mix(in srgb,var(--brand-primary),white 94%);
+  --navy-900:var(--brand-navy);--navy-950:color-mix(in srgb,var(--brand-navy),black 22%);--navy-800:color-mix(in srgb,var(--brand-navy),white 10%);--navy-700:color-mix(in srgb,var(--brand-navy),white 22%);--navy-600:color-mix(in srgb,var(--brand-navy),white 34%);
+  --teal-700:color-mix(in srgb,var(--brand-primary),black 12%);--teal-100:color-mix(in srgb,var(--brand-primary),white 80%);--success:var(--brand-secondary);--emerald-600:var(--brand-secondary);--emerald-500:color-mix(in srgb,var(--brand-secondary),white 16%);
+  --gold-500:var(--brand-accent);--gold-600:color-mix(in srgb,var(--brand-accent),black 18%);--gold-400:color-mix(in srgb,var(--brand-accent),white 16%);--gold-100:color-mix(in srgb,var(--brand-accent),white 90%);--gold-50:color-mix(in srgb,var(--brand-accent),white 96%);
+  --st-navy-950:var(--navy-950);--st-navy-900:var(--navy-900);--st-navy-800:var(--navy-800);--st-navy-700:var(--navy-700);--st-teal-600:var(--teal-600);--st-teal-500:var(--teal-500);--st-teal-400:var(--teal-400);--st-teal-100:var(--teal-100);--st-teal-50:var(--teal-50);--st-emerald-600:var(--brand-secondary);--st-emerald-500:var(--emerald-500);--st-gold-500:var(--gold-500);--st-gold-400:var(--gold-400);
+}
+html[data-medical-theme="royal-teal"]{--brand-primary:#0f8b8d;--brand-navy:#0b2534;--brand-secondary:#20a88a;--brand-accent:#c7a45c}
+html[data-medical-theme="royal-sapphire"]{--brand-primary:#315f9f;--brand-navy:#152b48;--brand-secondary:#3c91ad;--brand-accent:#c6a15b}
+html[data-medical-theme="royal-jade"]{--brand-primary:#148363;--brand-navy:#12372f;--brand-secondary:#36a47e;--brand-accent:#d4b66a}
+html[data-medical-theme="royal-amethyst"]{--brand-primary:#7653a6;--brand-navy:#2c2443;--brand-secondary:#498f91;--brand-accent:#c9a96e}
+html[data-medical-theme="royal-cyan"]{--brand-primary:#167b91;--brand-navy:#102f45;--brand-secondary:#35a6a2;--brand-accent:#d0ad68}
+html[data-theme="dark"]{color-scheme:dark;--ui-surface:var(--bg-surface,var(--white,#0e1829));--ui-surface-raised:#111e31;--ui-surface-soft:#0a1423;--ui-text:var(--text-main,var(--ink-900,#f1f5f9));--ui-muted:var(--text-muted,var(--slate-400,#aebed2));--ui-border:var(--border-color,var(--line,#26364d));--surface:var(--ui-surface);--navy-950:color-mix(in srgb,var(--brand-navy),#030812 50%);--navy-900:color-mix(in srgb,var(--brand-navy),#070d18 42%);--navy-800:color-mix(in srgb,var(--brand-navy),#111f35 44%);--navy-700:color-mix(in srgb,var(--brand-navy),#18304d 42%);--teal-50:color-mix(in srgb,var(--brand-primary),#0b1525 91%);--teal-100:color-mix(in srgb,var(--brand-primary),#0b1525 78%);--gold-100:color-mix(in srgb,var(--brand-accent),#0b1525 86%);--gold-50:color-mix(in srgb,var(--brand-accent),#0b1525 92%)}
+
+/* Shared contrast and action styles used by all portals. */
+.btn-primary,.st-btn-primary{background:linear-gradient(135deg,var(--brand-primary),color-mix(in srgb,var(--brand-primary),var(--brand-secondary) 30%));color:#fff!important;border-color:var(--brand-primary)}
+.btn-primary:hover,.st-btn-primary:hover{background:color-mix(in srgb,var(--brand-primary),black 12%);color:#fff!important}
+.btn-danger{background:#c2413a!important;border:1px solid #c2413a!important;color:#fff!important;box-shadow:0 5px 14px rgba(194,65,58,.2)}
+.btn-danger:hover{background:#a92f2a!important;border-color:#a92f2a!important;color:#fff!important}
+.btn-outline{border-color:var(--ui-border);background:var(--ui-surface);color:var(--navy-900)}
+.btn-outline:hover{border-color:var(--brand-primary);color:var(--brand-primary)}
+[data-theme="dark"] .btn-outline{background:var(--ui-surface-raised);border-color:color-mix(in srgb,var(--brand-primary),var(--ui-border) 60%);color:var(--ui-text)}
+[data-theme="dark"] .btn-outline:hover{background:var(--brand-primary);border-color:var(--brand-primary);color:#fff}
+.home-slider-form,.home-slider-admin-card{background:var(--ui-surface)!important;color:var(--ui-text);border-color:var(--ui-border)}
+.home-slider-admin-copy strong{color:var(--ui-text)}.home-slider-admin-copy p,.home-slider-form label small{color:var(--ui-muted)}
+.home-slider-admin-actions .btn-outline{background:var(--ui-surface-raised);border-color:var(--brand-primary);color:var(--ui-text)}
+.home-slider-admin-actions .btn-outline:hover{background:var(--brand-primary);color:#fff}
+[data-theme="dark"] .home-slider-admin-card,[data-theme="dark"] .home-slider-form{box-shadow:0 12px 30px rgba(0,0,0,.2)}
+[data-theme="dark"] .home-slider-admin-copy p,[data-theme="dark"] .home-slider-form label small{color:#aebed2}
+[data-theme="dark"] .home-slider-admin-actions .btn-outline{background:#142238;border-color:color-mix(in srgb,var(--brand-primary),#26364d 55%);color:#eaf1fa}
+[data-theme="dark"] .home-slider-admin-actions .btn-outline:hover{background:var(--brand-primary);border-color:var(--brand-primary);color:#fff}
+[data-theme="dark"] .check-grid label{background:var(--ui-surface);border-color:var(--ui-border);color:var(--ui-text)}
+[data-theme="dark"] .ins-modal-card input:focus,[data-theme="dark"] .ins-modal-card select:focus,[data-theme="dark"] .ins-modal-card textarea:focus{background:#091325;border-color:var(--brand-primary);color:#f8fafc}
+[data-theme="dark"] .st-btn-white{background:var(--ui-surface-raised);border-color:var(--ui-border);color:var(--ui-text)}
+[data-theme="dark"] .st-btn-white:hover{background:color-mix(in srgb,var(--brand-primary),var(--ui-surface-raised) 84%);border-color:var(--brand-primary);color:var(--ui-text)}
+.st-btn-outline:hover{border-color:var(--brand-primary);color:var(--brand-primary)}
+.medical-palette-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:4px 0 20px}
+.medical-palette-card{display:grid;gap:8px;text-align:start;padding:14px;border-radius:16px;border:1px solid var(--line,#dbe3ed);background:var(--white,#fff);color:var(--ink,#1e293b);cursor:pointer;font:inherit;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease,background .2s ease}
+.medical-palette-card:hover{transform:translateY(-2px);border-color:var(--brand-primary);box-shadow:0 10px 26px color-mix(in srgb,var(--brand-primary),transparent 84%)}
+.medical-palette-card[aria-checked="true"]{border:2px solid var(--brand-primary);padding:13px;background:color-mix(in srgb,var(--brand-primary),white 94%);box-shadow:0 8px 22px color-mix(in srgb,var(--brand-primary),transparent 85%)}
+.medical-palette-card strong{font-size:15px}.medical-palette-card small{font-size:12px;color:var(--slate-500,#64748b)}
+.medical-palette-swatches{display:flex;direction:ltr;gap:6px}.medical-palette-swatches i{width:29px;height:29px;border-radius:9px;background:var(--swatch);border:1px solid rgba(15,23,42,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.medical-palette-preview{display:flex;align-items:center;gap:13px;flex-wrap:wrap;margin-top:16px;padding:15px 18px;border-radius:14px;background:var(--teal-50);border:1px solid color-mix(in srgb,var(--brand-primary),transparent 78%);color:var(--navy-900)}
+.medical-palette-preview strong{font-size:16px}.medical-mode-note{margin-inline-start:auto;color:var(--slate-500,#64748b);font-size:12px}
+[data-theme="dark"] .medical-palette-card{background:#0e1829;color:#f1f5f9;border-color:#26364d}
+[data-theme="dark"] .medical-palette-card[aria-checked="true"]{background:color-mix(in srgb,var(--brand-primary),#0e1829 82%);border-color:var(--teal-400)}
+[data-theme="dark"] .medical-palette-card small,[data-theme="dark"] .medical-mode-note{color:#aebed2}
+[data-theme="dark"] .medical-palette-preview{background:color-mix(in srgb,var(--brand-primary),#0b1525 88%);border-color:color-mix(in srgb,var(--brand-primary),transparent 55%);color:#f1f5f9}
+@media(max-width:600px){.medical-palette-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.medical-palette-card{padding:11px}.medical-palette-card[aria-checked="true"]{padding:10px}.medical-mode-note{width:100%;margin:0}}
+@media(prefers-reduced-motion:reduce){.medical-palette-card{transition:none}}
+
+/* Keep palette selection distinct even while custom colors are configured. */
+.medical-palette-card[data-medical-preset="royal-red"]{--preset-primary:#c9152b}
+.medical-palette-card[data-medical-preset="royal-gold"]{--preset-primary:#b58a32}
+.medical-palette-card[data-medical-preset="european-luxury"]{--preset-primary:#8a7358}
+.medical-palette-card[data-medical-preset="modern-dark"]{--preset-primary:#8a5cf6}
+.medical-palette-card[aria-checked="true"]{border-color:var(--preset-primary,var(--brand-primary));box-shadow:0 8px 22px color-mix(in srgb,var(--preset-primary,var(--brand-primary)),transparent 84%)}
+#settingsForm .form-grid label input[type="color"]{display:block;width:100%;height:48px;min-height:48px;margin-top:8px;padding:4px;border:1px solid var(--ui-border,var(--line,#dbe3ed));border-radius:12px;background:var(--ui-surface,var(--white,#fff));cursor:pointer;box-shadow:none}
+#settingsForm .form-grid label input[type="color"]::-webkit-color-swatch-wrapper{padding:2px}
+#settingsForm .form-grid label input[type="color"]::-webkit-color-swatch{border:0;border-radius:8px}
+#settingsForm .form-grid label input[type="color"]::-moz-color-swatch{border:0;border-radius:8px}
+.theme-custom-help{display:block;margin-top:6px;color:var(--ui-muted,#64748b);font-size:11px;font-weight:500;line-height:1.6}

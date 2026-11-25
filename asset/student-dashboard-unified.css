@@ -1,0 +1,110 @@
+/* Keep the student portal visually aligned with the admin and instructor dashboards. */
+:root {
+  --st-shell-shadow: 0 14px 36px rgba(7, 20, 40, .08);
+  --st-shell-radius: 18px;
+}
+
+html, body { background:var(--bg-app); color:var(--text-main); }
+.st-sidebar {
+  background:var(--bg-surface);
+  border-inline-end-color:var(--border-color);
+  box-shadow:var(--st-shell-shadow);
+}
+.st-sidebar-header { border-bottom-color:var(--border-color); }
+.st-brand-logo { border-radius:13px; }
+.st-brand-title strong { color:var(--text-main); }
+.st-brand-title small { color:var(--st-teal-600); font-weight:650; }
+.st-nav { gap:5px; }
+.st-nav-label { padding-top:14px; letter-spacing:.04em; }
+.st-nav-item {
+  min-height:46px;
+  border-radius:11px;
+  font-size:14px;
+  font-weight:750;
+}
+.st-nav-item.active {
+  background:rgba(20,184,166,.13);
+  color:var(--st-teal-600);
+}
+[data-theme="dark"] .st-nav-item.active { color:var(--st-teal-400); }
+.st-nav-item.active::before { width:3px; border-radius:4px; }
+.st-sidebar-footer {
+  background:color-mix(in srgb,var(--bg-app) 58%,var(--bg-surface));
+  border-top-color:var(--border-color);
+}
+.st-main { background:var(--bg-app); }
+.st-topbar {
+  background:color-mix(in srgb,var(--bg-surface) 90%,transparent);
+  border-bottom-color:var(--border-color);
+  box-shadow:0 8px 24px rgba(7,20,40,.045);
+  backdrop-filter:blur(16px) saturate(1.2);
+  -webkit-backdrop-filter:blur(16px) saturate(1.2);
+}
+.st-topbar-breadcrumb { font-size:13px; font-weight:650; }
+.st-topbar-breadcrumb .current { font-weight:850; }
+.st-content { max-width:1500px; }
+.st-hero {
+  border:1px solid rgba(45,212,191,.2);
+  border-radius:var(--st-shell-radius);
+  background:linear-gradient(130deg,#101c30 0%,#12304a 58%,#0d665f 100%);
+  box-shadow:0 18px 42px rgba(7,20,40,.2);
+}
+.st-hero-badge { letter-spacing:.015em; }
+.st-hero-title { line-height:1.35; }
+.st-stat-card,.st-card {
+  border-radius:var(--st-shell-radius);
+  border-color:var(--border-color);
+  box-shadow:var(--st-shell-shadow);
+}
+.st-stat-card { transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease; }
+.st-stat-card:hover,.st-card:hover {
+  transform:translateY(-2px);
+  border-color:color-mix(in srgb,var(--st-teal-500) 42%,var(--border-color));
+  box-shadow:0 18px 38px rgba(7,20,40,.11);
+}
+.st-card-head { border-bottom-color:var(--border-color); }
+.st-card-title h2 { font-weight:850; }
+.st-panel { gap:22px; }
+.st-btn { border-radius:11px; font-weight:800; }
+.st-btn-primary { background:linear-gradient(135deg,var(--st-teal-500),var(--st-teal-600)); }
+.st-btn-outline { border-color:var(--border-color); }
+.st-panel input:not([type="checkbox"]):not([type="radio"]),
+.st-panel select,.st-panel textarea {
+  border-color:var(--border-color);
+  border-radius:11px;
+  color:var(--text-main);
+}
+[data-theme="dark"] .st-sidebar {
+  background:#0a1424;
+  border-inline-end-color:#1c2b42;
+}
+[data-theme="dark"] .st-sidebar-header,
+[data-theme="dark"] .st-sidebar-footer { border-color:#1c2b42; }
+[data-theme="dark"] .st-brand-title strong { color:#f8fafc; }
+[data-theme="dark"] .st-nav-item { color:#a8b7ca; }
+[data-theme="dark"] .st-nav-item:hover { background:#101c30; color:#f8fafc; }
+[data-theme="dark"] .st-topbar {
+  background:rgba(10,20,36,.9);
+  border-bottom-color:#1c2b42;
+  box-shadow:0 8px 24px rgba(0,0,0,.12);
+}
+[data-theme="dark"] .st-stat-card,
+[data-theme="dark"] .st-card {
+  background:#0e1829;
+  border-color:#1c2b42;
+}
+[data-theme="dark"] .st-card-head { border-color:#1c2b42; }
+
+@media(max-width:860px) {
+  .st-sidebar { box-shadow:0 24px 70px rgba(2,8,23,.3); }
+  .st-topbar { box-shadow:0 6px 20px rgba(7,20,40,.06); }
+}
+@media(max-width:680px) {
+  .st-hero { border-radius:16px; }
+  .st-stat-card,.st-card { border-radius:15px; }
+  .st-stat-card:hover,.st-card:hover { transform:none; }
+  .st-topbar { backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); }
+}
+@media(prefers-reduced-motion:reduce) {
+  .st-stat-card,.st-card,.st-nav-item,.st-btn { transition:none!important; }
+}

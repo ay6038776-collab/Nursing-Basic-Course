@@ -1,0 +1,497 @@
+/* Mobile-only interaction and visual layer. Desktop layouts are untouched. */
+.top-announcement-bar,
+.hero-eyebrow .dot,
+.home-medical-kicker::before,
+.status-dot,
+.st-notif-dot { display: none !important; }
+.header .nav-link, .mobile-nav-links .nav-link { display: inline-flex; align-items: center; gap: 8px; }
+.nav-link > svg { width: 17px; height: 17px; flex: 0 0 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; opacity: .9; }
+@media (max-width: 680px) {
+  :root { --mobile-gutter: 14px; --mobile-card-gap: 12px; }
+  html { scroll-padding-top: 72px; }
+  body { width: 100%; min-width: 0; max-width: 100%; font-size: 14px; }
+  #mainContent, .page, header.header, .footer { width: 100%; max-width: 100%; min-width: 0; }
+  .container { width: 100%; max-width: 100%; padding-inline: var(--mobile-gutter) !important; }
+
+  h1, h2, h3, h4 { overflow-wrap: anywhere; }
+  .page-head h1, .section-title, .st-page-title, .welcome-hero h1 {
+    font-size: clamp(21px, 6vw, 30px) !important;
+    line-height: 1.3;
+    letter-spacing: -.025em;
+  }
+  .page-head { padding-block: 26px 18px; }
+  .section { padding-block: 34px !important; }
+  .section-head { margin-bottom: 20px !important; }
+  .section-desc, .page-head p { font-size: 13px; line-height: 1.65; }
+
+  /* Horizontal product and content shelves: leave a peek of the next card. */
+  #page-home .grid-cards,
+  #page-courses .grid-cards,
+  #page-books .grid-cards,
+  #page-offers .grid-cards,
+  #page-home .features-grid,
+  #page-home .testi-grid,
+  #page-home .instructors-grid,
+  #page-home #homeInstructors,
+  #page-home #homeCenters,
+  .students-cards-grid,
+  .instructors-cards-grid,
+  .timetable-grid,
+  .course-card-grid,
+  .st-course-grid {
+    display: flex !important;
+    flex-flow: row nowrap !important;
+    align-items: stretch;
+    gap: var(--mobile-card-gap) !important;
+    overflow-x: auto !important;
+    overflow-y: hidden;
+    margin-inline: calc(var(--mobile-gutter) * -1) !important;
+    padding: 3px var(--mobile-gutter) 14px !important;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--mobile-gutter);
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  #page-home .grid-cards::-webkit-scrollbar,
+  #page-courses .grid-cards::-webkit-scrollbar,
+  #page-books .grid-cards::-webkit-scrollbar,
+  #page-offers .grid-cards::-webkit-scrollbar,
+  #page-home .features-grid::-webkit-scrollbar,
+  #page-home .testi-grid::-webkit-scrollbar,
+  #page-home .instructors-grid::-webkit-scrollbar,
+  #page-home #homeCenters::-webkit-scrollbar,
+  .students-cards-grid::-webkit-scrollbar,
+  .instructors-cards-grid::-webkit-scrollbar,
+  .timetable-grid::-webkit-scrollbar,
+  .course-card-grid::-webkit-scrollbar,
+  .st-course-grid::-webkit-scrollbar { display: none; }
+
+  #page-home .grid-cards > *,
+  #page-courses .grid-cards > *,
+  #page-books .grid-cards > *,
+  #page-offers .grid-cards > *,
+  #page-home .features-grid > *,
+  #page-home .testi-grid > *,
+  #page-home .instructors-grid > *,
+  #page-home #homeInstructors > *,
+  #page-home #homeCenters > *,
+  .students-cards-grid > *,
+  .instructors-cards-grid > *,
+  .timetable-grid > *,
+  .course-card-grid > *,
+  .st-course-grid > * {
+    flex: 0 0 min(82vw, 310px) !important;
+    min-width: 0;
+    max-width: 310px;
+    scroll-snap-align: start;
+  }
+  #page-home .features-grid > * { flex-basis: min(70vw, 250px) !important; }
+  #page-home .testi-grid > * { flex-basis: min(80vw, 290px) !important; }
+  #page-home .instructors-grid > *,
+  #page-home #homeInstructors > * { flex-basis: min(78vw, 280px) !important; }
+
+  .card { border-radius: 17px; }
+  .card-media { aspect-ratio: 16 / 9; }
+  .card-body { padding: 14px; gap: 8px; }
+  .card-title { font-size: 15px; line-height: 1.45; }
+  .card-desc { font-size: 12px; line-height: 1.55; }
+  .card-meta { gap: 8px; font-size: 11px; }
+  .card-foot { gap: 9px; padding: 12px 14px; }
+  .card-purchase-row { gap: 7px; }
+  .card-price, .card-price-current { font-size: 15px; }
+  .catalog-card-actions { gap: 7px; }
+  .catalog-card-actions .btn { padding: 8px 6px; font-size: 11px; }
+  .center-card > img, .center-card-placeholder { height: 150px; }
+  .center-card-body { padding: 14px; gap: 8px; }
+  .center-card-body h3 { font-size: 16px; }
+
+  /* Navigation, controls and filters use compact, thumb-friendly targets. */
+  .header-inner { min-height: 60px; height: 60px !important; gap: 6px; }
+  .header-actions { gap: 4px !important; }
+  .header-actions .btn-icon, .menu-toggle { width: 38px !important; height: 38px !important; }
+  .header-actions .lang-btn { min-height: 38px; padding: 6px 8px; font-size: 12px; }
+  .brand-mark { width: 38px !important; height: 38px !important; }
+  .brand-name { font-size: 14px !important; }
+  .auth-actions .btn { min-height: 38px !important; padding-inline: 10px !important; font-size: 11px !important; }
+  .btn, .small-btn, .st-btn, .detail-btn { min-height: 42px; }
+  .category-filter-bar, .tabs, .dash-menu, .mobile-nav-links {
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .toolbar, .toolbar.filters { gap: 8px; }
+  .toolbar .btn, .quick-actions .btn, .form-actions .btn { min-height: 42px; }
+
+  /* Dashboard content: dense but readable; KPIs stay in a two-column grid. */
+  .stats-grid, .st-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 9px !important; }
+  .stat, .stat-card, .st-stat-card { min-width: 0; padding: 12px 10px; border-radius: 14px; }
+  .stat-value, .stat-card-value, .st-stat-value { font-size: clamp(17px, 5vw, 22px); }
+  .admin-content, .st-content, .main, .dash-main { padding-inline: var(--mobile-gutter) !important; }
+  .surface, .panel, .st-card { border-radius: 15px; }
+  .surface, .panel { padding: 14px !important; }
+  .surface-head { gap: 8px; }
+  .surface-head h2, .panel-title, .st-card-title { font-size: 15px; line-height: 1.4; }
+  .table-wrap, .detail-table-wrapper, .tw { max-width: 100%; }
+  table:not(.rt-cards) { min-width: 560px; }
+  .table-wrap:has(> table:not(.rt-cards)),
+  .detail-table-wrapper:has(> table:not(.rt-cards)),
+  .tw:has(> table:not(.rt-cards)) { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .form-grid, .form-grid-2, .grid2 { gap: 10px; }
+  .detail-grid { grid-template-columns: minmax(0, 1fr) !important; gap: 14px; }
+  .detail-side { position: static; top: auto; padding: 16px; border-radius: 16px; }
+  .detail-cover { border-radius: 17px; }
+  .detail-tabs { margin: 18px 0 14px; gap: 4px; }
+  .detail-tab { min-height: 42px; padding: 9px 13px; font-size: 12px; }
+  .detail-back-btn { min-height: 40px; margin-bottom: 10px; padding: 7px 12px; font-size: 12px; }
+  .page.active#page-course-detail .detail-back-btn,
+  .page.active#page-book-detail .detail-back-btn {
+    position: fixed;
+    z-index: 95;
+    top: calc(68px + var(--safe-t));
+    inset-inline-start: 12px;
+    margin: 0;
+    box-shadow: 0 8px 22px rgba(3, 15, 30, .2);
+  }
+  .page.active#page-course-detail .page-head,
+  .page.active#page-book-detail .page-head { padding-top: 76px; }
+
+  /* Mobile drawer and overlays account for safe areas and dark mode. */
+  .mobile-nav { padding-top: var(--safe-t); }
+  .mobile-nav-panel { padding-bottom: calc(18px + var(--safe-b)); }
+  .mobile-nav-links .nav-link { width: 100%; min-height: 46px; justify-content: flex-start; gap: 12px; font-size: 15px; }
+  .mobile-nav-links .nav-link > svg { width: 19px; height: 19px; flex-basis: 19px; }
+  .center-detail-dialog { width: 100%; max-height: calc(100dvh - 20px); border-radius: 20px; }
+  .center-detail-body { padding: 16px; }
+}
+
+@media (max-width: 400px) {
+  .header-actions .lang-btn { padding-inline: 6px; }
+  .brand-name { max-width: 104px; }
+  .card-purchase-row .btn { padding-inline: 9px; }
+  .stats-grid, .st-stats-grid { gap: 7px !important; }
+}
+
+@media (max-width: 680px) and (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) { color-scheme: dark; }
+}
+
+@media (max-width: 680px) {
+  [data-theme="dark"] body,
+  [data-theme="dark"] .page,
+  [data-theme="dark"] .st-app,
+  [data-theme="dark"] .admin-app,
+  [data-theme="dark"] .instructor-app { background-color: #070d18; color: #edf4fb; }
+  [data-theme="dark"] .surface,
+  [data-theme="dark"] .panel,
+  [data-theme="dark"] .stat,
+  [data-theme="dark"] .stat-card,
+  [data-theme="dark"] .student-card,
+  [data-theme="dark"] .instructor-card,
+  [data-theme="dark"] .timetable-card,
+  [data-theme="dark"] .course-card,
+  [data-theme="dark"] .st-card,
+  [data-theme="dark"] .st-course-card,
+  [data-theme="dark"] .st-stat-card,
+  [data-theme="dark"] .card,
+  [data-theme="dark"] .center-card,
+  [data-theme="dark"] .feature,
+  [data-theme="dark"] .testi,
+  [data-theme="dark"] .empty-state,
+  [data-theme="dark"] .filters-card,
+  [data-theme="dark"] .welcome-hero {
+    background: #0e1829 !important;
+    color: #edf4fb;
+    border-color: #22334a !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,.18);
+  }
+  [data-theme="dark"] .card-title,
+  [data-theme="dark"] .center-card-body h3,
+  [data-theme="dark"] .section-title,
+  [data-theme="dark"] .page-head h1,
+  [data-theme="dark"] .panel-title,
+  [data-theme="dark"] .surface-head h2,
+  [data-theme="dark"] .st-card-title,
+  [data-theme="dark"] .feature h3,
+  [data-theme="dark"] .testi-name { color: #f1f5f9 !important; }
+  [data-theme="dark"] .card-desc,
+  [data-theme="dark"] .card-meta,
+  [data-theme="dark"] .center-card-body p,
+  [data-theme="dark"] .section-desc,
+  [data-theme="dark"] .stat-label,
+  [data-theme="dark"] .st-stat-label,
+  [data-theme="dark"] .form-label,
+  [data-theme="dark"] .muted { color: #9aabc0 !important; }
+  [data-theme="dark"] input,
+  [data-theme="dark"] select,
+  [data-theme="dark"] textarea,
+  [data-theme="dark"] .form-input,
+  [data-theme="dark"] .form-select,
+  [data-theme="dark"] .form-textarea,
+  [data-theme="dark"] .search-box input {
+    background-color: #091323 !important;
+    border-color: #293b54 !important;
+    color: #f1f5f9 !important;
+  }
+  [data-theme="dark"] .mobile-nav-panel { background: #0b1525 !important; color: #f1f5f9; }
+  [data-theme="dark"] .table-wrap,
+  [data-theme="dark"] .detail-table-wrapper,
+  [data-theme="dark"] .tw { border-color: #22334a; }
+  [data-theme="dark"] .center-detail-dialog,
+  [data-theme="dark"] .center-slot,
+  [data-theme="dark"] .center-file-link,
+  [data-theme="dark"] .center-media-item { background: #0e1829; color: #edf4fb; border-color: #293b54; }
+  [data-theme="dark"] .section[style*="background:#fff"] { background: #070d18 !important; }
+  [data-theme="dark"] .detail-back-btn {
+    background: #123b43 !important;
+    border-color: #2dd4bf !important;
+    color: #f0fdfa !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,.42);
+  }
+}
+
+/* Consistent type scale for every mobile portal and public page. */
+@media (max-width: 680px) {
+  button, input, select, textarea { font-family: inherit; }
+  body { font-size: 14px; line-height: 1.65; }
+  h1, h2, h3, h4, p, li, label, th, td, button, a, span, small {
+    overflow-wrap: break-word;
+    word-break: normal;
+    text-wrap: pretty;
+  }
+  h1, .page-head h1, .welcome-hero h1, .st-hero-title, .dash-head h2 {
+    font-size: clamp(22px, 6vw, 30px) !important;
+    line-height: 1.35 !important;
+    letter-spacing: -.02em;
+  }
+  h2, .section-title, .panel-title, .surface-head h2, .st-card-title {
+    font-size: clamp(19px, 5.2vw, 25px) !important;
+    line-height: 1.4 !important;
+    letter-spacing: -.015em;
+  }
+  h3, .card-title, .course-card-title, .student-card-name,
+  .instructor-card-name, .unit-title, .lesson-name {
+    font-size: clamp(15px, 4.2vw, 19px);
+    line-height: 1.5;
+  }
+  h4 { font-size: clamp(14px, 3.8vw, 17px); line-height: 1.5; }
+  p, li, dd, .section-desc, .page-head p, .hero-sub, .st-hero-desc,
+  .card-desc, .testi-text, .form-help, .form-hint, .help-text,
+  .student-card-userinfo, .instructor-card-userinfo,
+  .lesson-text, .unit-lesson-row, .detail-description,
+  .tab-panel, .curriculum-item, .empty-state p {
+    font-size: clamp(13px, 3.7vw, 15px);
+    line-height: 1.75;
+  }
+  label, .form-label, .field-label, th, .stat-label,
+  .stat-card-label, .st-stat-label, .card-meta, .breadcrumb,
+  .nav-link, .dash-menu-item, .side-link {
+    font-size: clamp(12px, 3.45vw, 14px);
+    line-height: 1.55;
+  }
+  small, .small, .text-xs, .helper-text, .muted,
+  .card-meta small, .detail-meta-item span,
+  .stat-counter-label, .instructor-card-spec {
+    font-size: 12px;
+    line-height: 1.55;
+  }
+  .badge, .chip, .pill, .category-filter-pill,
+  .detail-tab, .role-opt { font-size: 12px; line-height: 1.4; }
+  .btn, button.btn, .small-btn, .st-btn, .detail-btn,
+  input, select, textarea, .form-input, .form-select, .form-textarea {
+    line-height: 1.4;
+  }
+  .catalog-card-actions .btn { font-size: 12px; }
+  .card-meta, .detail-meta-item, .stat-label, .stat-card-label,
+  .st-stat-label, .form-label { overflow-wrap: anywhere; }
+  .hero h1 { font-size: clamp(30px, 8vw, 44px) !important; line-height: 1.23 !important; }
+  [data-theme="dark"] .muted,
+  [data-theme="dark"] .helper-text,
+  [data-theme="dark"] .form-help,
+  [data-theme="dark"] .form-hint,
+  [data-theme="dark"] .card-desc,
+  [data-theme="dark"] .card-meta,
+  [data-theme="dark"] .section-desc,
+  [data-theme="dark"] .page-head p { color: #aab9cc; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-card-rail, .grid-cards, .st-course-grid { scroll-behavior: auto; }
+}
+
+/* Keep the public-site hamburger visible and reachable on narrow screens. */
+@media (max-width: 960px) {
+  .header .header-inner {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-between !important;
+    gap: 5px !important;
+    overflow: visible !important;
+  }
+  .header .brand { order: 1; flex: 1 1 0%; min-width: 0; gap: 7px; }
+  .header .brand-text { min-width: 0; overflow: hidden; }
+  .header .brand-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .header .menu-toggle {
+    order: 2;
+    display: inline-flex !important;
+    visibility: visible !important;
+    position: relative;
+    z-index: 2;
+    flex: 0 0 42px !important;
+    width: 42px !important;
+    height: 42px !important;
+  }
+  .header .header-actions {
+    order: 3;
+    display: flex;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    max-width: calc(100vw - 195px);
+    min-width: 0;
+    overflow-x: auto;
+    gap: 4px !important;
+    scrollbar-width: none;
+  }
+  .header .header-actions::-webkit-scrollbar { display: none; }
+  .header .header-actions > * { flex: 0 0 auto; }
+}
+@media (max-width: 520px) {
+  .header .brand-tag { display: none !important; }
+  .header .brand-mark { flex: 0 0 36px; width: 36px !important; height: 36px !important; }
+  .header .brand-name { font-size: 13px !important; }
+}
+
+/* The generic student modal rule makes overlays static on tablets. Keep the
+   AI assistant as a real overlay, with a usable full-width mobile composer. */
+@media (max-width: 1024px) {
+  #studentAiAssistantModal.st-modal-overlay:not([hidden]) {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 3000 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right))
+      max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left)) !important;
+    background: rgba(4, 12, 25, .76) !important;
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(7px);
+  }
+  #studentAiAssistantModal .student-ai-chat {
+    display: grid !important;
+    grid-template-rows: auto minmax(0, 1fr) auto auto !important;
+    width: 100% !important;
+    max-width: 720px !important;
+    height: min(780px, calc(100vh - 20px)) !important;
+    max-height: calc(100vh - 20px) !important;
+    height: min(780px, calc(100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 20px)) !important;
+    max-height: calc(100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 20px) !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+  }
+  #studentAiAssistantModal .student-ai-chat-messages { min-height: 0; overscroll-behavior: contain; }
+  #studentAiAssistantModal .student-ai-chat-form {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 8px !important;
+    align-items: stretch !important;
+    padding: 10px 12px 4px !important;
+  }
+  #studentAiAssistantModal .student-ai-chat-form textarea {
+    display: block !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 54px !important;
+    max-height: 120px !important;
+    height: 54px;
+    resize: vertical;
+    writing-mode: horizontal-tb !important;
+  }
+  #studentAiAssistantModal .student-ai-chat-form button {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 46px !important;
+    white-space: nowrap;
+  }
+  #studentAiAssistantModal .student-ai-chat-notice { margin: 4px 12px max(10px, env(safe-area-inset-bottom)) !important; }
+}
+
+/* Instructor AI chat: keep the dialog inside the mobile viewport and place
+   the composer controls in a predictable, full-width stack. */
+@media (max-width: 700px) {
+  #assessmentAiChatModal.ins-modal-overlay:not([hidden]) {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 3000 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box;
+    padding: max(8px, env(safe-area-inset-top)) max(8px, env(safe-area-inset-right))
+      max(8px, env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left)) !important;
+    background: rgba(4, 12, 25, .78) !important;
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(7px);
+  }
+  #assessmentAiChatModal .assessment-ai-chat {
+    display: grid !important;
+    grid-template-rows: auto minmax(0, 1fr) auto auto !important;
+    width: 100% !important;
+    max-width: 760px !important;
+    height: min(780px, calc(100vh - 16px)) !important;
+    max-height: calc(100vh - 16px) !important;
+    height: min(780px, calc(100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 16px)) !important;
+    max-height: calc(100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 16px) !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    border-radius: 18px !important;
+  }
+  #assessmentAiChatModal .assessment-ai-chat > .surface-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    min-width: 0;
+    padding: 14px !important;
+  }
+  #assessmentAiChatModal .assessment-ai-chat > .surface-head > div { min-width: 0; }
+  #assessmentAiChatModal .assessment-ai-chat > .surface-head h2 { font-size: 17px; line-height: 1.45; }
+  #assessmentAiChatModal .assessment-ai-chat > .surface-head p { font-size: 12px; line-height: 1.6; }
+  #assessmentAiChatModal .assessment-ai-chat > .surface-head > button {
+    flex: 0 0 44px !important;
+    width: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    padding: 0 !important;
+  }
+  #assessmentAiChatModal .assessment-ai-chat-messages { min-height: 0; padding: 12px; overscroll-behavior: contain; }
+  #assessmentAiChatModal .assessment-ai-chat-form {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 8px !important;
+    align-items: stretch !important;
+    padding: 10px 12px 4px !important;
+  }
+  #assessmentAiChatModal .assessment-ai-chat-form textarea {
+    display: block !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 54px !important;
+    max-height: 120px !important;
+    height: 54px;
+    resize: vertical;
+    writing-mode: horizontal-tb !important;
+  }
+  #assessmentAiChatModal .assessment-ai-chat-form button {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 46px !important;
+    white-space: nowrap;
+  }
+  #assessmentAiChatModal .assessment-ai-chat-note {
+    margin: 4px 12px max(10px, env(safe-area-inset-bottom)) !important;
+    line-height: 1.6;
+  }
+}

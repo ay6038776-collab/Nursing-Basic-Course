@@ -1,0 +1,17 @@
+SET NAMES utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `home_slider_slides` (
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title_ar` VARCHAR(190) NOT NULL DEFAULT '',
+  `title_en` VARCHAR(190) NOT NULL DEFAULT '',
+  `subtitle_ar` VARCHAR(500) DEFAULT NULL,
+  `subtitle_en` VARCHAR(500) DEFAULT NULL,
+  `image_path` VARCHAR(500) NOT NULL,
+  `sort_order` INT NOT NULL DEFAULT 0,
+  `is_active` TINYINT(1) NOT NULL DEFAULT 1,
+  `created_by` BIGINT UNSIGNED DEFAULT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_home_slider_active_order` (`is_active`,`sort_order`,`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

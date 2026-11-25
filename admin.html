@@ -1,0 +1,2090 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex,nofollow">
+    <title>لوحة الإدارة | Nursing Basic Course</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=Almarai:wght@300;400;700;800&family=Cairo:wght@300;400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700;800;900&family=Readex+Pro:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="asset/student-details.css">
+    <link rel="stylesheet" href="asset/courses.css">
+    <link rel="stylesheet" href="asset/admin.css">
+    <link rel="stylesheet" href="asset/admin-extras.css">
+    <link rel="stylesheet" href="asset/admin-features.css">
+    <link rel="stylesheet" href="asset/offline-centers.css?v=20261117-1">
+    <link rel="stylesheet" href="asset/home-slider.css?v=20261118-2">
+    <link rel="stylesheet" href="asset/medical-themes.css?v=20261120-4">
+    <link rel="stylesheet" href="asset/image-cropper.css?v=20261118-1">
+    <link rel="stylesheet" href="asset/nano-banana-admin.css?v=20261119-2">
+    <link rel="stylesheet" href="asset/responsive.css?v=20261117-mobile-dark">
+    <link rel="stylesheet" href="asset/dashboard-polish.css?v=20261118-2">
+    <link rel="stylesheet" href="asset/mobile-ux.css?v=20261122-2">
+    <link rel="stylesheet" href="asset/reviews.css?v=20261118-1">
+    <link rel="stylesheet" href="asset/appearance-system.css?v=20261120-6">
+    <link rel="stylesheet" href="asset/homepage-designs.css?v=20261120-2">
+    <link rel="stylesheet" href="asset/platform-responsive-polish.css?v=20261120-3">
+    <script src="asset/js/language-runtime.js?v=20261120-5" defer></script>
+
+    <script>
+      (function() {
+        try {
+          const t = localStorage.getItem('nbc_theme') || localStorage.getItem('nbc_admin_theme');
+          const isDark = t === 'dark' || (!t && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          const theme = isDark ? 'dark' : 'light';
+          document.documentElement.setAttribute('data-theme', theme);
+          document.documentElement.style.backgroundColor = isDark ? '#070d18' : '#f4f7fb';
+        } catch (_) {}
+      })();
+    </script>
+</head>
+
+<body>
+
+<!-- =======================================================================
+     1) تسجيل دخول الإدارة (Login View)
+     ======================================================================= -->
+<main id="loginView" class="login-wrap">
+    <!-- زر تبديل الوضع الليلي في شاشة الدخول -->
+    <div class="login-theme-bar">
+        <button id="loginLangToggle" class="topbar-lang-btn login-lang-btn" type="button" title="Toggle Language" style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:10px;border:1px solid var(--line,#cbd5e1);background:var(--white,#fff);color:inherit;cursor:pointer;font-weight:700;margin-inline-end:8px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+            <span id="loginLangLabel">EN</span>
+        </button>
+        <button type="button" class="theme-toggle-btn login-theme-btn" id="loginThemeToggle" aria-label="تبديل الوضع الليلي / النهاري" title="تبديل الوضع الليلي / النهاري">
+            <svg class="theme-icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="theme-icon-sun" viewBox="0 0 24 24" hidden><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            <span class="theme-btn-label">الوضع الليلي</span>
+        </button>
+    </div>
+
+    <section class="login-card">
+        <div class="login-brand-header">
+            <div class="login-brand-mark">✚</div>
+            <span class="eyebrow">ADMIN PORTAL</span>
+            <h1>لوحة الإدارة الأكاديمية</h1>
+            <p>منصة Nursing Basic Course — الدخول مخصص لمسؤولي النظام المعتمدين فقط.</p>
+        </div>
+
+        <form id="loginForm">
+            <label for="email">البريد الإلكتروني للإدارة</label>
+            <input id="email" name="email" type="email" autocomplete="username" placeholder="admin@example.com" required>
+
+            <label for="password">كلمة المرور</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" placeholder=" —  —  —  —  —  —  —  —  —  —  —  — " required>
+
+            <button class="btn btn-primary" type="submit">تسجيل الدخول الآمن ←</button>
+
+            <div id="loginMessage" class="notice" hidden></div>
+        </form>
+
+        <a class="back-link" href="index.html">
+            <span>←</span>
+            <span>العودة إلى المنصة التعليمية للطلاب</span>
+        </a>
+    </section>
+</main>
+
+<div id="nanoBananaModal" class="nano-banana-modal" hidden aria-hidden="true">
+    <section class="nano-banana-dialog" role="dialog" aria-modal="true" aria-labelledby="nanoBananaTitle">
+        <div class="nano-banana-head">
+            <div><span class="welcome-badge">GEMINI IMAGE MODEL</span><h2 id="nanoBananaTitle">🍌 توليد صورة بـ Nano Banana 2</h2><p>اكتب وصف الصورة، ثم راجعها قبل وضعها في حقل الرفع.</p></div>
+            <button type="button" class="btn btn-ghost" id="nanoBananaClose" aria-label="إغلاق">×</button>
+        </div>
+        <label class="nano-banana-prompt-label" for="nanoBananaPrompt">وصف الصورة</label>
+        <textarea id="nanoBananaPrompt" rows="4" maxlength="2000" placeholder="مثال: غلاف احترافي لكورس أساسيات التمريض، ممرضة في بيئة سريرية حديثة، ألوان طبية هادئة، بدون أي كتابة..."></textarea>
+        <div class="nano-banana-actions">
+            <label>نسبة الأبعاد<select id="nanoBananaRatio"><option value="1:1">مربع 1:1</option><option value="3:2">أفقي 3:2</option><option value="16:9">عريض 16:9</option><option value="4:3">أفقي 4:3</option><option value="2:3">طولي 2:3</option><option value="9:16">طولي 9:16</option><option value="3:4">طولي 3:4</option></select></label>
+            <button type="button" class="btn btn-primary" id="nanoBananaGenerate">✨ توليد الصورة</button>
+        </div>
+        <div id="nanoBananaMessage" class="notice" hidden></div>
+        <div id="nanoBananaPreviewWrap" class="nano-banana-preview-wrap" hidden>
+            <img id="nanoBananaPreview" alt="معاينة الصورة المولدة">
+            <div class="nano-banana-actions"><a id="nanoBananaDownload" class="btn btn-outline" download="nano-banana-2.png">تنزيل الصورة</a><button type="button" id="nanoBananaUse" class="btn btn-primary">استخدام الصورة في حقل الرفع</button></div>
+        </div>
+    </section>
+</div>
+
+
+<!-- =======================================================================
+     2) التطبيق ولوحة القيادة (Application View)
+     ======================================================================= -->
+<main id="appView" hidden>
+  <div class="app-shell">
+
+    <!-- Mobile Drawer Backdrop -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- الشريط الجانبي الذكي (Admin Sidebar) -->
+    <aside class="admin-sidebar" id="adminSidebar">
+        <div class="sidebar-header">
+            <div class="brand-mark">✚</div>
+            <div class="sidebar-brand-text">
+                <strong>Nursing Basic Course</strong>
+                <small data-i18n="admin_portal_subtitle">لوحة الإدارة الأكاديمية</small>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="أقسام الإدارة">
+            <div class="nav-group-label" data-i18n="nav_main_ctrl">الرئيسية والتحكم</div>
+            <button type="button" class="side-link tab active" data-tab="overview">
+                <span class="side-link-icon">
+                    <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+                </span>
+                <span data-i18n="nav_overview">نظرة عامة</span>
+            </button>
+
+            <div class="nav-group-label" data-i18n="nav_system_mgmt">إدارة المنظومة</div>
+            <button type="button" class="side-link tab" data-tab="students">
+                <span class="side-link-icon">
+                    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </span>
+                <span data-i18n="nav_students">الطلاب</span>
+            </button>
+
+            <button type="button" class="side-link tab" data-tab="instructors">
+                <span class="side-link-icon">
+                    <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                </span>
+                <span data-i18n="nav_instructors">المحاضرون</span>
+            </button>
+
+            <button type="button" class="side-link tab" data-tab="courses">
+                <span class="side-link-icon">
+                    <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                </span>
+                <span data-i18n="nav_courses">الكورسات والمنهج</span>
+            </button>
+
+            <button type="button" class="side-link tab" data-tab="centers">
+                <span class="side-link-icon"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+                <span>السناتر والحجز الأوفلاين</span>
+            </button>
+
+            <div class="nav-group-label">المالية والتسجيلات</div>
+            <button type="button" class="side-link tab" data-tab="enrollments">
+                <span class="side-link-icon"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></span>
+                <span>التسجيلات</span>
+            </button>
+            <button type="button" class="side-link tab" data-tab="payments">
+                <span class="side-link-icon"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span>
+                <span>المدفوعات</span>
+            </button>
+
+            <div class="nav-group-label">الأكاديمية والمحتوى</div>
+            <button type="button" class="side-link tab" data-tab="quizzes">
+                <span class="side-link-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+                <span>الاختبارات</span>
+            </button>
+            <button type="button" class="side-link tab" data-tab="certificates">
+                <span class="side-link-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></span>
+                <span>الشهادات</span>
+            </button>
+            <button type="button" class="side-link tab" data-tab="skills">
+                <span class="side-link-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+                <span>مكتبة المهارات التمريضية</span>
+            </button>
+
+            <div class="nav-group-label">التواصل والدعم</div>
+            <button type="button" class="side-link tab" data-tab="notifications">
+                <span class="side-link-icon"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span>
+                <span>الإشعارات</span>
+            </button>
+            <button type="button" class="side-link tab" data-tab="reviews">
+                <span class="side-link-icon"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 9 9 0 0 1-4-.9L3 21l1.9-4.5a9 9 0 0 1-.9-4A8.5 8.5 0 0 1 12.5 4h.5A8.5 8.5 0 0 1 21 11.5Z"/><path d="m12 7 1.15 2.33 2.57.37-1.86 1.81.44 2.56L12 12.86l-2.3 1.21.44-2.56-1.86-1.81 2.57-.37L12 7z"/></svg></span>
+                <span data-i18n="nav_reviews">تقييمات وآراء الطلاب</span>
+            </button>
+            <button type="button" class="side-link tab" data-tab="support">
+                <span class="side-link-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                <span>الدعم الفني</span>
+            </button>
+            <button type="button" class="side-link tab" data-tab="reports">
+                <span class="side-link-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+                <span>التقارير والتحليلات</span>
+            </button>
+            <button type="button" class="side-link tab" data-tab="progress"><span class="side-icon">&#x1F4CA;</span><span class="side-text">&#x62A;&#x642;&#x62F;&#x645; &#x627;&#x644;&#x637;&#x644;&#x627;&#x628;</span></button>
+
+            <div class="nav-group-label" data-i18n="nav_quick_links">روابط سريعة</div>
+            <a href="index.html" target="_blank" class="sidebar-preview-btn">
+                <span data-i18n="nav_visit_site">زيارة موقع المنصة</span>
+                <span>↗</span>
+            </a>
+            <a href="instructor.html" target="_blank" class="sidebar-preview-btn">
+                <span data-i18n="nav_instructor_portal">بوابة المحاضرين</span>
+                <span>↗</span>
+            </a>
+
+            <div class="nav-group-label" data-i18n="nav_settings_account">الإعدادات والحساب</div>
+            <button type="button" class="side-link tab" data-tab="settings">
+                <span class="side-link-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                </span>
+                <span data-i18n="nav_settings">إعدادات المنصة</span>
+            </button>
+
+            <button type="button" class="side-link tab" data-tab="admin-profile">
+                <span class="side-link-icon">
+                    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </span>
+                <span data-i18n="nav_admin_profile">ملف حساب المدير</span>
+            </button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-status">
+                <span class="status-dot"></span>
+                <span data-i18n="nav_db_status">قاعدة البيانات: متصلة ونشطة</span>
+            </div>
+            <div style="font-size:11px;color:var(--slate-400)">لوحة الإدارة الطبية  —  NBC v2.4</div>
+        </div>
+    </aside>
+
+    <!-- مساحة العمل والمحتوى الرئيسي (Admin Main) -->
+    <div class="admin-main">
+
+        <!-- الشريط العلوي (Admin Topbar) -->
+        <header class="admin-topbar">
+            <div class="topbar-right">
+                <button type="button" class="sidebar-toggle-btn" id="sidebarToggle" aria-label="تبديل القائمة الجانبية">☰</button>
+                <div class="topbar-breadcrumb">
+                    <span data-i18n="topbar_ctrl_panel">لوحة التحكم</span>
+                    <span>/</span>
+                    <span class="current" id="breadcrumbCurrent">نظرة عامة</span>
+                </div>
+            </div>
+
+            <!-- شريط البحث الشامل -->
+            <div class="topbar-search" id="topbarSearch">
+                <div class="search-input-wrap">
+                    <span class="search-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </span>
+                    <input type="search" id="globalSearchInput" placeholder="بحث شامل في الطلاب، الكورسات، المحاضرين... (Ctrl+K)" data-i18n-placeholder="global_search_placeholder" autocomplete="off">
+                    <kbd class="search-kbd">Ctrl K</kbd>
+                </div>
+
+                <!-- قائمة الاقتراحات السريعة للبحث -->
+                <div class="search-dropdown" id="searchDropdown" hidden>
+                    <div class="search-quick-links">
+                        <div class="search-group-title" data-i18n="quick_sections">الأقسام السريعة</div>
+                        <button type="button" class="search-item" data-search-tab="overview">
+                            <span data-i18n="search_overview">📊 نظرة عامة والإحصائيات</span>
+                            <small>Enter</small>
+                        </button>
+                        <button type="button" class="search-item" data-search-tab="students">
+                            <span data-i18n="search_students">👨‍🎓 بحث في سجلات الطلاب</span>
+                            <small>→</small>
+                        </button>
+                        <button type="button" class="search-item" data-search-tab="instructors">
+                            <span data-i18n="search_instructors">👨‍🏫 بحث في هيئة التدريس والمحاضرين</span>
+                            <small>→</small>
+                        </button>
+                        <button type="button" class="search-item" data-search-tab="courses">
+                            <span data-i18n="search_courses">📚 بحث في الكورسات والمنهج</span>
+                            <small>→</small>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topbar-left">
+                <!-- زر التبديل إلى الوضع الليلي (Dark Mode Toggle) -->
+                <button id="themeToggle" class="topbar-icon-btn" type="button" title="تبديل المظهر (ليلي / نهاري)" aria-label="تبديل الوضع الليلي">
+                    <svg class="theme-icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    <svg class="theme-icon-sun" viewBox="0 0 24 24" hidden><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                </button>
+
+                <button id="refresh" class="topbar-refresh-btn" type="button" title="تحديث مباشر من قاعدة البيانات">
+                    <span data-i18n="topbar_refresh">تحديث البيانات</span>
+                    <span>↻</span>
+                </button>
+
+                <div class="topbar-user">
+                    <div class="topbar-user-avatar">✚</div>
+                    <span id="who" class="who" data-i18n="admin_role">الإدارة</span>
+                </div>
+
+                <button id="logout" class="topbar-logout-btn" type="button" data-i18n="logout_btn" hidden>تسجيل الخروج</button>
+                <!-- زر تبديل اللغة -->
+                <button id="adminLangToggle" class="topbar-lang-btn" type="button" title="Toggle Language">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+                    <span id="adminLangLabel">EN</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- المحتوى الداخلي (Admin Content) -->
+        <div class="admin-content">
+
+            <div id="globalMessage" class="notice" hidden></div>
+
+            <!-- تبويبات التوافق والموبايل -->
+            <nav class="tabs" aria-label="أقسام لوحة الإدارة">
+                <button class="tab active" data-tab="overview">نظرة عامة</button>
+                <button class="tab" data-tab="students">الطلاب</button>
+                <button class="tab" data-tab="instructors">المحاضرون</button>
+                <button class="tab" data-tab="courses">الكورسات</button>
+                <button class="tab" data-tab="centers">السناتر</button>
+                <button class="tab" data-tab="enrollments">التسجيلات</button>
+                <button class="tab" data-tab="payments">المدفوعات</button>
+                <button class="tab" data-tab="quizzes">الاختبارات</button>
+                <button class="tab" data-tab="certificates">الشهادات</button>
+                <button class="tab" data-tab="skills">المهارات</button>
+                <button class="tab" data-tab="notifications">الإشعارات</button>
+                <button class="tab" data-tab="support">الدعم</button>
+                <button class="tab" data-tab="reports">التقارير</button>
+                <button class="tab" data-tab="settings">الإعدادات</button>
+                <button class="tab" data-tab="admin-profile">حسابي</button>
+            </nav>
+
+            <!-- =========================
+                 1) نظرة عامة (Overview)
+            ========================== -->
+            <section id="overviewPanel" class="panel">
+
+                <!-- بطاقة الترحيب العصرية -->
+                <div class="welcome-hero">
+                    <div class="welcome-info">
+                        <span class="welcome-badge" data-i18n="welcome_badge">NURSING BASIC COURSE  —  مركز التحكم الأكاديمي</span>
+                        <h1 data-i18n="welcome_title">نظرة عامة على المنظومة الطبية 🩺</h1>
+                        <p id="welcomeMeta" data-i18n="welcome_subtitle">مؤشرات الأداء الأكاديمي، الإيرادات المالية، والنشاط اللحظي من قاعدة البيانات.</p>
+                    </div>
+
+                    <div class="quick-actions" aria-label="اختصارات سريعة">
+                        <button type="button" class="btn btn-primary" data-quick="course" data-i18n="quick_new_course">+ كورس جديد</button>
+                        <button type="button" class="btn btn-outline" data-quick="instructor" data-i18n="quick_new_instructor">+ محاضر جديد</button>
+                        <button type="button" class="btn btn-outline" data-quick="student" data-i18n="quick_new_student">+ طالب جديد</button>
+                    </div>
+                </div>
+
+                <!-- التنبيهات -->
+                <div id="alerts" class="alerts" hidden></div>
+
+                <!-- نموذج إضافة محاضر سريع -->
+                <form id="instructorForm" class="surface form-card" hidden>
+                    <h2>إضافة محاضر جديد</h2>
+                    <div class="form-grid">
+                        <label>الاسم الكامل
+                            <input name="full_name" required maxlength="150" placeholder="د. أحمد مصطفى">
+                        </label>
+
+                        <label>البريد الإلكتروني
+                            <input name="email" type="email" required placeholder="instructor@example.com">
+                        </label>
+
+                        <label>رقم الهاتف
+                            <input name="phone" type="tel" maxlength="30" autocomplete="tel" placeholder="01xxxxxxxxx">
+                        </label>
+
+                        <label>كلمة مرور مؤقتة
+                            <input name="password" type="password" required minlength="10" autocomplete="new-password">
+                        </label>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn btn-primary">إنشاء الحساب</button>
+                        <button id="cancelInstructor" type="button" class="btn btn-ghost">إلغاء</button>
+                    </div>
+                </form>
+
+                <section class="surface" style="margin-top:20px;padding:20px">
+                    <div class="surface-head"><div><h2>🎬 الفيديو التعريفي للمنصة</h2><p>ارفع فيديو MP4 من جهازك ليظهر للزوار في الصفحة الرئيسية.</p></div></div>
+                    <div id="introVideoAdminMsg" class="notice" hidden></div>
+                    <form id="introVideoAdminForm" enctype="multipart/form-data">
+                        <label>فيديو MP4 من الجهاز (حتى 10 جيجابايت)<input type="file" name="file" accept="video/mp4,.mp4" required><small>قد يستغرق رفع الفيديوهات الطويلة وقتًا حسب سرعة الاتصال.</small></label>
+                        <div class="form-actions"><button type="submit" class="btn btn-primary">رفع الفيديو التعريفي</button></div>
+                    </form>
+                    <video id="introVideoAdminPreview" controls playsinline style="display:none;width:min(100%,480px);height:auto;max-height:270px;aspect-ratio:16/9;object-fit:contain;margin:12px auto 0;border-radius:12px;background:#000"></video>
+                </section>
+
+                <!-- بطاقة الفلاتر المتقدمة -->
+                <section class="surface filters-card">
+                    <div class="toolbar filters">
+                        <label>من تاريخ
+                            <input id="fFrom" type="date">
+                        </label>
+
+                        <label>إلى تاريخ
+                            <input id="fTo" type="date">
+                        </label>
+
+                        <label>الكورس
+                            <select id="fCourse">
+                                <option value="">كل الكورسات</option>
+                            </select>
+                        </label>
+
+                        <label>حالة الدفع
+                            <select id="fPay">
+                                <option value="">كل الحالات</option>
+                                <option value="pending">معلّق</option>
+                                <option value="under_review">قيد المراجعة</option>
+                                <option value="confirmed">مؤكد</option>
+                                <option value="rejected">مرفوض</option>
+                                <option value="refunded">مسترد</option>
+                                <option value="failed">فاشل</option>
+                            </select>
+                        </label>
+
+                        <label class="grow">بحث شامل
+                            <input id="fSearch" placeholder="ابحث باسم طالب، بريد، كورس، أو مرجع معاملة...">
+                        </label>
+
+                        <button id="applyFilters" class="btn btn-primary" type="button" data-i18n="apply_filters">تطبيق الفلتر</button>
+                        <button id="resetFilters" class="btn btn-ghost" type="button" data-i18n="reset_filters">إعادة ضبط</button>
+                    </div>
+                </section>
+
+                <!-- شبكة بطاقات الإحصاءات الذكية -->
+                <div id="stats" class="stats-grid"></div>
+
+                <!-- الرسوم البيانية -->
+                <div class="two-col">
+                    <section class="surface">
+                        <div class="surface-head">
+                            <div>
+                                <h2>الإيرادات المالية المؤكدة</h2>
+                                <p>متابعة التدفق المالي بالجنيه المصري عبر الفترة المحددة.</p>
+                            </div>
+                            <span id="revenueTotal" class="pill"></span>
+                        </div>
+                        <div id="revenueChart" class="chart"></div>
+                    </section>
+
+                    <section class="surface">
+                        <div class="surface-head">
+                            <div>
+                                <h2>التسجيلات في الكورسات</h2>
+                                <p>حركة تسجيل الطلاب في المسارات التدريبية المختلفة.</p>
+                            </div>
+                            <span id="enrollmentsTotal" class="pill"></span>
+                        </div>
+                        <div id="enrollmentsChart" class="chart"></div>
+                    </section>
+                </div>
+
+                <div class="two-col">
+                    <section class="surface">
+                        <div class="surface-head">
+                            <div>
+                                <h2>الطلاب الجدد المنضمون</h2>
+                                <p>معدل إنشاء الحسابات الطلابية الجديدة.</p>
+                            </div>
+                            <span id="studentsTotal" class="pill"></span>
+                        </div>
+                        <div id="studentsChart" class="chart"></div>
+                    </section>
+
+                    <section class="surface">
+                        <div class="surface-head">
+                            <div>
+                                <h2>نسب إكمال الكورسات</h2>
+                                <p>مدى تقدم وإنجاز الطلاب لكل مسار تدريبي.</p>
+                            </div>
+                            <span class="pill">حسب الكورس</span>
+                        </div>
+                        <div id="completionList" class="completion"></div>
+                    </section>
+                </div>
+
+                <!-- جداول المعاملات والأنشطة -->
+                <div class="two-col">
+                    <section class="surface">
+                        <div class="surface-head">
+                            <div>
+                                <h2>أحدث التسجيلات</h2>
+                                <p>آخر 10 طلاب التحقوا بالكورسات التدريبية.</p>
+                            </div>
+                            <span class="pill">آخر 10</span>
+                        </div>
+                        <div id="latestEnrollments" class="table-wrap"></div>
+                    </section>
+
+                    <section class="surface">
+                        <div class="surface-head">
+                            <div>
+                                <h2>أحدث المعاملات المالية</h2>
+                                <p>سجل التحويلات والمدفوعات الإلكترونية.</p>
+                            </div>
+                            <span class="pill">آخر 10</span>
+                        </div>
+                        <div id="latestTransactions" class="table-wrap"></div>
+                    </section>
+                </div>
+
+                <div class="two-col">
+                    <section class="surface">
+                        <div class="surface-head">
+                            <div>
+                                <h2>أحدث الأنشطة التفاعلية</h2>
+                                <p>سجل النشاط اللحظي داخل منصة التمريض.</p>
+                            </div>
+                            <span class="pill">آخر 12</span>
+                        </div>
+                        <div id="latestActivities" class="activity-list"></div>
+                    </section>
+
+                    <section class="surface">
+                        <div class="surface-head">
+                            <div>
+                                <h2>مدفوعات تحتاج مراجعة الإدارة</h2>
+                                <p>معاملات تنتظر التأكيد وتفعيل الاشتراك.</p>
+                            </div>
+                            <span class="pill warning">معلّقة</span>
+                        </div>
+                        <div id="pendingPayments" class="table-wrap"></div>
+                    </section>
+                </div>
+
+                <section class="surface">
+                    <div class="surface-head">
+                        <div>
+                            <h2>أحدث الحسابات المسجلة</h2>
+                            <p>آخر المنضمين إلى الأكاديمية من طلاب ومحاضرين.</p>
+                        </div>
+                        <span class="pill">آخر 8</span>
+                    </div>
+                    <div id="latestUsers" class="table-wrap"></div>
+                </section>
+            </section>
+
+            <!-- =========================
+                 2) إدارة الطلاب (Students)
+            ========================== -->
+            <section id="studentsPanel" class="panel" hidden>
+                <div id="studentsListView" class="surface">
+                    <div class="surface-head">
+                        <div>
+                            <h2 data-i18n="students_title">إدارة الطلاب المسجلين</h2>
+                            <p data-i18n="students_subtitle">بحث، متابعة الحالة الأكاديمية، والتحكم بحساب الطالب دون حذف بياناته.</p>
+                        </div>
+                        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                            <button id="addStudentBtn" class="btn btn-primary" data-i18n="add_student_btn">+ إضافة طالب جديد</button>
+                            <div class="view-toggle-group">
+                                <button type="button" class="view-toggle-btn active" id="viewCardsBtn" title="عرض بطاقات">
+                                    <svg viewBox="0 0 24 24" width="16" height="16"><rect x="2" y="3" width="9" height="9" rx="1"/><rect x="13" y="3" width="9" height="9" rx="1"/><rect x="2" y="14" width="9" height="9" rx="1"/><rect x="13" y="14" width="9" height="9" rx="1"/></svg>
+                                    بطاقات
+                                </button>
+                                <button type="button" class="view-toggle-btn" id="viewTableBtn" title="عرض جدولي">
+                                    <svg viewBox="0 0 24 24" width="16" height="16"><path d="M3 3h18v3H3zM3 9h18v3H3zM3 15h18v3H3zM3 21h18v3H3z"/></svg>
+                                    جدول
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="toolbar">
+                        <input id="studentSearch" placeholder="ابحث بالاسم أو البريد أو الهاتف..." data-i18n-placeholder="student_search_placeholder">
+                        <select id="studentStatus">
+                            <option value="">كل الحالات</option>
+                            <option value="active">نشط</option>
+                            <option value="inactive">غير نشط</option>
+                            <option value="suspended">موقوف</option>
+                        </select>
+                        <button id="searchStudents" class="btn btn-outline" data-i18n="search_btn">بحث</button>
+                    </div>
+
+                    <!-- Cards View (الافتراضي) -->
+                    <div id="studentsCardsGrid" class="students-cards-grid"></div>
+                    <!-- Table View -->
+                    <div id="studentsTable" class="table-wrap" hidden></div>
+                </div>
+
+                <!-- تفاصيل الطالب: مدمجة بالكامل -->
+                <section id="studentDetailsContainer" class="student-details-view" hidden>
+                    <div class="student-details-header">
+                        <div>
+                            <span class="eyebrow">STUDENT PROFILE</span>
+                            <h2>ملف الطالب الأكاديمي</h2>
+                            <p>بيانات الحساب والتسجيلات ونسبة التقدم الدراسي.</p>
+                        </div>
+
+                        <div class="student-details-actions">
+                            <button type="button" id="exportStudentCsv" class="btn btn-primary">
+                                تصدير CSV
+                            </button>
+                            <button type="button" id="backToStudents" class="btn btn-outline">
+                                ← العودة إلى قائمة الطلاب
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="studentDetailsMessage" class="notice" hidden></div>
+
+                    <div id="studentDetailsContent">
+                        <div class="loading">جارٍ تحميل بيانات الطالب...</div>
+                    </div>
+
+                    <section id="studentDetailsEditCard" class="surface form-card" hidden>
+                        <h2>تعديل بيانات الطالب</h2>
+                        <form id="studentDetailsEditForm">
+                            <div class="student-details-form-grid">
+                                <label>الاسم الكامل
+                                    <input name="full_name" maxlength="150" required>
+                                </label>
+
+                                <label>البريد الإلكتروني
+                                    <input name="email" type="email" maxlength="190" required>
+                                </label>
+
+                                <label>رقم الهاتف
+                                    <input name="phone" type="tel" maxlength="30">
+                                </label>
+
+                                <label>حالة الحساب
+                                    <select name="status">
+                                        <option value="active">نشط</option>
+                                        <option value="inactive">غير نشط</option>
+                                        <option value="suspended">موقوف</option>
+                                    </select>
+                                </label>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">حفظ التعديلات</button>
+                                <button type="button" id="cancelStudentDetailsEdit" class="btn btn-ghost">إلغاء</button>
+                            </div>
+                        </form>
+                    </section>
+                </section>
+
+                <!-- إضافة طالب جديد -->
+                <form id="studentForm" class="surface form-card" hidden>
+                    <h2>إضافة حساب طالب جديد</h2>
+                    <div class="form-grid">
+                        <label>الاسم الكامل
+                            <input name="full_name" required maxlength="150" placeholder="اسم الطالب الثلاثي">
+                        </label>
+
+                        <label>البريد الإلكتروني
+                            <input name="email" type="email" required placeholder="student@example.com">
+                        </label>
+
+                        <label>رقم الهاتف
+                            <input name="phone" type="tel" maxlength="30" autocomplete="tel" placeholder="01xxxxxxxxx">
+                        </label>
+
+                        <label>كلمة مرور مؤقتة
+                            <input name="password" type="password" required minlength="10" autocomplete="new-password">
+                        </label>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn btn-primary">إنشاء الحساب</button>
+                        <button id="cancelStudent" type="button" class="btn btn-ghost">إلغاء</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- =========================
+                 3) إدارة المحاضرين (Instructors)
+            ========================== -->
+            <section id="instructorsPanel" class="panel" hidden>
+                <div id="insListView" class="surface">
+                    <div class="surface-head">
+                        <div>
+                            <h2 data-i18n="instructors_title">إدارة المحاضرين والمدربين</h2>
+                            <p data-i18n="instructors_subtitle">متابعة المحاضرين، إسناد الكورسات، والتحكم الدقيق في الصلاحيات الأكاديمية.</p>
+                        </div>
+                        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                            <button id="insAddBtn" class="btn btn-primary" data-i18n="add_instructor_btn">+ إضافة محاضر جديد</button>
+                            <div class="view-toggle-group">
+                                <button type="button" class="view-toggle-btn active" id="insViewCardsBtn" title="عرض كروت">
+                                    <svg viewBox="0 0 24 24" width="16" height="16"><rect x="2" y="3" width="9" height="9" rx="1"/><rect x="13" y="3" width="9" height="9" rx="1"/><rect x="2" y="14" width="9" height="9" rx="1"/><rect x="13" y="14" width="9" height="9" rx="1"/></svg>
+                                    كروت
+                                </button>
+                                <button type="button" class="view-toggle-btn" id="insViewTableBtn" title="عرض جدول">
+                                    <svg viewBox="0 0 24 24" width="16" height="16"><path d="M3 3h18v3H3zM3 9h18v3H3zM3 15h18v3H3zM3 21h18v3H3z"/></svg>
+                                    جدول
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="toolbar">
+                        <input id="insSearch" placeholder="ابحث بالاسم أو البريد أو الهاتف أو التخصص..." data-i18n-placeholder="ins_search_placeholder">
+                        <select id="insStatus">
+                            <option value="">كل الحالات</option>
+                            <option value="active">نشط</option>
+                            <option value="inactive">غير نشط</option>
+                            <option value="suspended">موقوف</option>
+                        </select>
+                        <button id="insSearchBtn" class="btn btn-outline" data-i18n="search_btn">بحث</button>
+                    </div>
+
+                    <!-- Cards View (كروت المحاضرين الافتراضية) -->
+                    <div id="insCardsGrid" class="instructors-cards-grid">
+                        <div style="padding:40px;text-align:center;color:var(--slate-400);grid-column:1/-1;">
+                            <div style="margin:0 auto 12px;width:32px;height:32px;border:3px solid rgba(13,148,136,0.2);border-top-color:var(--teal-600);border-radius:50%;animation:spin 0.8s linear infinite;"></div>
+                            جاري تحميل كروت هيئة التدريس والمحاضرين...
+                        </div>
+                    </div>
+                    <!-- Table View -->
+                    <div id="insTable" class="table-wrap" hidden></div>
+                </div>
+
+                <!-- إضافة محاضر -->
+                <form id="insForm" class="surface form-card" hidden>
+                    <h2>إضافة محاضر جديد</h2>
+                    <div class="form-grid">
+                        <label>الاسم الكامل
+                            <input name="full_name" required maxlength="150">
+                        </label>
+                        <label>البريد الإلكتروني
+                            <input name="email" type="email" required>
+                        </label>
+                        <label>رقم الهاتف
+                            <input name="phone" type="tel" maxlength="30" autocomplete="tel">
+                        </label>
+                        <label>كلمة مرور مؤقتة
+                            <input name="password" type="password" required minlength="10" autocomplete="new-password">
+                        </label>
+                        <label>التخصص الطبي
+                            <input name="specialization" maxlength="150" placeholder="مثال: تمريض العناية المركزة">
+                        </label>
+                        <label>سنوات الخبرة
+                            <input name="experience_years" type="number" min="0" max="60">
+                        </label>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn btn-primary">إنشاء الحساب</button>
+                        <button id="insCancelAdd" type="button" class="btn btn-ghost">إلغاء</button>
+                    </div>
+                </form>
+
+                <!-- ملف المحاضر التفصيلي -->
+                <section id="insDetailsView" class="ins-details" hidden>
+                    <div class="ins-details-head">
+                        <div class="ins-id">
+                            <div id="insAvatar" class="ins-avatar"></div>
+                            <div>
+                                <span class="eyebrow">INSTRUCTOR PROFILE</span>
+                                <h2 id="insName">ملف المحاضر</h2>
+                                <div id="insSub" class="ins-sub"></div>
+                            </div>
+                        </div>
+
+                        <div class="ins-head-actions">
+                            <button id="insToggleStatus" type="button" class="btn btn-outline">تعطيل الحساب</button>
+                            <button id="insBack" type="button" class="btn btn-outline">← العودة إلى المحاضرين</button>
+                        </div>
+                    </div>
+
+                    <div id="insDetailsMsg" class="notice" hidden></div>
+                    <div id="insStats" class="stats-grid"></div>
+
+                    <!-- البيانات الشخصية والمهنية -->
+                    <form id="insEditForm" class="surface">
+                        <div class="surface-head">
+                            <div>
+                                <h2>البيانات المهنية والسيرة الذاتية</h2>
+                                <p>الصورة الشخصية، بيانات التواصل، والتخصص الطبي.</p>
+                            </div>
+                        </div>
+
+                        <div class="ins-edit-grid">
+                            <div class="ins-photo-box">
+                                <div id="insPhotoPreview" class="ins-avatar large"></div>
+                                <label class="btn btn-outline ins-upload">
+                                    تغيير الصورة
+                                    <input id="insPhotoInput" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+                                </label>
+                                <small>JPG / PNG / WEBP — حتى 2 ميجا</small>
+                            </div>
+
+                            <div class="form-grid">
+                                <label>الاسم الكامل
+                                    <input name="full_name" required maxlength="150">
+                                </label>
+                                <label>البريد الإلكتروني
+                                    <input name="email" type="email" required maxlength="190">
+                                </label>
+                                <label>رقم الهاتف
+                                    <input name="phone" type="tel" maxlength="30">
+                                </label>
+                                <label>التخصص
+                                    <input name="specialization" maxlength="150">
+                                </label>
+                                <label>سنوات الخبرة
+                                    <input name="experience_years" type="number" min="0" max="60">
+                                </label>
+                                <label>الجهة / مكان العمل
+                                    <input name="workplace" maxlength="190">
+                                </label>
+                            </div>
+                        </div>
+
+                        <label class="wide-label">الخبرات العملية
+                            <textarea name="experience" rows="3" maxlength="2000"></textarea>
+                        </label>
+
+                        <label class="wide-label">السيرة المهنية
+                            <textarea name="bio" rows="4" maxlength="4000"></textarea>
+                        </label>
+
+                        <div class="form-actions">
+                            <button class="btn btn-primary" type="submit">حفظ التعديلات</button>
+                        </div>
+                    </form>
+
+                    <!-- الكورسات المسندة -->
+                    <section class="surface">
+                        <div class="surface-head">
+                            <div>
+                                <h2>الكورسات المسندة إليه</h2>
+                                <p>عدد الطلاب المقيدين في كل مسار تدريبي.</p>
+                            </div>
+                            <span id="insCoursesPill" class="pill"></span>
+                        </div>
+                        <div id="insCourses" class="table-wrap"></div>
+                    </section>
+
+                    <!-- الدروس المضافة -->
+                    <section class="surface">
+                        <div class="surface-head">
+                            <div>
+                                <h2>الدروس التعليمية المضافة</h2>
+                                <p>أحدث الدروس التي أعدها المحاضر في المنصة.</p>
+                            </div>
+                            <span id="insLessonsPill" class="pill"></span>
+                        </div>
+                        <div id="insLessons" class="table-wrap"></div>
+                    </section>
+
+                    <!-- متابعة الأنشطة -->
+                    <section class="surface">
+                        <div class="surface-head">
+                            <div>
+                                <h2>سجل الأنشطة التعليمية</h2>
+                                <p>متابعة التفاعل وإدارة الكورسات داخل المنصة.</p>
+                            </div>
+                        </div>
+                        <div id="insActivity" class="activity-list"></div>
+                    </section>
+
+                    <!-- الصلاحيات -->
+                    <form id="insPermForm" class="surface">
+                        <div class="surface-head">
+                            <div>
+                                <h2>الصلاحيات الممنوحة للمحاضر</h2>
+                                <p>تحكم بدقة فيما يحق للمحاضر القيام به داخل حسابه.</p>
+                            </div>
+                        </div>
+
+                        <div id="insPerms" class="perm-grid"></div>
+
+                        <div class="perm-lock">
+                            <strong>🔒 حماية الأمان والخصوصية المالية</strong>
+                            <p>لا يُتاح للمحاضر في أي حال الوصول إلى تقارير الأرباح، المعاملات المالية، أو بيانات الطلاب خارج إطار كورساته المسندة.</p>
+                        </div>
+
+                        <div class="form-actions">
+                            <button class="btn btn-primary" type="submit">حفظ الصلاحيات</button>
+                        </div>
+                    </form>
+                </section>
+            </section>
+
+            <!-- =========================
+                 4) إدارة الكورسات والمنهج (Courses)
+            ========================== -->
+            <section id="coursesPanel" class="panel" hidden>
+                <div class="surface">
+                    <div class="surface-head">
+                        <div>
+                            <h2>إدارة المسارات التدريبية والكورسات</h2>
+                            <p>إنشاء الكورسات، رفع الصور، هيكلة الوحدات والدروس، وتحديد أكواد الخصم.</p>
+                        </div>
+                        <button id="addCourseBtn" class="btn btn-primary">+ كورس جديد</button>
+                    </div>
+
+                    <div class="toolbar">
+                        <input id="courseSearch" placeholder="ابحث عن كورس أو تخصص طبي..." data-i18n-placeholder="course_search_placeholder">
+                        <select id="courseStatus">
+                            <option value="">كل الحالات</option>
+                            <option value="draft">مسودة</option>
+                            <option value="published">منشور</option>
+                            <option value="archived">مؤرشف</option>
+                        </select>
+                        <button id="searchCourses" class="btn btn-outline" data-i18n="search_btn">بحث</button>
+                    </div>
+
+                    <div id="coursesTable" class="table-wrap"></div>
+                </div>
+
+                <section class="surface" id="booksAdminSection" style="margin-top:20px">
+                    <div class="surface-head"><div><h2>إدارة الكتب والملفات الرقمية</h2><p>ارفع نسخة الكتاب وغطاءه من جهازك بصيغة PDF وصورة.</p></div><button type="button" id="newBookBtn" class="btn btn-primary">+ إضافة كتاب</button></div>
+                    <form id="adminBookForm" class="form-grid" hidden enctype="multipart/form-data">
+                        <input type="hidden" name="id">
+                        <label>اسم الكتاب بالعربية<input name="title_ar" required maxlength="255"></label>
+                        <label>اسم الكتاب بالإنجليزية<input name="title_en" maxlength="255" dir="ltr"></label>
+                        <label>المؤلف<input name="author" maxlength="190"></label>
+                        <label>النوع<select name="type"><option value="digital">رقمي</option><option value="printed">مطبوع</option><option value="both">مطبوع ورقمي</option></select></label>
+                        <label>السعر<input name="price" type="number" min="0" step="0.01" value="0" required></label>
+                        <label>السعر بعد الخصم<input name="discount_price" type="number" min="0" step="0.01"></label>
+                        <label>عدد الصفحات<input name="pages_count" type="number" min="0" value="150"></label>
+                        <label>المخزون<input name="stock" type="number" value="50"></label>
+                        <label>حالة النشر<select name="status"><option value="draft">مسودة</option><option value="published">منشور</option><option value="archived">مؤرشف</option></select></label>
+                        <label>غلاف الكتاب من الجهاز<input name="cover_file" type="file" accept="image/jpeg,image/png,image/webp"></label>
+                        <label>ملف الكتاب من الجهاز (PDF)<input name="pdf_file" type="file" accept="application/pdf,.pdf"><small>حتى 35 ميجابايت حسب إعدادات الخادم الحالية.</small></label>
+                        <label class="wide-label">الوصف بالعربية<textarea name="description_ar" rows="3"></textarea></label>
+                        <label class="wide-label">الوصف بالإنجليزية<textarea name="description_en" rows="3"></textarea></label>
+                        <label><input name="is_downloadable" type="checkbox" value="1"> السماح بتنزيل الملف</label>
+                        <div class="form-actions" style="grid-column:1/-1"><button class="btn btn-primary" type="submit">حفظ الكتاب</button><button type="button" id="cancelBookBtn" class="btn btn-ghost">إلغاء</button></div>
+                    </form>
+                    <div id="adminBooksMessage" class="notice" hidden></div>
+                    <div id="adminBooksTable" class="table-wrap"></div>
+                </section>
+
+                <!-- نموذج الكورس -->
+                <form id="courseForm" class="surface form-card" hidden>
+                    <div class="surface-head">
+                        <div>
+                            <h2 id="courseFormTitle">إنشاء كورس جديد</h2>
+                            <p id="courseMeta"></p>
+                        </div>
+                    </div>
+                    <input type="hidden" name="id">
+
+                    <fieldset class="cf-group">
+                        <legend>1) البيانات الأساسية للكورس</legend>
+                        <div class="form-grid">
+                            <label>اسم الكورس (بالعربية)
+                                <input name="title" required maxlength="200" placeholder="مثال: أساسيات التمريض السريري">
+                            </label>
+                            <label>Course Name (English)
+                                <input name="title_en" maxlength="200" dir="ltr" placeholder="Clinical Nursing Basics">
+                            </label>
+                            <label>Slug بالإنجليزية (رابط الكورس)
+                                <input name="slug" required placeholder="nursing-basics" dir="ltr">
+                            </label>
+                            <label>التخصص الطبي
+                                <input name="category" maxlength="120" placeholder="مثال: التمريض العام، العناية المركزة">
+                            </label>
+                            <label>المستوى التعليمي
+                                <select name="level">
+                                    <option value="beginner">مبتدئ</option>
+                                    <option value="intermediate">متوسط</option>
+                                    <option value="advanced">متقدم</option>
+                                </select>
+                            </label>
+                            <label>حالة النشر
+                                <select name="status">
+                                    <option value="draft">مسودة</option>
+                                    <option value="published">منشور</option>
+                                    <option value="archived">مؤرشف</option>
+                                </select>
+                            </label>
+                        </div>
+                        <label class="wide-label">الوصف التفصيلي للكورس
+                            <textarea name="description" rows="5" maxlength="10000" placeholder="شرح تفصيلي عن محتوى ومحاور الكورس..."></textarea>
+                        </label>
+                    </fieldset>
+
+                    <fieldset class="cf-group">
+                        <legend>2) صورة الغلاف</legend>
+                        <div class="cover-box">
+                            <div id="coverPreview" class="cover-preview"><span>لا توجد صورة</span></div>
+                            <div class="cover-side">
+                                <label class="btn btn-outline cover-upload">اختيار صورة
+                                    <input id="coverInput" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+                                </label>
+                                <button type="button" id="coverRemove" class="btn btn-ghost" hidden>إزالة الصورة</button>
+                                <small>JPG / PNG / WEBP — حتى 3 ميجا — يُفضّل مقاس 16:9</small>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="cf-group">
+                        <legend>3) هيئة التدريس والمحاضرون</legend>
+                        <div class="form-grid">
+                            <label>المحاضر الرئيسي
+                                <select name="instructor_id" required id="courseInstructor"></select>
+                            </label>
+                        </div>
+                        <div class="wide-label">محاضرون مشاركون (اختياري)</div>
+                        <div id="courseCoList" class="check-grid"></div>
+                    </fieldset>
+
+                    <fieldset class="cf-group">
+                        <legend>4) التسعير والمقاعد والمدة</legend>
+                        <div class="form-grid">
+                            <label>السعر الأساسي (جنيه مصري)
+                                <input name="price" type="number" min="0" step="0.01" required value="0">
+                            </label>
+                            <label>السعر بعد الخصم (إن وجد)
+                                <input name="sale_price" type="number" min="0" step="0.01" placeholder="اتركه فارغاً إن لم يكن هناك خصم">
+                            </label>
+                            <label>المدة التقديرية (بالدقائق)
+                                <input name="duration_minutes" type="number" min="0" step="1">
+                            </label>
+                            <label>الحد الأقصى للمقاعد
+                                <input name="seats_limit" type="number" min="1" step="1" placeholder="فارغ = غير محدود">
+                            </label>
+                            <label>تاريخ البدء
+                                <input name="start_date" type="date">
+                            </label>
+                            <label>تاريخ الانتهاء
+                                <input name="end_date" type="date">
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="cf-group">
+                        <legend>5) الشروط ومخرجات التعلم</legend>
+                        <label class="wide-label">متطلبات الالتحاق بالكورس
+                            <textarea name="prerequisites" rows="3" maxlength="5000" placeholder="المعارف والمهارات السابقة المطلوبة..."></textarea>
+                        </label>
+                        <label class="wide-label">مخرجات التعلم المتوقعة
+                            <textarea name="learning_outcomes" rows="3" maxlength="5000" placeholder="اكتب كل مخرج في سطر مستقل..."></textarea>
+                        </label>
+                        <div class="form-grid">
+                            <label>أقل نسبة حضور/تقدم لإتمام الكورس (٪)
+                                <input name="completion_min_progress" type="number" min="1" max="100" step="1" value="100">
+                            </label>
+                        </div>
+                        <label class="wide-label">شروط استحقاق الشهادة
+                            <textarea name="completion_rules" rows="3" maxlength="5000" placeholder="مثال: إتمام 100% من المحاضرات + اجتياز الاختبار النهائي بنجاح"></textarea>
+                        </label>
+                    </fieldset>
+
+                    <div class="form-actions">
+                        <button type="button" id="saveDraftBtn" class="btn btn-outline">حفظ كمسودة</button>
+                        <button class="btn btn-primary" type="submit">حفظ الكورس</button>
+                        <button id="cancelCourse" type="button" class="btn btn-ghost">إلغاء</button>
+                    </div>
+                </form>
+
+                <!-- تفاصيل المنهج والكوبونات -->
+                <section id="courseExtras" hidden>
+                    <section class="surface">
+                        <div class="surface-head">
+                            <div>
+                                <h2>المنهج الدراسي: الوحدات والمحاضرات</h2>
+                                <p>هيكلة الكورس إلى وحدات ودروس تفاعلية مع إمكانية إتاحة معاينات مجانية للزوار.</p>
+                            </div>
+                            <span id="curPill" class="pill"></span>
+                        </div>
+                        <div id="curriculumBox"></div>
+                        <div class="form-actions">
+                            <button type="button" id="addUnitBtn" class="btn btn-outline">+ وحدة دراسية جديدة</button>
+                            <button type="button" id="saveCurriculumBtn" class="btn btn-primary">حفظ المنهج</button>
+                        </div>
+                    </section>
+
+                    <section class="surface">
+                        <div class="surface-head">
+                            <div>
+                                <h2>كوبونات وقسائم الخصم</h2>
+                                <p>أكواد ترويجية مخصصة للطلاب بنسبة مئوية أو قيمة ثابتة.</p>
+                            </div>
+                        </div>
+                        <form id="couponForm" class="coupon-form">
+                            <label>الكود<input name="code" maxlength="40" dir="ltr" required placeholder="NURSE20"></label>
+                            <label>نوع الخصم
+                                <select name="discount_type">
+                                    <option value="percent">نسبة ٪</option>
+                                    <option value="fixed">مبلغ ثابت (ج.م)</option>
+                                </select>
+                            </label>
+                            <label>قيمة الخصم<input name="discount_value" type="number" min="0.01" step="0.01" required></label>
+                            <label>أقصى عدد استخدام<input name="max_uses" type="number" min="1" step="1" placeholder="غير محدود"></label>
+                            <label>تاريخ البدء<input name="starts_at" type="date"></label>
+                            <label>تاريخ الانتهاء<input name="expires_at" type="date"></label>
+                            <button class="btn btn-primary" type="submit">إضافة الكوبون</button>
+                        </form>
+                        <div id="couponsTable" class="table-wrap"></div>
+                    </section>
+                </section>
+            </section>
+
+            <!-- التذييل الأكاديمي -->
+            <!-- ========================= 5) إعدادات المنصة (Settings) ========================= -->
+            <section id="settingsPanel" class="panel" hidden>
+                <div class="welcome-hero">
+                    <div class="welcome-info">
+                        <span class="welcome-badge">PLATFORM SETTINGS  —  إعدادات المنصة</span>
+                        <h1>إعدادات المنصة التعليمية ⚙️</h1>
+                        <p>تحكم كامل في هوية المنصة والألوان والبيانات الأساسية للأكاديمية.</p>
+                    </div>
+                </div>
+
+                <div id="settingsMsg" class="notice" hidden></div>
+
+                <form id="settingsForm">
+                    <!-- بيانات الأكاديمية -->
+                    <section class="surface" style="margin-bottom:20px">
+                        <div class="surface-head"><div><h2>🏫 بيانات الأكاديمية</h2><p>الاسم الرسمي ومعلومات المؤسسة التعليمية.</p></div></div>
+                        <div class="form-grid">
+                            <label>اسم المنصة (عربي)<input name="academy_name_ar" placeholder="Edu Nursing – أكاديمية التمريض" maxlength="150"></label>
+                            <label>Academy Name (English)<input name="academy_name" placeholder="Edu Nursing – Medical Education Academy" maxlength="150" dir="ltr"></label>
+                            <label>الشعار (عربي)<input name="academy_slogan_ar" placeholder="الأقوى في الشرق الأوسط" maxlength="200"></label>
+                            <label>Slogan (English)<input name="academy_slogan_en" placeholder="The Leading Medical Education Platform" maxlength="200" dir="ltr"></label>
+                            <div class="platform-logo-upload" style="grid-column:1/-1;display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:14px;border:1px solid var(--line,#dbe3ed);border-radius:14px">
+                                <div id="platformLogoPreview" aria-label="معاينة شعار المنصة" style="width:88px;height:88px;border-radius:18px;display:grid;place-items:center;background:var(--bg-surface,#f1f5f9);overflow:hidden;border:1px solid var(--line,#dbe3ed);font-size:28px">✚</div>
+                                <label style="flex:1;min-width:220px">شعار المنصة من الجهاز
+                                    <input id="platformLogoFile" type="file" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp">
+                                    <small>اختر الصورة وقصّها قبل الحفظ. JPG أو PNG أو WEBP، حتى 8 ميجابايت.</small>
+                                </label>
+                                <button id="uploadPlatformLogoBtn" type="button" class="btn btn-outline">رفع الشعار</button>
+                            </div>
+                            <div id="platformLogoMessage" class="notice" style="grid-column:1/-1" hidden></div>
+                        </div>
+                    </section>
+
+                    <!-- بيانات المؤسس -->
+                    <section class="surface" style="margin-bottom:20px">
+                        <div class="surface-head"><div><h2>👨‍⚕️ بيانات المؤسس والمحاضر الرئيسي</h2><p>معلومات د. خالد عبد الناصر المرسي.</p></div></div>
+                        <div class="form-grid">
+                            <label>اسم المؤسس<input name="founder_name" placeholder="د. خالد عبد الناصر محمد المرسي" maxlength="150"></label>
+                            <label>اللقب المهني<input name="founder_title" placeholder="محاضر دولي معتمد – Certified International Lecturer" maxlength="200"></label>
+                            <label style="grid-column:1/-1">نبذة قصيرة (عربي)<textarea name="founder_bio_ar" rows="3" placeholder="طبيب وأستاذ تمريض سريري، خبرة 20+ سنة..."></textarea></label>
+                        </div>
+                    </section>
+
+                    <!-- بيانات التواصل -->
+                    <section class="surface" style="margin-bottom:20px">
+                        <div class="surface-head"><div><h2>📞 بيانات التواصل</h2><p>أرقام الهاتف والبريد وطرق الدفع.</p></div></div>
+                        <div class="form-grid">
+                            <label>رقم التواصل العام<input name="contact_phone" type="tel" placeholder="01289492477" maxlength="30"></label>
+                            <label>رقم واتساب<input name="whatsapp_number" type="tel" placeholder="01289492477" maxlength="30"></label>
+                            <label>البريد الإلكتروني<input name="contact_email" type="email" placeholder="info@edunursing.com" maxlength="150" dir="ltr"></label>
+                            <label>العنوان (عربي)<input name="clinic_address_ar" placeholder="القاهرة، مصر" maxlength="300"></label>
+                            <label>رقم فودافون كاش<input name="payment_vodafone" type="tel" placeholder="01061709999" maxlength="30"></label>
+                            <label>رقم إنستاباي<input name="payment_instapay" type="tel" placeholder="01061709999" maxlength="30"></label>
+                            <label style="grid-column:1/-1">تعليمات الدفع<textarea name="payment_instructions_ar" rows="3" placeholder="حول المبلغ على فودافون كاش / إنستاباي ثم أرسل صورة الإيصال..."></textarea></label>
+                        </div>
+                    </section>
+
+                    <!-- الهوية الطبية والوضع -->
+                    <section class="surface" style="margin-bottom:20px">
+                        <div class="surface-head"><div><h2>👑 المظهر والهوية</h2><p>عاين إحدى الهويات الأربع، واضبط الخطوط والأزرار والبطاقات والقوائم والوضع الافتراضي للمنصة.</p></div></div>
+                        <input type="hidden" name="theme_preset" value="royal-red">
+                        <div class="medical-palette-grid" id="medicalPaletteGrid" role="radiogroup" aria-label="اختر الهوية الطبية">
+                            <button type="button" class="medical-palette-card" data-medical-preset="royal-red" role="radio" aria-checked="true">
+                                <span class="medical-palette-swatches"><i style="--swatch:#c9152b"></i><i style="--swatch:#101116"></i><i style="--swatch:#f2f3f5"></i></span><strong>الأحمر الملكي</strong><small>أحمر طبي، أسود وأبيض</small>
+                            </button>
+                            <button type="button" class="medical-palette-card" data-medical-preset="royal-gold" role="radio" aria-checked="false">
+                                <span class="medical-palette-swatches"><i style="--swatch:#b58a32"></i><i style="--swatch:#142237"></i><i style="--swatch:#fff"></i></span><strong>الذهبي الملكي</strong><small>كحلي عميق ولمسات ذهبية</small>
+                            </button>
+                            <button type="button" class="medical-palette-card" data-medical-preset="european-luxury" role="radio" aria-checked="false">
+                                <span class="medical-palette-swatches"><i style="--swatch:#8a7358"></i><i style="--swatch:#292724"></i><i style="--swatch:#e9dfd0"></i></span><strong>الفخامة الأوروبية</strong><small>عاجي وبيج وفحمي</small>
+                            </button>
+                            <button type="button" class="medical-palette-card" data-medical-preset="modern-dark" role="radio" aria-checked="false">
+                                <span class="medical-palette-swatches"><i style="--swatch:#0b0a11"></i><i style="--swatch:#8a5cf6"></i><i style="--swatch:#4e9eff"></i></span><strong>الداكن العصري</strong><small>أسود وبنفسجي وأزرق</small>
+                            </button>
+                        </div>
+                        <div class="form-grid">
+                            <label>الخط العربي الرئيسي
+                                <select name="theme_font">
+                                    <option value="Cairo">Cairo (الكايرو)</option>
+                                    <option value="Tajawal">Tajawal (التجوال)</option>
+                                    <option value="Almarai">Almarai (المراعي)</option>
+                                    <option value="IBM Plex Sans Arabic">IBM Plex Sans Arabic</option>
+                                    <option value="Alexandria">Alexandria</option>
+                                    <option value="Readex Pro">Readex Pro</option>
+                                    <option value="Noto Sans Arabic">Noto Sans Arabic</option>
+                                </select>
+                            </label>
+                            <label>الخط الإنجليزي<select name="theme_font_en"><option value="Inter">Inter</option><option value="Playfair Display">Playfair Display</option><option value="Arial">Arial</option><option value="Georgia">Georgia</option></select></label>
+                            <label>تفعيل ألوان مخصصة<select name="theme_custom_enabled"><option value="0">استخدام ألوان الهوية المختارة</option><option value="1">استخدام الألوان المخصصة</option></select><small class="theme-custom-help">اختيار هوية من البطاقات يعيد ألوانها المتناسقة.</small></label>
+                            <label>اللون الأساسي<input type="color" name="theme_custom_primary" value="#c9152b"></label>
+                            <label>اللون الثانوي<input type="color" name="theme_custom_secondary" value="#e83b4e"></label>
+                            <label>خلفية البطاقات<input type="color" name="theme_custom_surface" value="#ffffff"></label>
+                            <label>خلفية الصفحات<input type="color" name="theme_custom_background" value="#f5f6f8"></label>
+                            <label>الوضع الافتراضي<select name="theme_mode_default"><option value="light">نهاري</option><option value="dark">ليلي</option></select></label>
+                            <label>اختيارات المظهر للمستخدمين<select name="theme_user_choice_enabled"><option value="1">السماح بتغيير الوضع والهوية</option><option value="0">استخدام إعدادات المنصة فقط</option></select></label>
+                            <label>حركة الواجهة<select name="theme_motion"><option value="off">إيقاف الحركة</option><option value="subtle">هادئة</option><option value="smooth">انسيابية</option><option value="dynamic">حيوية</option></select><small>تتحكم في انتقال الصفحات والأقسام على المنصة كلها.</small></label>
+                            <label>شكل الأزرار<select name="theme_button_style"><option value="soft">ناعم</option><option value="pill">دائري</option><option value="square">مربع أنيق</option></select></label>
+                            <label>شكل البطاقات<select name="theme_card_style"><option value="glass">زجاجي فاخر</option><option value="clean">بسيط</option><option value="shadow">بارز بالظلال</option></select></label>
+                            <label>الشريط العلوي<select name="theme_header_style"><option value="solid">مصمت</option><option value="glass">زجاجي شفاف</option></select></label>
+                            <label>القائمة الجانبية<select name="theme_sidebar_style"><option value="solid">مصمتة</option><option value="glass">زجاجية شفافة</option></select></label>
+                            <label>التذييل<select name="theme_footer_style"><option value="dark">داكن</option><option value="light">فاتح</option></select></label>
+                            <label>عرض المحتوى<select name="theme_layout"><option value="wide">واسع</option><option value="compact">مضغوط</option></select></label>
+                        </div>
+                        <div id="themePreviewBar" class="medical-palette-preview"><strong id="themePalettePreviewName">الأحمر الملكي</strong><span id="themeFontPreview">معاينة الخط العربي — تمريض ورعاية</span><span class="theme-preview-sample">بطاقة معاينة</span><span class="theme-preview-button">زر تجريبي</span><span class="medical-mode-note">معاينة مباشرة — النشر بعد الحفظ</span></div>
+                    </section>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">💾 حفظ جميع الإعدادات</button>
+                        <button type="button" id="resetSettingsBtn" class="btn btn-ghost">↩ إعادة ضبط المظهر</button>
+                    </div>
+                </form>
+
+                <section class="surface home-design-manager" id="homeDesignManager" aria-labelledby="homeDesignTitle">
+                    <div class="surface-head">
+                        <div><h2 id="homeDesignTitle">🏠 مظهر الصفحة الرئيسية</h2><p>عاين واختر هوية مستقلة للواجهة الرئيسية. الاختيار محفوظ على هذا المتصفح ولا يغير إعدادات المنصة أو بياناتها.</p></div>
+                        <span class="home-design-active-summary" id="homeDesignActiveSummary">التصميم النشط: الطبي المميز</span>
+                    </div>
+                    <div class="home-design-options" role="radiogroup" aria-label="تصميم الصفحة الرئيسية">
+                        <article class="home-design-option" data-home-design-card="royal-luxury">
+                            <div class="home-design-thumb home-design-thumb-royal" aria-hidden="true"><i></i><b></b><span></span></div>
+                            <div class="home-design-copy"><h3>الفخامة الملكية</h3><p>كحلي ملكي ولمسات ذهبية، مع واجهة أكاديمية سينمائية.</p></div>
+                            <div class="home-design-actions"><button type="button" class="btn btn-outline" data-home-design-preview="royal-luxury">معاينة</button><button type="button" class="btn btn-primary" data-home-design-apply="royal-luxury">تطبيق</button></div>
+                            <span class="home-design-selected" hidden>التصميم النشط</span>
+                        </article>
+                        <article class="home-design-option" data-home-design-card="medical-premium">
+                            <div class="home-design-thumb home-design-thumb-medical" aria-hidden="true"><i></i><b></b><span></span></div>
+                            <div class="home-design-copy"><h3>الطبي المميز</h3><p>أخضر طبي وتركواز ومساحات بيضاء واضحة.</p></div>
+                            <div class="home-design-actions"><button type="button" class="btn btn-outline" data-home-design-preview="medical-premium">معاينة</button><button type="button" class="btn btn-primary" data-home-design-apply="medical-premium">تطبيق</button></div>
+                            <span class="home-design-selected" hidden>التصميم النشط</span>
+                        </article>
+                        <article class="home-design-option" data-home-design-card="modern-academy">
+                            <div class="home-design-thumb home-design-thumb-modern" aria-hidden="true"><i></i><b></b><span></span></div>
+                            <div class="home-design-copy"><h3>الأكاديمية العصرية</h3><p>بنفسجي وإنديغو وتوزيع ديناميكي لمحتوى التعلم.</p></div>
+                            <div class="home-design-actions"><button type="button" class="btn btn-outline" data-home-design-preview="modern-academy">معاينة</button><button type="button" class="btn btn-primary" data-home-design-apply="modern-academy">تطبيق</button></div>
+                            <span class="home-design-selected" hidden>التصميم النشط</span>
+                        </article>
+                        <article class="home-design-option" data-home-design-card="european-corporate">
+                            <div class="home-design-thumb home-design-thumb-european" aria-hidden="true"><i></i><b></b><span></span></div>
+                            <div class="home-design-copy"><h3>المؤسسي الأوروبي</h3><p>فحمي وفضي وأزرق رمادي بهدوء مؤسسي.</p></div>
+                            <div class="home-design-actions"><button type="button" class="btn btn-outline" data-home-design-preview="european-corporate">معاينة</button><button type="button" class="btn btn-primary" data-home-design-apply="european-corporate">تطبيق</button></div>
+                            <span class="home-design-selected" hidden>التصميم النشط</span>
+                        </article>
+                    </div>
+                    <div class="home-design-manager-footer"><p>المعاينة تفتح الصفحة الرئيسية في تبويب جديد من دون تفعيل التصميم.</p><button type="button" id="homeDesignRestore" class="btn btn-ghost">↩ استعادة التصميم الأصلي</button></div>
+                </section>
+
+                <section class="surface home-slider-admin" id="homeSliderAdmin" style="margin-top:20px">
+                    <div class="surface-head">
+                        <div><h2>🩺 سلايدر الصور الطبية للصفحة الرئيسية</h2><p>أضف صورًا من جهازك، واكتب عناوينها ورتّب ظهورها للزوار.</p></div>
+                        <button type="button" id="homeSliderAddBtn" class="btn btn-primary">＋ إضافة صورة</button>
+                    </div>
+                    <div id="homeSliderMessage" class="notice" hidden></div>
+                    <form id="homeSliderForm" class="home-slider-form" hidden enctype="multipart/form-data">
+                        <input type="hidden" name="id">
+                        <label>العنوان بالعربية<input name="title_ar" maxlength="190" placeholder="مثال: رعاية تمريضية بمعايير متقدمة"></label>
+                        <label>العنوان بالإنجليزية<input name="title_en" maxlength="190" dir="ltr" placeholder="Advanced Nursing Care"></label>
+                        <label>وصف مختصر بالعربية<input name="subtitle_ar" maxlength="500" placeholder="تعلّم المهارات السريرية على أيدي متخصصين"></label>
+                        <label>وصف مختصر بالإنجليزية<input name="subtitle_en" maxlength="500" dir="ltr"></label>
+                        <label>صور من الجهاز<input name="image_file" type="file" multiple accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp"><small>يمكن اختيار عدة صور وإضافتها دفعة واحدة. JPG أو PNG أو WEBP، أبعاد 640×360 على الأقل، حتى 8 ميجابايت للصورة.</small></label>
+                        <div id="homeSliderPreview" class="home-slider-preview" hidden></div>
+                        <label>ترتيب العرض<input name="sort_order" type="number" min="0" max="10000" value="0"></label>
+                        <label class="home-slider-active"><input name="is_active" type="checkbox" value="1" checked> عرض الصورة للزوار</label>
+                        <div class="form-actions"><button class="btn btn-primary" type="submit">حفظ الصورة</button><button type="button" id="homeSliderCancelBtn" class="btn btn-ghost">إلغاء</button></div>
+                    </form>
+                    <div id="homeSliderList" class="home-slider-list" aria-live="polite"></div>
+                </section>
+
+                <section class="surface home-slider-admin" id="founderPhotosAdmin" style="margin-top:20px">
+                    <div class="surface-head">
+                        <div><h2>👨‍⚕️ صور مالك المنصة في الصفحة الرئيسية</h2><p>ارفع صورًا شخصية من جهازك لتظهر بالتتابع داخل قسم مالك المنصة.</p></div>
+                        <button type="button" id="founderPhotoAddBtn" class="btn btn-primary">＋ إضافة صور</button>
+                    </div>
+                    <div id="founderPhotosMessage" class="notice" hidden></div>
+                    <form id="founderPhotoForm" class="home-slider-form" hidden enctype="multipart/form-data">
+                        <input type="hidden" name="id">
+                        <label>وصف الصورة بالعربية<input name="caption_ar" maxlength="190" placeholder="مثال: محاضرة في التمريض السريري"></label>
+                        <label>وصف الصورة بالإنجليزية<input name="caption_en" maxlength="190" dir="ltr"></label>
+                        <label>صور من الجهاز<input name="image_file" type="file" multiple accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp"><small>يمكن اختيار عدة صور دفعة واحدة. JPG أو PNG أو WEBP، أبعاد 320×320 على الأقل، حتى 8 ميجابايت للصورة.</small></label>
+                        <div id="founderPhotoPreview" class="home-slider-preview" hidden></div>
+                        <label>ترتيب العرض<input name="sort_order" type="number" min="0" max="10000" value="0"></label>
+                        <label class="home-slider-active"><input name="is_active" type="checkbox" value="1" checked> عرض الصورة للزوار</label>
+                        <div class="form-actions"><button class="btn btn-primary" type="submit">حفظ الصور</button><button type="button" id="founderPhotoCancelBtn" class="btn btn-ghost">إلغاء</button></div>
+                    </form>
+                    <div id="founderPhotosList" class="home-slider-list" aria-live="polite"></div>
+                </section>
+            </section>
+
+            <!-- ========================= 6) ملف حساب المدير (Admin Profile) ========================= -->
+            <section id="adminProfilePanel" class="panel" hidden>
+                <div class="welcome-hero">
+                    <div class="welcome-info">
+                        <span class="welcome-badge">ADMIN PROFILE  —  حساب الإدارة</span>
+                        <h1>إعدادات حسابك الشخصي 👤</h1>
+                        <p>تحديث بيانات الإدارة، الصورة الشخصية، وكلمة المرور.</p>
+                    </div>
+                </div>
+
+                <div id="adminProfileMsg" class="notice" hidden></div>
+
+                <div class="two-col" style="gap:20px">
+                    <!-- معلومات الحساب -->
+                    <form id="adminProfileForm" class="surface">
+                        <div class="surface-head"><div><h2>المعلومات الشخصية</h2><p>الاسم والبريد والهاتف.</p></div></div>
+
+                        <div style="text-align:center;margin-bottom:24px">
+                            <div id="adminAvatarPreview" style="width:100px;height:100px;border-radius:50%;overflow:hidden;margin:0 auto 12px;border:3px solid var(--teal-500);display:flex;align-items:center;justify-content:center;background:var(--teal-100);font-size:32px;font-weight:800;color:var(--teal-700)">✚</div>
+                            <input type="file" id="adminAvatarFile" accept="image/jpeg,image/png,image/webp" style="width:100%;max-width:320px;margin:0 auto;display:block">
+                            <small style="color:var(--slate-500)">اختر صورة من جهازك بصيغة JPG أو PNG أو WebP (حتى 8 ميجابايت)</small>
+                        </div>
+
+                        <div class="form-grid">
+                            <label>الاسم الكامل<input id="adminFullName" name="full_name" placeholder="مدير الأكاديمية" maxlength="150" required></label>
+                            <label>البريد الإلكتروني<input id="adminEmail" name="email" type="email" placeholder="admin@example.com" required dir="ltr"></label>
+                            <label style="grid-column:1/-1">رقم الهاتف (اختياري)<input id="adminPhone" name="phone" type="tel" placeholder="01xxxxxxxxx" maxlength="30"></label>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">💾 حفظ بيانات الحساب</button>
+                        </div>
+                    </form>
+
+                    <!-- تغيير كلمة المرور -->
+                    <form id="adminPasswordForm" class="surface">
+                        <div class="surface-head"><div><h2>🔐 تغيير كلمة المرور</h2><p>أدخل كلمتك الحالية أولًا ثم الجديدة.</p></div></div>
+
+                        <div class="form-grid" style="grid-template-columns:1fr">
+                            <label>كلمة المرور الحالية<input type="password" name="current_password" required autocomplete="current-password" minlength="6"></label>
+                            <label>كلمة المرور الجديدة<input type="password" name="new_password" required autocomplete="new-password" minlength="10" placeholder="10 خانات على الأقل"></label>
+                            <label>تأكيد كلمة المرور الجديدة<input type="password" name="confirm_password" required autocomplete="new-password" minlength="10"></label>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-outline">🔑 تغيير كلمة المرور</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- ===========================
+                 ENROLLMENTS PANEL
+            =========================== -->
+            <section id="centersPanel" class="panel" hidden>
+                <div class="welcome-hero">
+                    <div class="welcome-info">
+                        <span class="welcome-badge">OFFLINE CENTERS  —  السناتر</span>
+                        <h1>إدارة السناتر والحجز الأوفلاين</h1>
+                        <p>أضف السناتر ومعلومات التواصل والملفات والفيديوهات ومواعيد الحجز.</p>
+                    </div>
+                    <div class="quick-actions"><button class="btn btn-primary" type="button" id="centerAddBtn">＋ إضافة سنتر</button></div>
+                </div>
+                <div id="centersMessage" class="notice" hidden></div>
+                <div class="offline-center-stats">
+                    <div class="stat-card"><div class="stat-label">إجمالي السناتر</div><div class="stat-value" id="centersTotal">0</div></div>
+                    <div class="stat-card"><div class="stat-label">سناتر نشطة</div><div class="stat-value" id="centersActive">0</div></div>
+                    <div class="stat-card"><div class="stat-label">مواعيد حجز قادمة</div><div class="stat-value" id="centersSlots">0</div></div>
+                </div>
+                <div class="surface offline-center-toolbar">
+                    <input type="search" id="centersSearch" placeholder="ابحث باسم السنتر أو العنوان أو الهاتف" aria-label="ابحث عن سنتر">
+                    <button class="btn btn-outline" type="button" id="centersSearchBtn">بحث</button>
+                    <button class="btn btn-ghost" type="button" id="centersRefreshBtn">تحديث القائمة</button>
+                </div>
+                <div id="centersGrid" class="offline-centers-grid" aria-live="polite"></div>
+
+                <div class="modal-overlay" id="centerFormModal" hidden>
+                    <div class="modal-box offline-center-modal" role="dialog" aria-modal="true" aria-labelledby="centerFormTitle">
+                        <div class="modal-header"><h2 id="centerFormTitle">إضافة سنتر</h2><button class="modal-close" type="button" data-close-center-form aria-label="إغلاق">×</button></div>
+                        <div class="modal-body">
+                            <form id="centerForm" enctype="multipart/form-data">
+                                <input type="hidden" name="id" id="centerId">
+                                <div class="form-grid offline-center-form-grid">
+                                    <label>اسم السنتر *<input name="name" id="centerName" required maxlength="190" placeholder="مثال: سنتر القاهرة"></label>
+                                    <label>العنوان<input name="address" id="centerAddress" maxlength="500" placeholder="المدينة، الشارع، علامة مميزة"></label>
+                                    <label>رقم الهاتف<input name="phone" id="centerPhone" type="tel" maxlength="40" dir="ltr" placeholder="01xxxxxxxxx"></label>
+                                    <label>واتساب<input name="whatsapp" id="centerWhatsapp" type="tel" maxlength="40" dir="ltr" placeholder="01xxxxxxxxx"></label>
+                                    <label class="full">رابط الموقع على الخريطة<input name="map_url" id="centerMapUrl" type="url" maxlength="1000" dir="ltr" placeholder="https://maps.google.com/..."></label>
+                                    <label class="full">نبذة عن السنتر<textarea name="description" id="centerDescription" rows="3" maxlength="20000" placeholder="الخدمات والتخصصات المتاحة..."></textarea></label>
+                                    <label>حالة السنتر<select name="status" id="centerStatus"><option value="active">نشط</option><option value="inactive">غير نشط</option></select></label>
+                                    <label>صورة السنتر<input name="cover_file" id="centerCoverFile" type="file" accept="image/jpeg,image/png,image/webp"></label>
+                                </div>
+                                <div class="offline-center-cover-preview" id="centerCoverPreview" hidden></div>
+                                <div class="form-actions">
+                                    <button class="btn btn-primary" type="submit" id="centerSaveBtn">حفظ السنتر</button>
+                                    <button class="btn btn-outline" type="button" data-close-center-form>إلغاء</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-overlay" id="centerManageModal" hidden>
+                    <div class="modal-box offline-center-modal" role="dialog" aria-modal="true" aria-labelledby="centerManageTitle">
+                        <div class="modal-header"><div><h2 id="centerManageTitle">إدارة السنتر</h2><p id="centerManageSubtitle"></p></div><button class="modal-close" type="button" data-close-center-manage aria-label="إغلاق">×</button></div>
+                        <div class="modal-body">
+                            <div id="centerManageMessage" class="notice" hidden></div>
+                            <section class="offline-center-manage-section">
+                                <div class="offline-center-section-head"><h3>الملفات والفيديوهات</h3><span id="centerMediaCount"></span></div>
+                                <form id="centerMediaForm" class="offline-center-upload-form" enctype="multipart/form-data">
+                                    <label>رفع ملفات أو فيديوهات<input type="file" id="centerMediaFiles" name="files[]" multiple accept="application/pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,video/mp4,video/webm,video/quicktime,video/x-msvideo"></label>
+                                    <small>PDF وملفات Office والفيديو MP4 أو WEBM أو MOV أو AVI، حتى 100 ميجابايت للملف.</small>
+                                    <button class="btn btn-primary" type="submit" id="centerMediaUploadBtn">رفع المحدد</button>
+                                </form>
+                                <div id="centerMediaGrid" class="center-media-grid"></div>
+                            </section>
+                            <section class="offline-center-manage-section">
+                                <div class="offline-center-section-head"><h3>مواعيد الحجز</h3><span id="centerSlotCount"></span></div>
+                                <form id="centerSlotForm" class="offline-center-slot-form">
+                                    <input type="hidden" id="centerSlotId">
+                                    <label>عنوان الموعد<input id="centerSlotTitle" required maxlength="190" placeholder="كشف تمريضي / استشارة"></label>
+                                    <label>التاريخ<input id="centerSlotDate" type="date" required></label>
+                                    <label>من الساعة<input id="centerSlotStart" type="time" required></label>
+                                    <label>إلى الساعة<input id="centerSlotEnd" type="time" required></label>
+                                    <label>عدد الحجوزات<input id="centerSlotCapacity" type="number" min="1" max="5000" value="1" required></label>
+                                    <label>الحالة<select id="centerSlotStatus"><option value="open">متاح للحجز</option><option value="closed">مغلق</option></select></label>
+                                    <label class="slot-notes">ملاحظات<input id="centerSlotNotes" maxlength="1000" placeholder="تعليمات أو تفاصيل إضافية"></label>
+                                    <div class="form-actions slot-actions"><button class="btn btn-primary" type="submit" id="centerSlotSaveBtn">إضافة الموعد</button><button class="btn btn-outline" type="button" id="centerSlotCancelEdit" hidden>إلغاء التعديل</button></div>
+                                </form>
+                                <div id="centerSlotsList" class="center-slots-list"></div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="enrollmentsPanel" class="panel" hidden>
+                <div class="welcome-hero">
+                    <div class="welcome-info">
+                        <span class="welcome-badge">ENROLLMENTS  —  التسجيلات</span>
+                        <h1>إدارة تسجيلات الطلاب 📋</h1>
+                        <p>عرض وإدارة تسجيلات الطلاب — يدوي، تلقائي، وتاريخ الحالات.</p>
+                    </div>
+                    <div class="quick-actions">
+                        <button class="btn btn-primary" id="btnNewEnrollment">+ تسجيل يدوي</button>
+                    </div>
+                </div>
+
+                <div class="surface" style="margin-bottom:16px">
+                    <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end">
+                        <div style="flex:1;min-width:180px"><label>بحث<input type="text" id="enrSearch" placeholder="اسم الطالب أو الكورس..." style="width:100%;margin-top:4px"></label></div>
+                        <div><label>الحالة<select id="enrStatus" style="display:block;margin-top:4px;padding:8px 12px;border-radius:8px;border:1px solid var(--line)">
+                            <option value="">الكل</option>
+                            <option value="active">نشط</option>
+                            <option value="pending">معلق</option>
+                            <option value="completed">مكتمل</option>
+                            <option value="cancelled">ملغي</option>
+                            <option value="suspended">موقوف</option>
+                        </select></label></div>
+                        <button class="btn btn-outline" id="btnLoadEnrollments">🔍 بحث</button>
+                    </div>
+                </div>
+
+                <div id="enrollmentsMsg" class="notice" hidden></div>
+
+                <div class="surface">
+                    <div class="surface-head"><h3>قائمة التسجيلات</h3><span id="enrCount" style="font-size:13px;color:var(--slate-500)"></span></div>
+                    <div style="overflow-x:auto">
+                        <table class="data-table" id="enrollmentsTable">
+                            <thead><tr>
+                                <th>#</th><th>الطالب</th><th>الكورس</th><th>الحالة</th>
+                                <th>الوصول</th><th>تاريخ التسجيل</th><th>الانتهاء</th><th>إجراءات</th>
+                            </tr></thead>
+                            <tbody id="enrollmentsTbody"><tr><td colspan="8" style="text-align:center;padding:32px;color:var(--slate-400)">جارٍ التحميل...</td></tr></tbody>
+                        </table>
+                    </div>
+                    <div id="enrPagination" style="display:flex;gap:8px;padding:12px;justify-content:center"></div>
+                </div>
+            </section>
+
+            <!-- ===========================
+                 PAYMENTS PANEL
+            =========================== -->
+            <section id="paymentsPanel" class="panel" hidden>
+                <div class="welcome-hero">
+                    <div class="welcome-info">
+                        <span class="welcome-badge">PAYMENTS  —  المدفوعات</span>
+                        <h1>إدارة المدفوعات والطلبات المالية 💳</h1>
+                        <p>مراجعة إثباتات التحويل، تأكيد الدفع، والتحقق من المعاملات.</p>
+                    </div>
+                </div>
+
+                <!-- Payment Stats Cards -->
+                <div class="stats-row" id="paymentStatsRow" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:20px">
+                    <div class="stat-card"><div class="stat-label">إجمالي مؤكد</div><div class="stat-value" id="pStatConfirmed">—</div></div>
+                    <div class="stat-card"><div class="stat-label">معلق</div><div class="stat-value" id="pStatPending">—</div></div>
+                    <div class="stat-card"><div class="stat-label">مرفوض</div><div class="stat-value" id="pStatRejected">—</div></div>
+                    <div class="stat-card"><div class="stat-label">مسترد</div><div class="stat-value" id="pStatRefunded">—</div></div>
+                </div>
+
+                <!-- Payment Methods Info -->
+                <div class="surface" style="margin-bottom:16px;background:linear-gradient(135deg,var(--teal-50),var(--slate-50));border:1px solid var(--teal-200)">
+                    <div style="padding:16px">
+                        <h4 style="color:var(--teal-700);margin-bottom:8px">🏦 طرق الدفع المتاحة حالياً</h4>
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
+                            <div style="background:white;border-radius:8px;padding:12px;border:1px solid var(--line)">
+                                <strong>📲 InstaPay / فودافون كاش</strong>
+                                <p style="font-size:12px;color:var(--slate-500);margin:4px 0">01061709999 — يدوي (مراجعة إثبات)</p>
+                                <span style="background:#d1fae5;color:#065f46;padding:2px 8px;border-radius:20px;font-size:11px">✅ فعّال</span>
+                            </div>
+                            <div style="background:white;border-radius:8px;padding:12px;border:1px solid var(--line)">
+                                <strong>💳 بطاقات بنكية</strong>
+                                <p style="font-size:12px;color:var(--slate-500);margin:4px 0">تتطلب بوابة دفع مرخصة</p>
+                                <span style="background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:20px;font-size:11px">🔧 قيد الإعداد</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="surface" style="margin-bottom:16px">
+                    <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end">
+                        <div style="flex:1;min-width:180px"><label>بحث<input type="text" id="paySearch" placeholder="اسم الطالب، رقم الطلب..." style="width:100%;margin-top:4px"></label></div>
+                        <div><label>الحالة<select id="payStatus" style="display:block;margin-top:4px;padding:8px 12px;border-radius:8px;border:1px solid var(--line)">
+                            <option value="">الكل</option>
+                            <option value="new">جديد/معلق</option>
+                            <option value="paid">مؤكد</option>
+                            <option value="rejected">مرفوض</option>
+                            <option value="refunded">مسترد</option>
+                        </select></label></div>
+                        <div><label>من<input type="date" id="payDateFrom" style="display:block;margin-top:4px;padding:8px;border-radius:8px;border:1px solid var(--line)"></label></div>
+                        <div><label>إلى<input type="date" id="payDateTo" style="display:block;margin-top:4px;padding:8px;border-radius:8px;border:1px solid var(--line)"></label></div>
+                        <button class="btn btn-outline" id="btnLoadPayments">🔍 بحث</button>
+                    </div>
+                </div>
+
+                <div id="paymentsMsg" class="notice" hidden></div>
+
+                <div class="surface">
+                    <div class="surface-head"><h3>قائمة الطلبات المالية</h3></div>
+                    <div style="overflow-x:auto">
+                        <table class="data-table" id="paymentsTable">
+                            <thead><tr>
+                                <th>رقم الطلب</th><th>الطالب</th><th>الكورس</th><th>المبلغ</th>
+                                <th>الطريقة</th><th>الحالة</th><th>التاريخ</th><th>إثبات</th><th>إجراءات</th>
+                            </tr></thead>
+                            <tbody id="paymentsTbody"><tr><td colspan="9" style="text-align:center;padding:32px;color:var(--slate-400)">جارٍ التحميل...</td></tr></tbody>
+                        </table>
+                    </div>
+                    <div id="payPagination" style="display:flex;gap:8px;padding:12px;justify-content:center"></div>
+                </div>
+            </section>
+
+            <!-- ===========================
+                 QUIZZES PANEL
+            =========================== -->
+            <section id="quizzesPanel" class="panel" hidden>
+                <div class="welcome-hero">
+                    <div class="welcome-info">
+                        <span class="welcome-badge">QUIZZES  —  الاختبارات</span>
+                        <h1>بنك الأسئلة والاختبارات 📝</h1>
+                        <p>إنشاء وإدارة الاختبارات، الأسئلة، وعرض نتائج الطلاب.</p>
+                    </div>
+                    <div class="quick-actions">
+                        <button class="btn btn-primary" id="btnNewQuiz">+ اختبار جديد</button>
+                    </div>
+                </div>
+
+                <div id="quizzesMsg" class="notice" hidden></div>
+
+                <div style="display:grid;grid-template-columns:1fr 2fr;gap:16px" id="quizzesLayout">
+                    <!-- Quiz List -->
+                    <div class="surface">
+                        <div class="surface-head"><h3>قائمة الاختبارات</h3></div>
+                        <div style="padding:12px"><label>فلتر الكورس
+                            <select id="quizCourseFilter" style="display:block;width:100%;margin-top:4px;padding:8px;border-radius:8px;border:1px solid var(--line)">
+                                <option value="">كل الكورسات</option>
+                            </select>
+                        </label></div>
+                        <div id="quizListContainer" style="max-height:500px;overflow-y:auto"></div>
+                    </div>
+
+                    <!-- Quiz Detail / Editor -->
+                    <div class="surface" id="quizDetailPanel">
+                        <div style="padding:40px;text-align:center;color:var(--slate-400)">
+                            <div style="font-size:48px;margin-bottom:16px">📝</div>
+                            <p>اختر اختباراً لعرض تفاصيله وأسئلته، أو أنشئ اختباراً جديداً.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quiz Attempts Modal / Section -->
+                <div class="surface" id="quizAttemptsSection" hidden style="margin-top:16px">
+                    <div class="surface-head"><h3 id="quizAttemptsTitle">محاولات الطلاب</h3><button class="btn btn-ghost" id="btnCloseAttempts">✕ إغلاق</button></div>
+                    <div style="overflow-x:auto">
+                        <table class="data-table">
+                            <thead><tr><th>الطالب</th><th>الدرجة</th><th>النسبة</th><th>النتيجة</th><th>التاريخ</th></tr></thead>
+                            <tbody id="attemptsTbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===========================
+                 CERTIFICATES PANEL
+            =========================== -->
+            <section id="certificatesPanel" class="panel" hidden>
+                <div class="welcome-hero">
+                    <div class="welcome-info">
+                        <span class="welcome-badge">CERTIFICATES  —  الشهادات</span>
+                        <h1>إدارة الشهادات الإلكترونية 🎓</h1>
+                        <p>إصدار، عرض، والتحقق من شهادات إتمام الكورسات.</p>
+                    </div>
+                    <div class="quick-actions">
+                        <button class="btn btn-primary" id="btnIssueCertificate">+ إصدار شهادة</button>
+                    </div>
+                </div>
+
+                <div id="certificatesMsg" class="notice" hidden></div>
+
+                <!-- Issue Certificate Form -->
+                <div class="surface" id="issueCertForm" hidden style="margin-bottom:16px">
+                    <div class="surface-head"><h3>إصدار شهادة جديدة</h3><button class="btn btn-ghost" id="btnCancelIssueCert">✕</button></div>
+                    <div style="padding:16px">
+                        <div class="form-grid">
+                            <label>معرف الطالب (ID)<input type="number" id="certStudentId" placeholder="رقم الطالب"></label>
+                            <label>معرف الكورس (ID)<input type="number" id="certCourseId" placeholder="رقم الكورس"></label>
+                        </div>
+                        <div style="display:flex;gap:8px;margin-top:12px;align-items:center">
+                            <label><input type="checkbox" id="certForce"> تجاهل شرط الإكمال (إصدار قسري)</label>
+                        </div>
+                        <div class="form-actions" style="margin-top:16px">
+                            <button class="btn btn-primary" id="btnDoIssueCert">إصدار الشهادة</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="surface">
+                    <div class="surface-head"><h3>الشهادات الصادرة</h3>
+                        <input type="text" id="certSearch" placeholder="بحث..." style="padding:6px 12px;border-radius:8px;border:1px solid var(--line)">
+                    </div>
+                    <div style="overflow-x:auto">
+                        <table class="data-table">
+                            <thead><tr><th>رقم الشهادة</th><th>الطالب</th><th>الكورس</th><th>تاريخ الإصدار</th><th>الحالة</th><th>QR</th><th>إجراءات</th></tr></thead>
+                            <tbody id="certsTbody"><tr><td colspan="7" style="text-align:center;padding:32px;color:var(--slate-400)">جارٍ التحميل...</td></tr></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===========================
+                 SKILLS PANEL
+            =========================== -->
+            <section id="skillsPanel" class="panel" hidden>
+                <div class="welcome-hero">
+                    <div class="welcome-info">
+                        <span class="welcome-badge">NURSING SKILLS  —  المهارات التمريضية</span>
+                        <h1>مكتبة المهارات التمريضية العملية 🏥</h1>
+                        <p>إدارة التصنيفات والمهارات السريرية مع الخطوات والإجراءات.</p>
+                    </div>
+                    <div class="quick-actions">
+                        <button class="btn btn-primary" id="btnNewSkill">+ مهارة جديدة</button>
+                        <button class="btn btn-outline" id="btnNewSkillCat">+ تصنيف جديد</button>
+                    </div>
+                </div>
+
+                <div id="skillsMsg" class="notice" hidden></div>
+
+                <div style="display:grid;grid-template-columns:240px 1fr;gap:16px">
+                    <!-- Categories Sidebar -->
+                    <div class="surface">
+                        <div class="surface-head"><h3>التصنيفات</h3></div>
+                        <div id="skillCatList" style="padding:8px"></div>
+                    </div>
+                    <!-- Skills List -->
+                    <div class="surface">
+                        <div class="surface-head"><h3 id="skillsListTitle">المهارات</h3></div>
+                        <div id="skillsListContainer" style="padding:12px">
+                            <p style="color:var(--slate-400);text-align:center;padding:32px">اختر تصنيفاً لعرض المهارات</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Editor Modal -->
+                <div id="skillEditorModal" class="modal-overlay" hidden>
+                    <div class="modal-box" style="max-width:700px;max-height:90vh;overflow-y:auto">
+                        <div class="modal-header">
+                            <h3 id="skillEditorTitle">مهارة جديدة</h3>
+                            <button type="button" class="modal-close" id="closeSkillEditor">✕</button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" id="skillEditorId">
+                            <div class="form-grid">
+                                <label>التصنيف<select id="skillEditorCat" style="display:block;width:100%;margin-top:4px;padding:8px;border-radius:8px;border:1px solid var(--line)"></select></label>
+                                <label>المستوى<select id="skillEditorLevel" style="display:block;width:100%;margin-top:4px;padding:8px;border-radius:8px;border:1px solid var(--line)">
+                                    <option value="beginner">مبتدئ</option><option value="intermediate">متوسط</option><option value="advanced">متقدم</option>
+                                </select></label>
+                                <label>الاسم (عربي)<input id="skillEditorNameAr" placeholder="اسم المهارة بالعربية"></label>
+                                <label>الاسم (إنجليزي)<input id="skillEditorNameEn" placeholder="Skill name in English"></label>
+                                <label style="grid-column:1/-1">الوصف<textarea id="skillEditorDesc" rows="3" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--line)"></textarea></label>
+                                <label>الوقت التقديري (دقيقة)<input type="number" id="skillEditorTime" value="30"></label>
+                                <label><input type="checkbox" id="skillEditorSupervision" checked> يتطلب إشراف مؤهل</label>
+                                <label><input type="checkbox" id="skillEditorPublished"> منشور للطلاب</label>
+                            </div>
+                            <div style="margin-top:16px">
+                                <label>الأهداف التعليمية (سطر لكل هدف)
+                                    <textarea id="skillEditorObjectives" rows="4" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--line);margin-top:4px" placeholder="الهدف الأول&#10;الهدف الثاني"></textarea>
+                                </label>
+                                <label>الأدوات المطلوبة
+                                    <textarea id="skillEditorEquipment" rows="4" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--line);margin-top:4px" placeholder="الأداة الأولى&#10;الأداة الثانية"></textarea>
+                                </label>
+                                <label>خطوات الأداء
+                                    <textarea id="skillEditorSteps" rows="6" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--line);margin-top:4px" placeholder="الخطوة الأولى&#10;الخطوة الثانية"></textarea>
+                                </label>
+                                <label>احتياطات السلامة
+                                    <textarea id="skillEditorSafety" rows="4" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--line);margin-top:4px"></textarea>
+                                </label>
+                                <label>الأخطاء الشائعة
+                                    <textarea id="skillEditorMistakes" rows="4" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--line);margin-top:4px"></textarea>
+                                </label>
+                                <label>أسئلة المراجعة
+                                    <textarea id="skillEditorQuestions" rows="4" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--line);margin-top:4px"></textarea>
+                                </label>
+                            </div>
+                            <div class="form-actions" style="margin-top:16px">
+                                <button class="btn btn-primary" id="btnSaveSkill">💾 حفظ المهارة</button>
+                                <button class="btn btn-ghost" id="btnCancelSkill">إلغاء</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===========================
+                 STUDENT REVIEWS PANEL
+            =========================== -->
+            <section id="reviewsPanel" class="panel" hidden>
+                <div class="welcome-hero reviews-welcome">
+                    <div class="welcome-info">
+                        <span class="welcome-badge">STUDENT VOICE</span>
+                        <h1 data-i18n="reviews_title">تقييمات وآراء الطلاب</h1>
+                        <p data-i18n="reviews_subtitle">راجع التقييمات والتعليقات، واعتمد المناسب منها للظهور على المنصة.</p>
+                    </div>
+                    <button type="button" class="btn btn-outline" id="btnRefreshReviews" data-i18n="reviews_refresh">تحديث التقييمات</button>
+                </div>
+                <div class="admin-review-stats" id="reviewsStats" aria-live="polite"></div>
+                <div class="surface admin-reviews-toolbar">
+                    <label><span data-i18n="reviews_filter_status">الحالة</span>
+                        <select id="reviewsStatusFilter" class="form-select">
+                            <option value="" data-i18n="reviews_all_statuses">كل الحالات</option>
+                            <option value="pending" data-i18n="reviews_pending">بانتظار المراجعة</option>
+                            <option value="approved" data-i18n="reviews_approved">معتمد</option>
+                            <option value="rejected" data-i18n="reviews_rejected">مرفوض</option>
+                        </select>
+                    </label>
+                    <label><span data-i18n="reviews_filter_type">نوع المحتوى</span>
+                        <select id="reviewsTypeFilter" class="form-select">
+                            <option value="" data-i18n="reviews_all_types">كل المحتوى</option>
+                            <option value="course" data-i18n="reviews_course">كورس</option>
+                            <option value="book" data-i18n="reviews_book">كتاب</option>
+                        </select>
+                    </label>
+                    <label class="admin-reviews-search"><span data-i18n="reviews_search_label">بحث</span>
+                        <input id="reviewsSearch" type="search" class="form-input" data-i18n-placeholder="reviews_search_placeholder" placeholder="ابحث باسم الطالب أو الكورس أو التعليق">
+                    </label>
+                </div>
+                <div class="notice" id="reviewsMessage" hidden></div>
+                <div class="admin-reviews-list" id="reviewsList" aria-live="polite"></div>
+            </section>
+
+            <!-- ===========================
+                 NOTIFICATIONS PANEL
+            =========================== -->
+            <section id="notificationsPanel" class="panel" hidden>
+                <div class="welcome-hero">
+                    <div class="welcome-info">
+                        <span class="welcome-badge">NOTIFICATIONS  —  الإشعارات</span>
+                        <h1>مركز الإشعارات والإعلانات 🔔</h1>
+                        <p>إرسال إشعارات للطلاب والمحاضرين وعرض سجل الإشعارات.</p>
+                    </div>
+                </div>
+
+                <div id="notifStatsBox" style="margin-bottom:16px;"></div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+                    <!-- Send Notification -->
+                    <div class="surface">
+                        <div class="surface-head"><h3>إرسال إشعار جديد</h3></div>
+                        <div style="padding:16px">
+                            <div class="form-grid" style="grid-template-columns:1fr">
+                                <label>العنوان<input id="notifTitle" placeholder="عنوان الإشعار" style="width:100%;margin-top:4px"></label>
+                                <label>الرسالة<textarea id="notifMessage" rows="4" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--line);margin-top:4px" placeholder="نص الرسالة..."></textarea></label>
+                                <label>النوع<select id="notifType" style="display:block;width:100%;margin-top:4px;padding:8px;border-radius:8px;border:1px solid var(--line)">
+                                    <option value="general">عام</option>
+                                    <option value="announcement">إعلان كورس جديد</option>
+                                    <option value="quiz_reminder">تذكير اختبار</option>
+                                    <option value="payment">إشعار دفع</option>
+                                    <option value="admin">رسالة إدارية</option>
+                                </select></label>
+                                <label>الفئة المستهدفة<select id="notifTarget" style="display:block;width:100%;margin-top:4px;padding:8px;border-radius:8px;border:1px solid var(--line)">
+                                    <option value="all_students">كل الطلاب</option>
+                                    <option value="all_instructors">كل المحاضرين</option>
+                                    <option value="all">الجميع</option>
+                                </select></label>
+                            </div>
+                            <div class="form-actions" style="margin-top:16px">
+                                <button class="btn btn-primary" id="btnSendNotification">📢 إرسال الإشعار</button>
+                            </div>
+                            <div id="notifSendMsg" class="notice" hidden style="margin-top:12px"></div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Notifications -->
+                    <div class="surface">
+                        <div class="surface-head"><h3>آخر الإشعارات المرسلة</h3></div>
+                        <div id="recentNotifList" style="padding:12px;max-height:400px;overflow-y:auto">
+                            <p style="color:var(--slate-400);text-align:center;padding:24px">جارٍ التحميل...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===========================
+                 SUPPORT PANEL
+            =========================== -->
+            <section id="progressPanel" class="panel" hidden><div class="welcome-hero"><div class="welcome-info"><span class="welcome-badge">PROGRESS &#x1F4CA;</span><h1>&#x62A;&#x642;&#x62F;&#x645; &#x627;&#x644;&#x637;&#x644;&#x627;&#x628;</h1><p>&#x62A;&#x627;&#x628;&#x639; &#x62A;&#x642;&#x62F;&#x645; &#x643;&#x644; &#x637;&#x627;&#x644;&#x628; &#x641;&#x64A; &#x643;&#x644; &#x643;&#x648;&#x631;&#x633;</p></div></div><div id="progressStatsRow" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;margin-bottom:24px;"></div><div class="surface" style="margin-bottom:16px;"><div style="padding:16px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;"><select id="progressCourseFilter" style="border:1px solid var(--line);border-radius:8px;padding:8px 12px;" onchange="loadCourseProgress()"><option value="">&#x627;&#x62E;&#x62A;&#x631; &#x627;&#x644;&#x643;&#x648;&#x631;&#x633;...</option></select><input type="text" id="progressSearch" placeholder="&#x628;&#x62D;&#x62B; &#x628;&#x627;&#x633;&#x645; &#x627;&#x644;&#x637;&#x627;&#x644;&#x628;..." style="border:1px solid var(--line);border-radius:8px;padding:8px 12px;flex:1;" oninput="loadCourseProgress()"><button class="btn btn-outline" onclick="loadStrugglingStudents()">&#x26A0;&#xFE0F; &#x637;&#x644;&#x627;&#x628; &#x641;&#x64A; &#x62E;&#x637;&#x631;</button></div></div><div class="surface"><div class="surface-head"><h3 id="progressTableTitle">&#x62A;&#x642;&#x62F;&#x645; &#x627;&#x644;&#x637;&#x644;&#x627;&#x628;</h3></div><div style="overflow-x:auto;"><table class="data-table"><thead><tr><th>&#x627;&#x644;&#x637;&#x627;&#x644;&#x628;</th><th>&#x627;&#x644;&#x628;&#x631;&#x64A;&#x62F;</th><th>&#x627;&#x644;&#x62A;&#x642;&#x62F;&#x645;</th><th>&#x627;&#x644;&#x62F;&#x631;&#x648;&#x633;</th><th>&#x627;&#x644;&#x627;&#x62E;&#x62A;&#x628;&#x627;&#x631;&#x627;&#x62A;</th><th>&#x622;&#x62E;&#x631; &#x646;&#x634;&#x627;&#x637;</th><th>&#x625;&#x62C;&#x631;&#x627;&#x621;&#x627;&#x62A;</th></tr></thead><tbody id="progressTbody"><tr><td colspan="7" style="text-align:center;padding:30px;color:var(--slate-400);">&#x627;&#x62E;&#x62A;&#x631; &#x643;&#x648;&#x631;&#x633;&#x64B;&#x627; &#x644;&#x639;&#x631;&#x636; &#x628;&#x64A;&#x627;&#x646;&#x627;&#x62A; &#x627;&#x644;&#x62A;&#x642;&#x62F;&#x645;</td></tr></tbody></table></div></div><div id="strugglingPanel" class="surface" style="margin-top:16px;display:none;"><div class="surface-head"><h3>&#x26A0;&#xFE0F; &#x637;&#x644;&#x627;&#x628; &#x628;&#x62D;&#x627;&#x62C;&#x629; &#x645;&#x62A;&#x627;&#x628;&#x639;&#x629;</h3><button class="btn btn-sm btn-outline" onclick="document.getElementById('strugglingPanel').style.display='none'">&#x625;&#x62E;&#x641;&#x627;&#x621;</button></div><div id="strugglingList" style="padding:16px;"></div></div></section>
+            <section id="supportPanel" class="panel" hidden>
+                <div class="welcome-hero">
+                    <div class="welcome-info">
+                        <span class="welcome-badge">SUPPORT  —  الدعم الفني</span>
+                        <h1>نظام تذاكر الدعم الفني 🎧</h1>
+                        <p>إدارة استفسارات الطلاب، الرد عليهم، وتتبع حالة كل تذكرة.</p>
+                    </div>
+                </div>
+
+                <div id="supportMsg" class="notice" hidden></div>
+
+                <div style="display:grid;grid-template-columns:1fr 2fr;gap:16px" id="supportLayout">
+                    <!-- Ticket List -->
+                    <div class="surface">
+                        <div class="surface-head"><h3>التذاكر</h3></div>
+                        <div style="padding:8px">
+                            <select id="supportStatusFilter" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--line);margin-bottom:8px">
+                                <option value="">كل الحالات</option>
+                                <option value="open">مفتوحة</option>
+                                <option value="in_progress">قيد المعالجة</option>
+                                <option value="waiting">بانتظار الطالب</option>
+                                <option value="resolved">محلولة</option>
+                                <option value="closed">مغلقة</option>
+                            </select>
+                            <input type="text" id="supportSearch" placeholder="بحث..." style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--line)">
+                        </div>
+                        <div id="ticketListContainer" style="max-height:600px;overflow-y:auto;padding:8px"></div>
+                    </div>
+
+                    <!-- Ticket Detail -->
+                    <div class="surface" id="ticketDetailPanel">
+                        <div style="padding:40px;text-align:center;color:var(--slate-400)">
+                            <div style="font-size:48px;margin-bottom:16px">🎧</div>
+                            <p>اختر تذكرة لعرض تفاصيلها والرد عليها.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===========================
+                 REPORTS PANEL
+            =========================== -->
+            <section id="reportsPanel" class="panel" hidden>
+                <div class="welcome-hero">
+                    <div class="welcome-info">
+                        <span class="welcome-badge">REPORTS  —  التقارير</span>
+                        <h1>التقارير والتحليلات الأكاديمية 📊</h1>
+                        <p>بيانات حية عن التسجيلات، الإيرادات، أداء الطلاب، ونشاط المحاضرين.</p>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="surface" style="margin-bottom:16px">
+                    <div style="padding:16px;display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end">
+                        <div><label>من<input type="date" id="rptDateFrom" style="display:block;padding:8px;border-radius:8px;border:1px solid var(--line);margin-top:4px"></label></div>
+                        <div><label>إلى<input type="date" id="rptDateTo" style="display:block;padding:8px;border-radius:8px;border:1px solid var(--line);margin-top:4px"></label></div>
+                        <div><label>الكورس<select id="rptCourseFilter" style="display:block;padding:8px 12px;border-radius:8px;border:1px solid var(--line);margin-top:4px"><option value="">الكل</option></select></label></div>
+                        <button class="btn btn-primary" id="btnLoadReports">📊 تحديث التقارير</button>
+                    </div>
+                </div>
+
+                <!-- Summary Cards -->
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:20px" id="reportSummaryCards">
+                    <div class="stat-card"><div class="stat-label">تسجيلات جديدة</div><div class="stat-value" id="rptNewEnrollments">—</div></div>
+                    <div class="stat-card"><div class="stat-label">طلاب جدد</div><div class="stat-value" id="rptNewStudents">—</div></div>
+                    <div class="stat-card"><div class="stat-label">إيرادات مؤكدة</div><div class="stat-value" id="rptRevenue">—</div></div>
+                    <div class="stat-card"><div class="stat-label">مدفوعات معلقة</div><div class="stat-value" id="rptPending">—</div></div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+                    <!-- Top Courses -->
+                    <div class="surface">
+                        <div class="surface-head"><h3>أكثر الكورسات تسجيلاً</h3><button class="btn btn-ghost" id="btnExportTopCourses" style="font-size:12px">⬇ CSV</button></div>
+                        <div style="overflow-x:auto">
+                            <table class="data-table">
+                                <thead><tr><th>#</th><th>الكورس</th><th>التسجيلات</th><th>الإيرادات</th></tr></thead>
+                                <tbody id="rptTopCoursesTbody"><tr><td colspan="4" style="text-align:center;padding:24px;color:var(--slate-400)">—</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Performance -->
+                    <div class="surface">
+                        <div class="surface-head"><h3>أداء الاختبارات</h3></div>
+                        <div style="overflow-x:auto">
+                            <table class="data-table">
+                                <thead><tr><th>الاختبار</th><th>المحاولات</th><th>نسبة النجاح</th><th>متوسط الدرجة</th></tr></thead>
+                                <tbody id="rptQuizPerfTbody"><tr><td colspan="4" style="text-align:center;padding:24px;color:var(--slate-400)">—</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Instructor Activity -->
+                <div class="surface" style="margin-bottom:16px">
+                    <div class="surface-head"><h3>نشاط المحاضرين</h3><button class="btn btn-ghost" id="btnExportInstructors" style="font-size:12px">⬇ CSV</button></div>
+                    <div style="overflow-x:auto">
+                        <table class="data-table">
+                            <thead><tr><th>المحاضر</th><th>الكورسات</th><th>الطلاب</th><th>متوسط التقييم</th></tr></thead>
+                            <tbody id="rptInstructorTbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Revenue Detail -->
+                <div class="surface">
+                    <div class="surface-head"><h3>تفاصيل الإيرادات</h3><button class="btn btn-primary" id="btnExportRevenue" style="font-size:12px">⬇ تصدير CSV</button></div>
+                    <div style="overflow-x:auto">
+                        <table class="data-table">
+                            <thead><tr><th>رقم الطلب</th><th>الطالب</th><th>الكورس</th><th>المبلغ</th><th>الحالة</th><th>التاريخ</th></tr></thead>
+                            <tbody id="rptRevenueTbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== ENROLLMENT MODAL ===== -->
+            <div id="newEnrollmentModal" class="modal-overlay" hidden>
+                <div class="modal-box" style="max-width:500px">
+                    <div class="modal-header">
+                        <h3>تسجيل يدوي جديد</h3>
+                        <button type="button" class="modal-close" id="closeEnrollModal">✕</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-grid" style="grid-template-columns:1fr">
+                            <label>معرف الطالب (ID)<input type="number" id="enrStudentId" placeholder="رقم الطالب في قاعدة البيانات"></label>
+                            <label>معرف الكورس (ID)<input type="number" id="enrCourseId" placeholder="رقم الكورس"></label>
+                            <label>تاريخ البداية<input type="date" id="enrStartDate"></label>
+                            <label>تاريخ الانتهاء (اختياري)<input type="date" id="enrEndDate"></label>
+                            <label>ملاحظة (اختياري)<input id="enrNote" placeholder="ملاحظة التسجيل..."></label>
+                        </div>
+                        <div class="form-actions" style="margin-top:16px">
+                            <button class="btn btn-primary" id="btnDoEnroll">✅ تسجيل الطالب</button>
+                            <button class="btn btn-ghost" id="btnCancelEnroll">إلغاء</button>
+                        </div>
+                        <div id="enrollFormMsg" class="notice" hidden style="margin-top:12px"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== QUIZ FORM MODAL ===== -->
+            <div id="quizFormModal" class="modal-overlay" hidden>
+                <div class="modal-box" style="max-width:600px;max-height:90vh;overflow-y:auto">
+                    <div class="modal-header">
+                        <h3 id="quizFormTitle">اختبار جديد</h3>
+                        <button type="button" class="modal-close" id="closeQuizModal">✕</button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="quizFormId">
+                        <div class="form-grid">
+                            <label>الكورس<select id="quizFormCourse" style="display:block;width:100%;margin-top:4px;padding:8px;border-radius:8px;border:1px solid var(--line)"></select></label>
+                            <label>درجة النجاح (%)<input type="number" id="quizFormPassScore" value="60" min="1" max="100"></label>
+                            <label>العنوان (عربي)<input id="quizFormTitleAr" placeholder="عنوان الاختبار بالعربية"></label>
+                            <label>العنوان (إنجليزي)<input id="quizFormTitleEn" placeholder="Quiz title in English"></label>
+                            <label>الحد الأقصى للمحاولات<input type="number" id="quizFormMaxAttempts" value="1" min="1"></label>
+                            <label>مدة الاختبار (دقيقة، 0=غير محدود)<input type="number" id="quizFormTimeMins" value="0" min="0"></label>
+                        </div>
+                        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:12px">
+                            <label><input type="checkbox" id="quizFormShuffle"> ترتيب عشوائي للأسئلة</label>
+                            <label><input type="checkbox" id="quizFormShuffleOpts"> ترتيب عشوائي للاختيارات</label>
+                            <label><input type="checkbox" id="quizFormShowAnswers"> عرض الإجابات بعد التسليم</label>
+                            <label><input type="checkbox" id="quizFormPublished"> نشر للطلاب</label>
+                        </div>
+                        <div class="form-actions" style="margin-top:16px">
+                            <button class="btn btn-primary" id="btnSaveQuiz">💾 حفظ الاختبار</button>
+                            <button class="btn btn-ghost" id="btnCancelQuizForm">إلغاء</button>
+                        </div>
+                        <div id="quizFormMsg" class="notice" hidden style="margin-top:8px"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== ADD QUESTION MODAL ===== -->
+            <div id="questionModal" class="modal-overlay" hidden>
+                <div class="modal-box" style="max-width:580px;max-height:90vh;overflow-y:auto">
+                    <div class="modal-header">
+                        <h3>إضافة سؤال</h3>
+                        <button type="button" class="modal-close" id="closeQuestionModal">✕</button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="qFormQuizId">
+                        <div class="form-grid" style="grid-template-columns:1fr">
+                            <label>نوع السؤال<select id="qFormType" style="display:block;width:100%;margin-top:4px;padding:8px;border-radius:8px;border:1px solid var(--line)">
+                                <option value="mcq">اختيار متعدد (MCQ)</option>
+                                <option value="true_false">صح / خطأ</option>
+                                <option value="short_answer">إجابة قصيرة</option>
+                            </select></label>
+                            <label>نص السؤال<textarea id="qFormText" rows="3" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--line);margin-top:4px"></textarea></label>
+                            <label>الدرجة<input type="number" id="qFormPoints" value="1" min="0.5" step="0.5"></label>
+                            <label>التفسير / الشرح (يظهر بعد التسليم إن سُمح)<textarea id="qFormExpl" rows="2" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--line);margin-top:4px"></textarea></label>
+                        </div>
+                        <!-- Options (for MCQ / T/F) -->
+                        <div id="qOptionsSection" style="margin-top:16px">
+                            <h4 style="margin-bottom:8px">الاختيارات <small style="color:var(--slate-500)">(ضع ✓ أمام الإجابة الصحيحة)</small></h4>
+                            <div id="qOptionsList"></div>
+                            <button type="button" class="btn btn-ghost" id="btnAddOption" style="margin-top:8px">+ إضافة اختيار</button>
+                        </div>
+                        <div class="form-actions" style="margin-top:16px">
+                            <button class="btn btn-primary" id="btnSaveQuestion">💾 حفظ السؤال</button>
+                            <button class="btn btn-ghost" id="btnCancelQuestion">إلغاء</button>
+                        </div>
+                        <div id="questionFormMsg" class="notice" hidden style="margin-top:8px"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== ENROLLMENT HISTORY MODAL ===== -->
+            <div id="enrollHistoryModal" class="modal-overlay" hidden>
+                <div class="modal-box" style="max-width:580px">
+                    <div class="modal-header">
+                        <h3>سجل تغييرات الاشتراك</h3>
+                        <button type="button" class="modal-close" id="closeEnrollHistory">✕</button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="enrollHistoryContent"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== TICKET REPLY CONFIRMATION ===== -->
+
+            <!-- Modal: Student QR Code -->
+            <div id="studentQrModal" class="modal-overlay" hidden>
+                <div class="modal-box" style="max-width:420px;text-align:center">
+                    <div class="modal-header" style="justify-content:space-between">
+                        <h3>🎫 رمز QR للطالب</h3>
+                        <button type="button" class="modal-close" id="closeQrModal">✕</button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="qrStudentInfo" style="margin-bottom:16px">
+                            <div id="qrStudentName" style="font-size:18px;font-weight:700;color:var(--teal-700)"></div>
+                            <div id="qrStudentEmail" style="color:var(--slate-500);font-size:13px"></div>
+                        </div>
+                        <div id="qrCodeContainer" style="display:flex;align-items:center;justify-content:center;padding:16px;background:#f8fafc;border-radius:12px;margin-bottom:16px">
+                            <canvas id="qrCanvas"></canvas>
+                        </div>
+                        <div id="qrTokenDisplay" style="font-family:monospace;font-size:12px;color:var(--slate-500);background:#f1f5f9;padding:8px 12px;border-radius:8px;letter-spacing:1px;margin-bottom:16px"></div>
+                        <div style="display:flex;gap:8px;justify-content:center">
+                            <button type="button" class="btn btn-primary" id="printQrBtn">🖨️ طباعة</button>
+                            <button type="button" class="btn btn-outline" id="downloadQrBtn">⬇ تحميل</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- التذييل الأكاديمي -->
+            <footer class="admin-footer">                <div>نظام الإدارة الأكاديمية  —  <strong>Nursing Basic Course</strong></div>
+                <span>لوحة تحكم مشفرة ومؤمنة لحسابات الإدارة المعتمدة فقط.</span>
+            </footer>
+
+        </div> <!-- /.admin-content -->
+    </div> <!-- /.admin-main -->
+  </div> <!-- /.app-shell -->
+</main>
+
+<script src="asset/js/image-cropper.js?v=20261118-1"></script>
+<script src="asset/js/dashboard-effects.js?v=20261118-1"></script>
+<script src="asset/js/admin.js?v=20261120-5"></script>
+<script src="asset/js/homepage-designs.js?v=20261120-1" data-manager="admin"></script>
+<script src="asset/js/medical-theme.js?v=20261120-4" defer></script>
+<script src="asset/js/student-details.js?v=4.0"></script>
+<script src="asset/js/instructors.js?v=20261117-2"></script>
+<script src="asset/js/courses.js?v=20261120-1"></script>
+<script src="asset/js/admin-features.js?v=20261120-1"></script>
+<script src="asset/js/offline-centers.js?v=20261120-1"></script>
+<script src="asset/js/home-slider-admin.js?v=20261117-2"></script>
+<script src="asset/js/founder-photos-admin.js?v=20261117-1"></script>
+<script src="asset/js/nano-banana-admin.js?v=20261119-2"></script>
+<script src="asset/responsive-tables.js" defer></script>
+<script src="asset/responsive-nav.js" defer></script>
+
+</body>
+</html>
